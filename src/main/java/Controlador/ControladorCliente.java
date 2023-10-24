@@ -61,7 +61,7 @@ public class ControladorCliente implements ActionListener{
                 modcli.setTel(cli.getTxtTelefono().getText());
                 modcli.setCor(cli.getTxtCorreo().getText());
                 modcli.setSex(sexo);
-                
+                modcli.setTipodedocumento(cli.getCbxtipodedocumento().getSelectedItem().toString());
                 
                 modcli.insertarUsuario();
                 modcli.limpiarCasillas(cli.getJpPanelCliente().getComponents());

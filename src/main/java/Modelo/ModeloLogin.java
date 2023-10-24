@@ -57,10 +57,12 @@ public class ModeloLogin {
             while (rs.next()) {
                 result = true;                
             }
-            if(result==true){
+//            if(result==true){
+//                cn.close();
+//            conect.cerrarConexion();
+//            }
                 cn.close();
             conect.cerrarConexion();
-            }
 
         } catch (SQLException e) {
             e.printStackTrace();

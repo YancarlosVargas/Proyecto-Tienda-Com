@@ -21,9 +21,17 @@ public class ModeloCliente {
     Connection cn = conect.iniciarConexion();
 
     private int cdl, sex;
-    private String nom, dir, tel, cor;
+    private String nom, dir, tel, cor, tipodedocumento;
     private Date fec;
 
+    public String getTipodedocumento() {
+        return tipodedocumento;
+    }
+
+    public void setTipodedocumento(String tipodedocumento) {
+        this.tipodedocumento = tipodedocumento;
+    }
+    
     public int getCdl() {
         return cdl;
     }
@@ -99,7 +107,7 @@ public class ModeloCliente {
     public void insertarUsuario() {
         Conexion conect = new Conexion();
         Connection cn = conect.iniciarConexion();
-        String sql = "Call Insersion_Cliente(?,?,?,?,?,?,?)";
+        String sql = "Call Insersion_Cliente(?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setInt(1, getCdl());
@@ -109,8 +117,9 @@ public class ModeloCliente {
             ps.setString(5, getCor());
             ps.setString(6, getDir());
             ps.setDate(7, (java.sql.Date) getFec());
+            ps.setString(8, getTipodedocumento());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Registro almacenamiento", "registro", sex);
+            JOptionPane.showConfirmDialog(null, "Registro Almacenado");
             cn.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -126,6 +135,7 @@ public class ModeloCliente {
 
             if (vaciar instanceof JComboBox) {
                 ((JComboBox) vaciar).setSelectedItem("Seleccione...");
+                ((JComboBox) vaciar).setSelectedItem("Seleccionar:");
             }
 
             if (vaciar instanceof JDateChooser) {
