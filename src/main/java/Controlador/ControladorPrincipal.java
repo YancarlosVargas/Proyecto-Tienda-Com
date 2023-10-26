@@ -6,8 +6,11 @@ package Controlador;
 
 import Modelo.ModeloUsuario;
 import Vista.Cliente;
+import Vista.Factura;
+import Vista.Factura_Compra;
 import Vista.Login;
 import Vista.Principal;
+import Vista.Producto;
 import Vista.Proveedor;
 import Vista.Usuario;
 import java.awt.Color;
@@ -35,6 +38,9 @@ public class ControladorPrincipal implements ActionListener, ChangeListener {
     ControladorCliente clic = new ControladorCliente();
     Proveedor pro = new Proveedor();
     ControladorProveedor proc = new ControladorProveedor();
+    Producto produc = new Producto();
+    Factura_Compra factucom = new Factura_Compra();
+    Factura factu = new Factura();
 
     public ControladorPrincipal() {
         prin.getBtnNuevoUsuario().addActionListener(this);
@@ -49,6 +55,15 @@ public class ControladorPrincipal implements ActionListener, ChangeListener {
         prin.getJtPrincipal().addChangeListener(this);
         prin.getBtnNuevoUsuario().addChangeListener(this);
 
+        prin.getBtnNuevoProducto().addActionListener(this);
+        produc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        prin.getBtnNuevaFactura().addActionListener(this);
+        produc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        prin.getBtnNuevaVenta().addActionListener(this);
+        produc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
     }
 
     public void iniciarPrincipal() {
@@ -62,7 +77,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener {
 
     public void gestionarceldas() {
         if (prin.getJtPrincipal().getSelectedIndex() == 0) {
-             ModeloUsuario modusu = new ModeloUsuario();
+            ModeloUsuario modusu = new ModeloUsuario();
             modusu.mostrarTablaUsuario(prin.getJtUsuario(), "");
 
             prin.getTxtFiltro().addMouseListener(new MouseAdapter() {
@@ -73,34 +88,34 @@ public class ControladorPrincipal implements ActionListener, ChangeListener {
                 }
 
             });
-            
-            prin.getTxtFiltro().getDocument().addDocumentListener(new DocumentListener(){
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                modusu.mostrarTablaUsuario(prin.getJtUsuario(), prin.getTxtFiltro().getText());
-            }
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                 modusu.mostrarTablaUsuario(prin.getJtUsuario(), prin.getTxtFiltro().getText());
-            }
+            prin.getTxtFiltro().getDocument().addDocumentListener(new DocumentListener() {
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    modusu.mostrarTablaUsuario(prin.getJtUsuario(), prin.getTxtFiltro().getText());
+                }
 
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                 modusu.mostrarTablaUsuario(prin.getJtUsuario(), prin.getTxtFiltro().getText());
-            }
-            
-        });
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    modusu.mostrarTablaUsuario(prin.getJtUsuario(), prin.getTxtFiltro().getText());
+                }
+
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    modusu.mostrarTablaUsuario(prin.getJtUsuario(), prin.getTxtFiltro().getText());
+                }
+
+            });
             prin.getJtUsuario().addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                   int fila = prin.getJtUsuario().rowAtPoint(e.getPoint());
-                   int columna = prin.getJtUsuario().columnAtPoint(e.getPoint());
-                   modusu.setDoc(Integer.parseInt(prin.getJtUsuario().getValueAt(fila, 1).toString()));
-              if(columna==9){
-                  usu.actualizarUsuario(modusu.getDoc());
-              }
-                   
+                    int fila = prin.getJtUsuario().rowAtPoint(e.getPoint());
+                    int columna = prin.getJtUsuario().columnAtPoint(e.getPoint());
+                    modusu.setDoc(Integer.parseInt(prin.getJtUsuario().getValueAt(fila, 1).toString()));
+                    if (columna == 9) {
+                        usu.actualizarUsuario(modusu.getDoc());
+                    }
+
                 }
 
             });
@@ -128,6 +143,25 @@ public class ControladorPrincipal implements ActionListener, ChangeListener {
             prin.setVisible(false);
 
         }
+
+        if (e.getSource() == (prin.getBtnNuevoProducto())) {
+            produc.setVisible(true);
+            produc.setLocationRelativeTo(null);
+            prin.setVisible(false);
+        }
+
+        if (e.getSource() == (prin.getBtnNuevaFactura())) {
+            factucom.setVisible(true);
+            factucom.setLocationRelativeTo(null);
+            prin.setVisible(false);
+        }
+
+        if (e.getSource() == (prin.getBtnNuevaVenta())) {
+            factu.setVisible(true);
+            factu.setLocationRelativeTo(null);
+            prin.setVisible(false);
+        }
+
     }
 
     @Override
@@ -136,8 +170,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener {
         if (seleccion == 0) {
             gestionarceldas();
         }
-       
-        
 
     }
 }

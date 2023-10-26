@@ -201,7 +201,7 @@ public class ModeloUsuario {
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png")));
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png")));
 
-        String[] titulo = {"Tipo De Documento", "Genero/Sexo", "Cargo/Rol", "Nombre", "Telefono", "Correo", "Direccion", "Fecha De Nacimiento", "Tipo de Documento", "", ""};
+        String[] titulo = {"Numero De Documento", "Genero/Sexo", "Cargo/Rol", "Nombre", "Telefono", "Correo", "Direccion", "Fecha De Nacimiento", "Tipo de Documento", "", ""};
 
         DefaultTableModel tablaUsuario = new DefaultTableModel(null, titulo) {
             public boolean isCellEditable(int row, int column) {
@@ -223,7 +223,7 @@ public class ModeloUsuario {
                 for (int i = 0; i < titulo.length - 2; i++) {
                     dato[i] = rs.getString(i + 1);
                 }
-                tablaUsuario.addRow(new Object[]{dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7], dato[8], editar, eliminar});
+                tablaUsuario.addRow(new Object[]{dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7], dato[8],editar, eliminar});
             }
             cn.close();
         } catch (SQLException e) {
@@ -232,7 +232,7 @@ public class ModeloUsuario {
         tabla.setModel(tablaUsuario);
         
         int numColumnas = tabla.getColumnCount();
-        int[] tamanos={100,100,100,100,100,100,100,100,100,100,100};
+        int[] tamanos={200,200,150,100,100,100,100,100,100,30,30};
         for(int i=0; i<numColumnas;i++){
             TableColumn columna = tabla.getColumnModel().getColumn(i);
             columna.setPreferredWidth(tamanos[i]);
