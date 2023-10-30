@@ -24,7 +24,7 @@ public class ControladorProveedor implements ActionListener{
             ;
         public void windowClosed(WindowEvent e) {
                 ControladorPrincipal princ = new ControladorPrincipal();
-                princ.iniciarPrincipal();
+                princ.iniciarPrincipal(1);
             }
         });
     }

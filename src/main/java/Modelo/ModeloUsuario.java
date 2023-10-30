@@ -5,6 +5,7 @@
 package Modelo;
 
 import Controlador.Conexion;
+
 import com.toedter.calendar.JDateChooser;
 import java.awt.Component;
 import java.sql.Connection;
@@ -12,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -185,13 +187,13 @@ public class ModeloUsuario {
         }
     }
 
-    public void mostrarTablaUsuario(JTable tabla, String valor) {
+    public void mostrarTablaUsuario(JTable tabla, String valor, String nomPesta) {
         Conexion conect = new Conexion();
         Connection cn = conect.iniciarConexion();
-        
-        
+
         JButton editar = new JButton();
         JButton eliminar = new JButton();
+        JButton agregar = new JButton();
 
         JTableHeader encabezado = tabla.getTableHeader();
         encabezado.setDefaultRenderer(new GestionEncabezado());
@@ -200,8 +202,19 @@ public class ModeloUsuario {
 
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png")));
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png")));
+        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar-usuario.png")));
 
-        String[] titulo = {"Numero De Documento", "Genero/Sexo", "Cargo/Rol", "Nombre", "Telefono", "Correo", "Direccion", "Fecha De Nacimiento", "Tipo de Documento", "", ""};
+        String[] titulo = {"Numero De Documento", "Genero/Sexo", "Cargo/Rol", "Nombre", "Telefono", "Correo", "Direccion", "Fecha De Nacimiento", "Tipo de Documento"};
+        int total = titulo.length;
+
+        if (nomPesta.equals("Usuario")) {
+            titulo = Arrays.copyOf(titulo, titulo.length + 2);
+            titulo[titulo.length - 2] = "Editar";
+            titulo[titulo.length - 1] = "Eliminar";
+        } else {
+            titulo = Arrays.copyOf(titulo, titulo.length + 1);
+            titulo[titulo.length - 1] = "Agregar";
+        }
 
         DefaultTableModel tablaUsuario = new DefaultTableModel(null, titulo) {
             public boolean isCellEditable(int row, int column) {
@@ -220,63 +233,102 @@ public class ModeloUsuario {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sqlUsuario);
             while (rs.next()) {
-                for (int i = 0; i < titulo.length - 2; i++) {
+                for (int i = 0; i < total; i++) {
                     dato[i] = rs.getString(i + 1);
                 }
-                tablaUsuario.addRow(new Object[]{dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7], dato[8],editar, eliminar});
+
+                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7], dato[8]};
+                if (nomPesta.equals("Usuario")) {
+                    fila = Arrays.copyOf(fila, fila.length + 2);
+                    fila[fila.length - 2] = editar;
+                    fila[fila.length - 1] = eliminar;
+                } else {
+                    fila = Arrays.copyOf(fila, fila.length + 1);
+                    fila[fila.length - 1] = agregar;
+                }
+                tablaUsuario.addRow(fila);
             }
             cn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         tabla.setModel(tablaUsuario);
-        
+
         int numColumnas = tabla.getColumnCount();
-        int[] tamanos={200,200,150,100,100,100,100,100,100,30,30};
-        for(int i=0; i<numColumnas;i++){
+        int[] tamanos = {200, 200, 150, 100, 100, 100, 100, 100, 100, 30, 30};
+        for (int i = 0; i < numColumnas; i++) {
             TableColumn columna = tabla.getColumnModel().getColumn(i);
             columna.setPreferredWidth(tamanos[i]);
         }
         conect.cerrarConexion();
 
     }
-    
-    public void buscarUsuario(int valor){
+
+    public void buscarUsuario(int valor) {
         Conexion cone = new Conexion();
         Connection cn = cone.iniciarConexion();
-        
-        String sql = "call BuscarRegistroActualizar("+valor+")";
-        
-        try{
-           Statement st = cn.createStatement();
-           ResultSet rs = st.executeQuery(sql);
-           
-           while (rs.next()){
-               setDoc(rs.getInt(1));
-               setSex(rs.getInt(2));
-               setRol(rs.getInt(3));
-               setNom(rs.getString(4));
-               setTecl(rs.getString(5));
-               setCor(rs.getString(6));
-               setDir(rs.getString(7));
-               setLo(rs.getString(8));
-               setCl(rs.getString(9));
-               setFec(rs.getDate(10));
-               setTipodedoc(rs.getString(11));
-           }
-           
-        }catch (SQLException e){
+
+        String sql = "call BuscarRegistroActualizar(" + valor + ")";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                setDoc(rs.getInt(1));
+                setNom(rs.getString(4));
+                setTecl(rs.getString(5));
+                setCor(rs.getString(6));
+                setDir(rs.getString(7));
+                setFec(rs.getDate(11));
+                setSex(rs.getInt(2));
+                setRol(rs.getInt(3));
+                setLo(rs.getString(9));
+                setCl(rs.getString(10));
+                setTipodedoc(rs.getString(12));
+            }
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
     }
-    
-    public String obtenerSeleccion(Map<String,Integer> dato, int valor){
-        for(Map.Entry<String, Integer> seleccion:dato.entrySet()){
-            if (seleccion.getValue() == valor){
+
+    public String obtenerSeleccion(Map<String, Integer> dato, int valor) {
+        for (Map.Entry<String, Integer> seleccion : dato.entrySet()) {
+            if (seleccion.getValue() == valor) {
                 return seleccion.getKey();
             }
         }
         return null;
     }
+
+    public void actualizarUsuario(int valor) {
+        Conexion cone = new Conexion();
+        Connection cn = cone.iniciarConexion();
+
+        String sql = "call Actualizar_Usuario(" + valor + ")";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                setDoc(rs.getInt(1));
+                setNom(rs.getString(2));
+                setTecl(rs.getString(3));
+                setCor(rs.getString(4));
+                setDir(rs.getString(5));
+                setFec(rs.getDate(6));
+                setCl(rs.getString(7));
+                setSex(rs.getInt(8));
+                setRol(rs.getInt(9));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

@@ -16,6 +16,7 @@ public class ControladorLogin implements ActionListener {
     public ControladorLogin() {
         log.getBtnVisibilidad().addActionListener(this);
         log.getBtnIniciarSeccion().addActionListener(this);
+        
     }
 
     public void arranqueVista() {
@@ -38,9 +39,6 @@ public class ControladorLogin implements ActionListener {
             }
         }
         if (e.getSource() == (log.getBtnIniciarSeccion())) {
-            if (con.iniciarConexion() == null) {
-                JOptionPane.showMessageDialog(null, "ACCESO DENEGADO");
-            } else {
                 modlog.setUsu(log.getTxtUsuario().getText());
                 String pass = new String(log.getJpClave().getPassword());
                 modlog.setContra(pass);
@@ -54,15 +52,14 @@ public class ControladorLogin implements ActionListener {
                     } else {
                         if (modlog.validacion(modlog.getUsu(), modlog.getContra())) {
                             log.setVisible(false);
-                            prin.iniciarPrincipal();
+                            prin.iniciarPrincipal(0);
 
                         } else {
                             JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta");
 
                         }
                     }
-                }
-            }
+                }         
         }
     }
 

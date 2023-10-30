@@ -23,7 +23,7 @@ public class ControladorCliente implements ActionListener{
             ;
         public void windowClosed(WindowEvent e) {
                 ControladorPrincipal princ = new ControladorPrincipal();
-                princ.iniciarPrincipal();
+                princ.iniciarPrincipal(2);
             }
         });
     }
@@ -62,7 +62,6 @@ public class ControladorCliente implements ActionListener{
                 modcli.setCor(cli.getTxtCorreo().getText());
                 modcli.setSex(sexo);
                 modcli.setTipodedocumento(cli.getCbxtipodedocumento().getSelectedItem().toString());
-                
                 modcli.insertarUsuario();
                 modcli.limpiarCasillas(cli.getJpPanelCliente().getComponents());
             }

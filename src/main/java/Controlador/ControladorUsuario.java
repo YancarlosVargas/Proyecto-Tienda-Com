@@ -5,6 +5,7 @@
 package Controlador;
 
 import Modelo.ModeloUsuario;
+import Vista.Principal;
 import Vista.Usuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +24,7 @@ public class ControladorUsuario implements ActionListener {
 
     Usuario usu = new Usuario();
     ModeloUsuario modusu = new ModeloUsuario();
+    Principal prin = new Principal();
 
     public ControladorUsuario() {
         usu.getBtnGuardarUsuario().addActionListener(this);
@@ -31,12 +33,12 @@ public class ControladorUsuario implements ActionListener {
             ;
         public void windowClosed(WindowEvent e) {
                 ControladorPrincipal princ = new ControladorPrincipal();
-                princ.iniciarPrincipal();
+                princ.iniciarPrincipal(0);
             }
         });
         usu.getBtnVisibilidad().addActionListener(this);
     }
-
+ 
     public void iniciarUsuario() {
         usu.setVisible(true);
         usu.setLocationRelativeTo(null);
@@ -105,7 +107,7 @@ public class ControladorUsuario implements ActionListener {
 
     }
 
-    void actualizarUsuario(int Doc) {
+    public void actualizarUsuario(int Doc) {
         modusu.buscarUsuario(Doc);
         usu.getTxtDocumento().setEnabled(false);
         usu.getTxtDocumento().setText(String.valueOf(Doc));
@@ -117,9 +119,9 @@ public class ControladorUsuario implements ActionListener {
         usu.getJpClave().setText(modusu.getCl());
         usu.getTxtNombre().setText(modusu.getNom());
         usu.getJDFechadeNacimiento().setDate(modusu.getFec());
-        usu.getLblNuevoUsuario().setText("ACTUALIZAR USUARIO");
-        usu.getBtnGuardarUsuario().setText("Actualizar");
-        
+        usu.getTxtLogin().setText(modusu.getLo());
+        usu.getCbxtipodedocumento().setSelectedItem(modusu.getTipodedoc());
+
         
         Map <String, Integer> datos = modusu.llenarCombo("sexo");
         for(String sexo : datos.keySet()){
@@ -136,8 +138,13 @@ public class ControladorUsuario implements ActionListener {
         
         String valorCargo = modusu.obtenerSeleccion(datosc, modusu.getRol());
         usu.getJcbCargo().setSelectedItem(valorCargo);
-        
-        usu.getCbxtipodedocumento().setSelectedItem(modusu.getTipodedoc());
+                
+        prin.setVisible(false);
+        usu.getLblNuevoUsuario().setText("ACTUALIZAR USUARIO");
+        usu.setLocationRelativeTo(null);
+        usu.getBtnGuardarUsuario().setText("Actualizar");
+        usu.setVisible(true);
+                
         
         
     }
