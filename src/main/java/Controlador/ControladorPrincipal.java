@@ -117,6 +117,12 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                     prin.setVisible(false);
                     usu.actualizarUsuario(modusu.getDoc());
                 }
+                
+                if (columna == 10) {
+                    
+                    usu.eliminarUsuario(modusu.getDoc());
+                    modusu.mostrarTablaUsuario(prin.getJtUsuario(), "", "Usuario");
+                }
 
             }
 

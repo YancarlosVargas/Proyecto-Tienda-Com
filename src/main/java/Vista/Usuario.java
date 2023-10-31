@@ -166,8 +166,8 @@ public class Usuario extends javax.swing.JFrame {
                                         .addComponent(txtCorreo)
                                         .addComponent(txtDocumento))))))
                     .addGroup(jpPanelUsuarioLayout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(btnGuardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(101, 101, 101)
+                        .addComponent(btnGuardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpPanelUsuarioLayout.setVerticalGroup(

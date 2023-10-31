@@ -303,32 +303,50 @@ public class ModeloUsuario {
         return null;
     }
 
-    public void actualizarUsuario(int valor) {
+    public void actualizarUsuario() {
         Conexion cone = new Conexion();
         Connection cn = cone.iniciarConexion();
 
-        String sql = "call Actualizar_Usuario(" + valor + ")";
+        String sql = "call Actualizar_Usuario(?,?,?,?,?,?,?,?,?)";
 
         try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement ps = cn.prepareStatement(sql);
 
-            while (rs.next()) {
-                setDoc(rs.getInt(1));
-                setNom(rs.getString(2));
-                setTecl(rs.getString(3));
-                setCor(rs.getString(4));
-                setDir(rs.getString(5));
-                setFec(rs.getDate(6));
-                setCl(rs.getString(7));
-                setSex(rs.getInt(8));
-                setRol(rs.getInt(9));
-            }
+            ps.setInt(1,getDoc());
+            ps.setString(2, getNom());
+            ps.setString(3, getTel());
+            ps.setString(4, getCor());
+            ps.setString(5, getDir());
+            ps.setDate(6, (java.sql.Date) getFec());
+            ps.setString(7, getCl());
+            ps.setInt(8, getSex());
+            ps.setInt(9, getRol());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro Actualizado");
+            cn.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+        
+        public void eliminarUsuario() {
+        Conexion cone = new Conexion();
+        Connection cn = cone.iniciarConexion();
 
+        String sql = "call Eliminar_Usuario(?)";
+
+        try {
+            PreparedStatement ps = cn.prepareStatement(sql);
+
+            ps.setInt(1,getDoc());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Usuario Eliminado", "Eliminar Usuario", JOptionPane.PLAIN_MESSAGE);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
     }
 
 }

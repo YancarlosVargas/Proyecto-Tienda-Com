@@ -38,7 +38,7 @@ public class ControladorUsuario implements ActionListener {
         });
         usu.getBtnVisibilidad().addActionListener(this);
     }
- 
+
     public void iniciarUsuario() {
         usu.setVisible(true);
         usu.setLocationRelativeTo(null);
@@ -61,35 +61,43 @@ public class ControladorUsuario implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == (usu.getBtnGuardarUsuario())) {
 
-            if (usu.getTxtDocumento().getText().isEmpty() || (usu.getJcbGenero().getSelectedItem().equals("Seleccione...") || (usu.getTxtNombre().getText().isEmpty()) || (usu.getTxtTelefono().getText().isEmpty()) || (usu.getTxtCorreo().getText().isEmpty()) || (usu.getTxtDireccion().getText().isEmpty() || (usu.getTxtLogin().getText().isEmpty() || (usu.getJpClave().getPassword() == null || (usu.getJcbCargo().getSelectedItem().equals("Seleccione..."))) || (usu.getJDFechadeNacimiento().getDate() == null)))) || (usu.getCbxtipodedocumento().getSelectedItem().equals("Seleccionar:"))) {
-                JOptionPane.showMessageDialog(null, "Hace Falta Informacion");
-            } else {
-                JOptionPane.showMessageDialog(null, "Exito");
-                String valorSexo = usu.getJcbGenero().getSelectedItem().toString();
-                String valorCargo = usu.getJcbCargo().getSelectedItem().toString();
-                int sexo = modusu.llenarCombo("sexo").get(valorSexo);
-                int cargo = modusu.llenarCombo("cargo").get(valorCargo);
-                java.util.Date fec = usu.getJDFechadeNacimiento().getDate();
-                long fe = fec.getTime();
-                java.sql.Date fecha = new Date(fe);
+//            if (usu.getTxtDocumento().getText().isEmpty() || (usu.getJcbGenero().getSelectedItem().equals("Seleccione...") || (usu.getTxtNombre().getText().isEmpty()) || (usu.getTxtTelefono().getText().isEmpty()) || (usu.getTxtCorreo().getText().isEmpty()) || (usu.getTxtDireccion().getText().isEmpty() || (usu.getTxtLogin().getText().isEmpty() || (usu.getJpClave().getPassword() == null || (usu.getJcbCargo().getSelectedItem().equals("Seleccione..."))) || (usu.getJDFechadeNacimiento().getDate() == null)))) || (usu.getCbxtipodedocumento().getSelectedItem().equals("Seleccionar:"))) {
+//                JOptionPane.showMessageDialog(null, "Hace Falta Informacion");
+            JOptionPane.showMessageDialog(null, "Exito");
+            String valorSexo = usu.getJcbGenero().getSelectedItem().toString();
+            String valorCargo = usu.getJcbCargo().getSelectedItem().toString();
+            int sexo = modusu.llenarCombo("sexo").get(valorSexo);
+            int cargo = modusu.llenarCombo("cargo").get(valorCargo);
+            java.util.Date fec = usu.getJDFechadeNacimiento().getDate();
+            long fe = fec.getTime();
+            java.sql.Date fecha = new Date(fe);
 
-                char[] contra = usu.getJpClave().getPassword();
-                String contrasena = String.valueOf(contra);
+            char[] contra = usu.getJpClave().getPassword();
+            String contrasena = String.valueOf(contra);
 
-                modusu.setDoc(Integer.parseInt(usu.getTxtDocumento().getText()));
-                modusu.setNom(usu.getTxtNombre().getText());
-                modusu.setFec(fecha);
-                modusu.setDir(usu.getTxtDireccion().getText());
-                modusu.setTecl(usu.getTxtTelefono().getText());
-                modusu.setCor(usu.getTxtCorreo().getText());
-                modusu.setLo(usu.getTxtLogin().getText());
-                modusu.setCl(contrasena);
-                modusu.setSex(sexo);
-                modusu.setRol(cargo);
-                modusu.setTipodedoc(usu.getCbxtipodedocumento().getSelectedItem().toString());
+            modusu.setDoc(Integer.parseInt(usu.getTxtDocumento().getText()));
+            modusu.setNom(usu.getTxtNombre().getText());
+            modusu.setFec(fecha);
+            modusu.setDir(usu.getTxtDireccion().getText());
+            modusu.setTecl(usu.getTxtTelefono().getText());
+            modusu.setCor(usu.getTxtCorreo().getText());
+            modusu.setLo(usu.getTxtLogin().getText());
+            modusu.setCl(contrasena);
+            modusu.setSex(sexo);
+            modusu.setRol(cargo);
+            modusu.setTipodedoc(usu.getCbxtipodedocumento().getSelectedItem().toString());
 
+            if (usu.getBtnGuardarUsuario().getText().equals("Guardar")) {
                 modusu.insertarUsuario();
                 modusu.limpiarCasillas(usu.getJpPanelUsuario().getComponents());
+            } else if (usu.getBtnGuardarUsuario().getText().equals("Actualizar")) {
+                modusu.actualizarUsuario();
+                usu.setVisible(false);
+                prin.getJtPrincipal().setSelectedIndex(1);
+                modusu.mostrarTablaUsuario(prin.getJtUsuario(), "", "usuario");
+            } else {
+                modusu.eliminarUsuario();
+
             }
         }
 
@@ -122,31 +130,40 @@ public class ControladorUsuario implements ActionListener {
         usu.getTxtLogin().setText(modusu.getLo());
         usu.getCbxtipodedocumento().setSelectedItem(modusu.getTipodedoc());
 
-        
-        Map <String, Integer> datos = modusu.llenarCombo("sexo");
-        for(String sexo : datos.keySet()){
+        Map<String, Integer> datos = modusu.llenarCombo("sexo");
+        for (String sexo : datos.keySet()) {
             usu.getJcbGenero().addItem(sexo);
         }
-        
+
         String valorSexo = modusu.obtenerSeleccion(datos, modusu.getSex());
         usu.getJcbGenero().setSelectedItem(valorSexo);
-       
-        Map <String, Integer> datosc = modusu.llenarCombo("cargo");
-        for(String cargo : datosc.keySet()){
+
+        Map<String, Integer> datosc = modusu.llenarCombo("cargo");
+        for (String cargo : datosc.keySet()) {
             usu.getJcbCargo().addItem(cargo);
         }
-        
+
         String valorCargo = modusu.obtenerSeleccion(datosc, modusu.getRol());
         usu.getJcbCargo().setSelectedItem(valorCargo);
-                
+
         prin.setVisible(false);
         usu.getLblNuevoUsuario().setText("ACTUALIZAR USUARIO");
         usu.setLocationRelativeTo(null);
         usu.getBtnGuardarUsuario().setText("Actualizar");
         usu.setVisible(true);
-                
-        
-        
+
+    }
+
+    public void eliminarUsuario(int Doc) {
+        int resp = JOptionPane.showConfirmDialog(null, "Eliminar Usuario? \n" + Doc,
+                 "Eliminar Usuario", JOptionPane.YES_OPTION);
+        if (resp == JOptionPane.YES_OPTION) {
+            modusu.setDoc(Doc);
+            modusu.eliminarUsuario();
+            modusu.mostrarTablaUsuario(prin.getJtUsuario(), "", "Usuario");
+            
+        }
+
     }
 
 }
