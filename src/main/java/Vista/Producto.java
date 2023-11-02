@@ -4,10 +4,9 @@
  */
 package Vista;
 
-import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -23,6 +22,47 @@ public class Producto extends javax.swing.JFrame {
         initComponents();
     }
 
+    public JTextField getTxtImagen() {
+        return txtImagen;
+    }
+
+    public void setTxtImagen(JTextField txtImagen) {
+        this.txtImagen = txtImagen;
+    }
+
+    public JTextArea getJtxtDescripcion() {
+        return jtxtDescripcion;
+    }
+
+    public void setJtxtDescripcion(JTextArea jtxtDescripcion) {
+        this.jtxtDescripcion = jtxtDescripcion;
+    }
+
+    public JTextField getTxtNombre() {
+        return txtNombre;
+    }
+
+    public void setTxtNombre(JTextField txtNombre) {
+        this.txtNombre = txtNombre;
+    }
+
+    public JButton getBtnGUardarProducto() {
+        return btnGUardarProducto;
+    }
+
+    public void setBtnGUardarProducto(JButton btnGUardarProducto) {
+        this.btnGUardarProducto = btnGUardarProducto;
+    }
+
+    
+    public JButton getBtnBuscarImagen() {
+        return btnBuscarImagen;
+    }
+
+    public void setBtnBuscarImagen(JButton btnBuscarImagen) {
+        this.btnBuscarImagen = btnBuscarImagen;
+    }
+
     public JPanel getJpPanelCliente() {
         return jpPanelCliente;
     }
@@ -32,27 +72,18 @@ public class Producto extends javax.swing.JFrame {
     }
 
     public JButton getBtnGuardarCliente() {
-        return btnGuardarCliente;
+        return btnGUardarProducto;
     }
 
     public void setBtnGuardarCliente(JButton btnGuardarCliente) {
-        this.btnGuardarCliente = btnGuardarCliente;
+        this.btnGUardarProducto = btnGuardarCliente;
     }
     public JTextField getTxtDocumento() {
-        return txtDocumento;
+        return txtNombre;
     }
 
     public void setTxtDocumento(JTextField txtDocumento) {
-        this.txtDocumento = txtDocumento;
-    }
-
-    public JTextField getTxtTelefono() {
-        return txtTelefono;
-    }
-
-    public void setTxtTelefono(JTextField txtTelefono) {
-        
-        this.txtTelefono = txtTelefono;
+        this.txtNombre = txtDocumento;
     }
 
     /**
@@ -69,11 +100,12 @@ public class Producto extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        btnGuardarCliente = new javax.swing.JButton();
-        txtDocumento = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnGUardarProducto = new javax.swing.JButton();
+        txtNombre = new javax.swing.JTextField();
+        btnBuscarImagen = new javax.swing.JButton();
+        txtImagen = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtxtDescripcion = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,40 +124,45 @@ public class Producto extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Descripcion:");
 
-        btnGuardarCliente.setText("Guardar");
-        btnGuardarCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnGUardarProducto.setText("Guardar");
+        btnGUardarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarClienteActionPerformed(evt);
+                btnGUardarProductoActionPerformed(evt);
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png"))); // NOI18N
+        btnBuscarImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png"))); // NOI18N
+
+        txtImagen.setEditable(false);
+
+        jtxtDescripcion.setColumns(20);
+        jtxtDescripcion.setRows(5);
+        jScrollPane1.setViewportView(jtxtDescripcion);
 
         javax.swing.GroupLayout jpPanelClienteLayout = new javax.swing.GroupLayout(jpPanelCliente);
         jpPanelCliente.setLayout(jpPanelClienteLayout);
         jpPanelClienteLayout.setHorizontalGroup(
             jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpPanelClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpPanelClienteLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(12, 12, 12)
-                        .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpPanelClienteLayout.createSequentialGroup()
-                                .addComponent(jTextField1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtDocumento)
-                            .addComponent(txtTelefono)))
-                    .addGroup(jpPanelClienteLayout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(btnGuardarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtImagen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBuscarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(jpPanelClienteLayout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addComponent(btnGUardarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpPanelClienteLayout.setVerticalGroup(
             jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,20 +171,20 @@ public class Producto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(jButton1))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnBuscarImagen))
+                    .addComponent(txtImagen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGuardarCliente)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnGUardarProducto)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,9 +207,9 @@ public class Producto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClienteActionPerformed
+    private void btnGUardarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGUardarProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarClienteActionPerformed
+    }//GEN-LAST:event_btnGUardarProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,15 +217,16 @@ public class Producto extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardarCliente;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnBuscarImagen;
+    private javax.swing.JButton btnGUardarProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jpPanelCliente;
-    private javax.swing.JTextField txtDocumento;
-    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextArea jtxtDescripcion;
+    private javax.swing.JTextField txtImagen;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
