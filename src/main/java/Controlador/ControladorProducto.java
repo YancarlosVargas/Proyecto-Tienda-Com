@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Controlador;
 
 import Modelo.ModeloProducto;
@@ -10,8 +14,11 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.swing.JFrame;
 
-public class ControladorProducto implements ActionListener {
-
+/**
+ *
+ * @author HuevosFundidos
+ */
+public class ControladorProducto implements ActionListener{
     Producto pro = new Producto();
     Principal prin = new Principal();
     ModeloProducto modpro = new ModeloProducto();
@@ -19,7 +26,7 @@ public class ControladorProducto implements ActionListener {
     public ControladorProducto() {
         pro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pro.getBtnBuscarImagen().addActionListener(this);
-        pro.getBtnGUardarProducto().addActionListener(this);
+        pro.getBtnGuardarProducto().addActionListener(this);
 
         pro.addWindowListener(new WindowAdapter() {
             ;
@@ -45,13 +52,14 @@ public class ControladorProducto implements ActionListener {
             pro.getTxtImagen().setText(archivo);
         }
         
-        if (e.getSource().equals(pro.getBtnGUardarProducto())) {
+        if (e.getSource().equals(pro.getBtnGuardarProducto())){
            modpro.setNom(pro.getTxtNombre().getText());
            modpro.setDesc(pro.getJtxtDescripcion().getText());
            modpro.setImagen(modpro.convertirImagenes(modpro.getRoute()));
            
            modpro.insertarProducto();
+           modpro.limpiarCasillas(pro.getJpPanelProducto().getComponents());
         }
     }
-
 }
+

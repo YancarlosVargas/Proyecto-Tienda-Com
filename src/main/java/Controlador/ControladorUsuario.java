@@ -91,10 +91,22 @@ public class ControladorUsuario implements ActionListener {
                 modusu.insertarUsuario();
                 modusu.limpiarCasillas(usu.getJpPanelUsuario().getComponents());
             } else if (usu.getBtnGuardarUsuario().getText().equals("Actualizar")) {
+                
+                
+                
                 modusu.actualizarUsuario();
+                
+                ControladorPrincipal princ = new ControladorPrincipal();
+                
+                
                 usu.setVisible(false);
                 prin.getJtPrincipal().setSelectedIndex(1);
                 modusu.mostrarTablaUsuario(prin.getJtUsuario(), "", "usuario");
+                princ.iniciarPrincipal(0);
+                
+                
+                
+                
             } else {
                 modusu.eliminarUsuario();
 

@@ -62,10 +62,91 @@ public class ControladorCliente implements ActionListener{
                 modcli.setCor(cli.getTxtCorreo().getText());
                 modcli.setSex(sexo);
                 modcli.setTipodedocumento(cli.getCbxtipodedocumento().getSelectedItem().toString());
-                modcli.insertarUsuario();
+                modcli.insertarCliente();
                 modcli.limpiarCasillas(cli.getJpPanelCliente().getComponents());
             }
+            
+             if (cli.getBtnGuardarCliente().getText().equals("Guardar")) {
+                modcli.insertarCliente();
+                modcli.limpiarCasillas(cli.getJpPanelCliente().getComponents());
+            } else if (cli.getBtnGuardarCliente().getText().equals("Actualizar")) {
+                
+                
+                
+                modusu.actualizarUsuario();
+                
+                ControladorPrincipal princ = new ControladorPrincipal();
+                
+                
+                usu.setVisible(false);
+                prin.getJtPrincipal().setSelectedIndex(1);
+                modusu.mostrarTablaUsuario(prin.getJtUsuario(), "", "usuario");
+                princ.iniciarPrincipal(0);
+                
+                
+                
+                
+            } else {
+                modusu.eliminarUsuario();
+
+            }
         }
+
+        }
+    
+     public void actualizarUsuario(int Doc) {
+        modusu.buscarUsuario(Doc);
+        usu.getTxtDocumento().setEnabled(false);
+        usu.getTxtDocumento().setText(String.valueOf(Doc));
+        usu.getTxtLogin().setEnabled(false);
+        usu.getCbxtipodedocumento().setEnabled(false);
+        usu.getTxtCorreo().setText(modusu.getCor());
+        usu.getTxtDireccion().setText(modusu.getDir());
+        usu.getTxtTelefono().setText(modusu.getTel());
+        usu.getJpClave().setText(modusu.getCl());
+        usu.getTxtNombre().setText(modusu.getNom());
+        usu.getJDFechadeNacimiento().setDate(modusu.getFec());
+        usu.getTxtLogin().setText(modusu.getLo());
+        usu.getCbxtipodedocumento().setSelectedItem(modusu.getTipodedoc());
+
+        Map<String, Integer> datos = modusu.llenarCombo("sexo");
+        for (String sexo : datos.keySet()) {
+            usu.getJcbGenero().addItem(sexo);
+        }
+
+        String valorSexo = modusu.obtenerSeleccion(datos, modusu.getSex());
+        usu.getJcbGenero().setSelectedItem(valorSexo);
+
+        Map<String, Integer> datosc = modusu.llenarCombo("cargo");
+        for (String cargo : datosc.keySet()) {
+            usu.getJcbCargo().addItem(cargo);
+        }
+
+        String valorCargo = modusu.obtenerSeleccion(datosc, modusu.getRol());
+        usu.getJcbCargo().setSelectedItem(valorCargo);
+
+        prin.setVisible(false);
+        usu.getLblNuevoUsuario().setText("ACTUALIZAR USUARIO");
+        usu.setLocationRelativeTo(null);
+        usu.getBtnGuardarUsuario().setText("Actualizar");
+        usu.setVisible(true);
+
     }
-}
+
+    public void eliminarUsuario(int Doc) {
+        int resp = JOptionPane.showConfirmDialog(null, "Eliminar Usuario? \n" + Doc,
+                 "Eliminar Usuario", JOptionPane.YES_OPTION);
+        if (resp == JOptionPane.YES_OPTION) {
+            modusu.setDoc(Doc);
+            modusu.eliminarUsuario();
+            modusu.mostrarTablaUsuario(prin.getJtUsuario(), "", "Usuario");
+            
+        }
+
+    }
+
+        
+        
+    }
+
 

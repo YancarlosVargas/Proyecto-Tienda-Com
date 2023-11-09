@@ -49,7 +49,7 @@ public class Principal extends javax.swing.JFrame {
         btnNuevoCliente = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jtCliente = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         btnNuevoProducto = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -171,8 +171,8 @@ public class Principal extends javax.swing.JFrame {
 
         jTextField1.setText("Buscar: ");
 
-        jTable2.setBackground(new java.awt.Color(153, 153, 153));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jtCliente.setBackground(new java.awt.Color(153, 153, 153));
+        jtCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -183,7 +183,7 @@ public class Principal extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jtCliente);
 
         javax.swing.GroupLayout JLayout = new javax.swing.GroupLayout(J);
         J.setLayout(JLayout);
@@ -438,6 +438,14 @@ public class Principal extends javax.swing.JFrame {
         return btnNuevaVenta;
     }
 
+    public JTable getJtCliente() {
+        return jtCliente;
+    }
+
+    public void setJtCliente(JTable jtCliente) {
+        this.jtCliente = jtCliente;
+    }
+
     public void setBtnNuevaVenta(JButton btnNuevaVenta) {
         this.btnNuevaVenta = btnNuevaVenta;
     }
@@ -539,13 +547,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel jpProvedor;
     private javax.swing.JPanel jpUsuario;
+    private javax.swing.JTable jtCliente;
     private javax.swing.JTable jtFactura;
     private javax.swing.JTabbedPane jtPrincipal;
     private javax.swing.JTable jtUsuario;

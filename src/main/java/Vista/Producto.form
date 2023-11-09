@@ -25,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jpPanelCliente" min="-2" max="-2" attributes="0"/>
+              <Component id="jpPanelProducto" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -34,14 +34,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jpPanelCliente" min="-2" max="-2" attributes="0"/>
+              <Component id="jpPanelProducto" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jpPanelCliente">
+    <Container class="javax.swing.JPanel" name="jpPanelProducto">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -53,7 +53,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+              <Component id="jLabel1" alignment="0" pref="304" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -64,19 +64,19 @@
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="txtImagen" max="32767" attributes="0"/>
+                          <Component id="TxtImagen" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnBuscarImagen" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="BtnBuscarImagen" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" alignment="0" pref="281" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
-                  <Component id="btnGUardarProducto" min="-2" pref="81" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="BtnGuardarProducto" min="-2" pref="81" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -93,18 +93,18 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnBuscarImagen" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="BtnBuscarImagen" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="txtImagen" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="TxtImagen" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="68" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnGUardarProducto" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="BtnGuardarProducto" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -137,27 +137,24 @@
             <Property name="text" type="java.lang.String" value="Descripcion:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnGUardarProducto">
+        <Component class="javax.swing.JButton" name="BtnGuardarProducto">
           <Properties>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGUardarProductoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnGuardarProductoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombre">
         </Component>
-        <Component class="javax.swing.JButton" name="btnBuscarImagen">
+        <Component class="javax.swing.JButton" name="BtnBuscarImagen">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img/editar.png"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtImagen">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
+        <Component class="javax.swing.JTextField" name="TxtImagen">
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -166,7 +163,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="jtxtDescripcion">
+            <Component class="javax.swing.JTextArea" name="JtxtDescripcion">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
