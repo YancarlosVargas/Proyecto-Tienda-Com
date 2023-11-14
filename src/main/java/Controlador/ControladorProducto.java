@@ -13,6 +13,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -59,7 +60,55 @@ public class ControladorProducto implements ActionListener{
            
            modpro.insertarProducto();
            modpro.limpiarCasillas(pro.getJpPanelProducto().getComponents());
-        }
-    }
-}
+        } else if (pro.getBtnGuardarProducto().getText().equals("Actualizar")) {
+                
+                
+                
+               modpro.buscarProducto(0);
+                
+                
+                
+                pro.setVisible(false);
+                prin.getJtPrincipal().setSelectedIndex(1);
+                modpro.mostrarTablaProducto(prin.getJtProducto(), "", "Producto");
+                pro.dispose();
+                
+                
+                
+                
+            } else {
+                modpro.eliminarProducto();
 
+            }
+        }
+        
+        public void actualizarProducto(int idpro) {
+        modpro.buscarProducto(idpro);
+        pro.getTxtNombre().setText(modpro.getNom());
+        pro.getTxtImagen().setEnabled(false);
+        pro.getJtxtDescripcion().setText(modpro.getDesc());
+        pro.getLblTitulo().setText("ACTUALIZAR PRODUCTO");
+        prin.setVisible(false);
+        pro.setLocationRelativeTo(null);
+        pro.getBtnGuardarProducto().setText("Actualizar");
+        pro.setVisible(true);
+        pro.getTxtImagen().setText(modpro.getRoute());
+    }
+
+    public void eliminarProducto(int idpro) {
+        int resp = JOptionPane.showConfirmDialog(null, "Eliminar Producto? \n" + idpro,
+                 "Eliminar Producto", JOptionPane.YES_OPTION);
+        if (resp == JOptionPane.YES_OPTION) {
+            modpro.setIdpro(idpro);
+            modpro.eliminarProducto();
+            modpro.mostrarTablaProducto(prin.getJtProducto(), "", "Producto");
+            
+        }
+
+    }
+    
+
+
+    }
+
+    

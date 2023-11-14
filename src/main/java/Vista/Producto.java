@@ -7,6 +7,7 @@ package Vista;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -72,6 +73,16 @@ public class Producto extends javax.swing.JFrame {
         this.jpPanelProducto = jpPanelProducto;
     }
 
+    public JLabel getLblTitulo() {
+        return lblTitulo;
+    }
+
+    public void setLblTitulo(JLabel lblTitulo) {
+        this.lblTitulo = lblTitulo;
+    }
+    
+    
+
    
 
     /**
@@ -84,7 +95,7 @@ public class Producto extends javax.swing.JFrame {
     private void initComponents() {
 
         jpPanelProducto = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -99,9 +110,9 @@ public class Producto extends javax.swing.JFrame {
 
         jpPanelProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("NUEVO PRODUCTO");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("NUEVO PRODUCTO");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Nombre:");
@@ -129,7 +140,7 @@ public class Producto extends javax.swing.JFrame {
         jpPanelProducto.setLayout(jpPanelProductoLayout);
         jpPanelProductoLayout.setHorizontalGroup(
             jpPanelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
             .addGroup(jpPanelProductoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpPanelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -153,7 +164,7 @@ public class Producto extends javax.swing.JFrame {
         jpPanelProductoLayout.setVerticalGroup(
             jpPanelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPanelProductoLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpPanelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -207,12 +218,12 @@ public class Producto extends javax.swing.JFrame {
     private javax.swing.JButton BtnGuardarProducto;
     private javax.swing.JTextArea JtxtDescripcion;
     private javax.swing.JTextField TxtImagen;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jpPanelProducto;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

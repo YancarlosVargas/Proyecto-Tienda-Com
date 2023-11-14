@@ -196,7 +196,7 @@ public class ModeloCliente {
                     dato[i] = rs.getString(i + 1);
                 }
 
-                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7], dato[8]};
+                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7]};
                 if (nomPesta.equals("Cliente")) {
                     fila = Arrays.copyOf(fila, fila.length + 2);
                     fila[fila.length - 2] = editar;
@@ -211,7 +211,7 @@ public class ModeloCliente {
         tabla.setModel(tablaCliente);
 
         int numColumnas = tabla.getColumnCount();
-        int[] tamanos = {200, 200, 150, 100, 100, 100, 100, 100, 30, 30};
+        int[] tamanos = {100, 100, 100, 100, 100, 100, 100, 100, 50, 80};
         for (int i = 0; i < numColumnas; i++) {
             TableColumn columna = tabla.getColumnModel().getColumn(i);
             columna.setPreferredWidth(tamanos[i]);
@@ -220,28 +220,25 @@ public class ModeloCliente {
 
     }
     
-    public void buscarUsuario(int valor) {
+    public void buscarCliente(int valor) {
         Conexion cone = new Conexion();
         Connection cn = cone.iniciarConexion();
 
-        String sql = "call BuscarRegistroActualizar(" + valor + ")";
+        String sql = "call BuscarRegistro_Cliente(" + valor + ")";
 
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                setDoc(rs.getInt(1));
+                setCdl(rs.getInt(1));
                 setNom(rs.getString(4));
-                setTecl(rs.getString(5));
+                setTel(rs.getString(5));
                 setCor(rs.getString(6));
                 setDir(rs.getString(7));
-                setFec(rs.getDate(11));
+                setFec(rs.getDate(8));
                 setSex(rs.getInt(2));
-                setRol(rs.getInt(3));
-                setLo(rs.getString(9));
-                setCl(rs.getString(10));
-                setTipodedoc(rs.getString(12));
+                setTipodedocumento(rs.getString(3));
             }
 
         } catch (SQLException e) {
@@ -259,24 +256,22 @@ public class ModeloCliente {
         return null;
     }
 
-    public void actualizarUsuario() {
+    public void actualizarCliente() {
         Conexion cone = new Conexion();
         Connection cn = cone.iniciarConexion();
 
-        String sql = "call Actualizar_Usuario(?,?,?,?,?,?,?,?,?)";
+        String sql = "call Actualizar_Cliente(?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = cn.prepareStatement(sql);
 
-            ps.setInt(1,getDoc());
+            ps.setInt(1,getCdl());
             ps.setString(2, getNom());
             ps.setString(3, getTel());
             ps.setString(4, getCor());
             ps.setString(5, getDir());
             ps.setDate(6, (java.sql.Date) getFec());
-            ps.setString(7, getCl());
-            ps.setInt(8, getSex());
-            ps.setInt(9, getRol());
+            ps.setInt(7, getSex());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro Actualizado");
             cn.close();
@@ -286,18 +281,18 @@ public class ModeloCliente {
         }
     }
         
-        public void eliminarUsuario() {
+        public void eliminarCliente() {
         Conexion cone = new Conexion();
         Connection cn = cone.iniciarConexion();
 
-        String sql = "call Eliminar_Usuario(?)";
+        String sql = "call Eliminar_Cliente(?)";
 
         try {
             PreparedStatement ps = cn.prepareStatement(sql);
 
-            ps.setInt(1,getDoc());
+            ps.setInt(1,getCdl());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Usuario Eliminado", "Eliminar Usuario", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cliente Eliminado", "Eliminar Cliente", JOptionPane.PLAIN_MESSAGE);
 
         } catch (SQLException e) {
             e.printStackTrace();

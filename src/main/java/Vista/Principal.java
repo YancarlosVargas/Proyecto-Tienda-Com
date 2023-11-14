@@ -42,18 +42,18 @@ public class Principal extends javax.swing.JFrame {
         jtUsuario = new javax.swing.JTable();
         jpProvedor = new javax.swing.JPanel();
         btnAñadirProveedor = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        txtFiltroProvedor = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jtProvedor = new javax.swing.JTable();
         J = new javax.swing.JPanel();
         btnNuevoCliente = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtFiltroCliente = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtCliente = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         btnNuevoProducto = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtProducto = new javax.swing.JTable();
         txtFiltro1 = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         txtFiltro2 = new javax.swing.JTextField();
@@ -124,10 +124,10 @@ public class Principal extends javax.swing.JFrame {
 
         btnAñadirProveedor.setText("Añadir Proveedor");
 
-        jTextField2.setText("Buscar: ");
+        txtFiltroProvedor.setText("Buscar: ");
 
-        jTable3.setBackground(new java.awt.Color(153, 153, 153));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jtProvedor.setBackground(new java.awt.Color(153, 153, 153));
+        jtProvedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -138,7 +138,7 @@ public class Principal extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(jtProvedor);
 
         javax.swing.GroupLayout jpProvedorLayout = new javax.swing.GroupLayout(jpProvedor);
         jpProvedor.setLayout(jpProvedorLayout);
@@ -151,7 +151,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jpProvedorLayout.createSequentialGroup()
                         .addComponent(btnAñadirProveedor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtFiltroProvedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jpProvedorLayout.setVerticalGroup(
@@ -160,7 +160,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpProvedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAñadirProveedor)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFiltroProvedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
         );
@@ -169,7 +169,7 @@ public class Principal extends javax.swing.JFrame {
 
         btnNuevoCliente.setText("Añadir Cliente");
 
-        jTextField1.setText("Buscar: ");
+        txtFiltroCliente.setText("Buscar: ");
 
         jtCliente.setBackground(new java.awt.Color(153, 153, 153));
         jtCliente.setModel(new javax.swing.table.DefaultTableModel(
@@ -196,7 +196,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(JLayout.createSequentialGroup()
                         .addComponent(btnNuevoCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtFiltroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         JLayout.setVerticalGroup(
@@ -205,7 +205,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(JLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevoCliente)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFiltroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
         );
@@ -214,8 +214,8 @@ public class Principal extends javax.swing.JFrame {
 
         btnNuevoProducto.setText("Nuevo Producto");
 
-        jTable1.setBackground(new java.awt.Color(153, 153, 153));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtProducto.setBackground(new java.awt.Color(153, 153, 153));
+        jtProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -226,7 +226,7 @@ public class Principal extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane4.setViewportView(jTable1);
+        jScrollPane4.setViewportView(jtProducto);
 
         txtFiltro1.setText("Buscar: ");
 
@@ -418,6 +418,41 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNuevoUsuarioActionPerformed
 
+    public JTable getJtProvedor() {
+        return jtProvedor;
+    }
+
+    public void setJtProvedor(JTable jtProvedor) {
+        this.jtProvedor = jtProvedor;
+    }
+
+    public JTable getJtProducto() {
+        return jtProducto;
+    }
+
+    public void setJtProducto(JTable jtProducto) {
+        this.jtProducto = jtProducto;
+    }
+
+    
+    
+    
+    public JTextField getTxtFiltroProvedor() {
+        return txtFiltroProvedor;
+    }
+
+    public void setTxtFiltroProvedor(JTextField txtFiltroProvedor) {
+        this.txtFiltroProvedor = txtFiltroProvedor;
+    }
+
+    public JTextField getTxtFiltroCliente() {
+        return txtFiltroCliente;
+    }
+
+    public void setTxtFiltroCliente(JTextField txtFiltroCliente) {
+        this.txtFiltroCliente = txtFiltroCliente;
+    }
+
     public JTable getJtFactura() {
         return jtFactura;
     }
@@ -546,20 +581,20 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel jpProvedor;
     private javax.swing.JPanel jpUsuario;
     private javax.swing.JTable jtCliente;
     private javax.swing.JTable jtFactura;
     private javax.swing.JTabbedPane jtPrincipal;
+    private javax.swing.JTable jtProducto;
+    private javax.swing.JTable jtProvedor;
     private javax.swing.JTable jtUsuario;
     private javax.swing.JTextField txtFiltro;
     private javax.swing.JTextField txtFiltro1;
     private javax.swing.JTextField txtFiltro2;
     private javax.swing.JTextField txtFiltro3;
+    private javax.swing.JTextField txtFiltroCliente;
+    private javax.swing.JTextField txtFiltroProvedor;
     // End of variables declaration//GEN-END:variables
 }

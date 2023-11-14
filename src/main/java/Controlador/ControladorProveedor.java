@@ -2,6 +2,7 @@
 package Controlador;
 
 import Modelo.ModeloProveedor;
+import Vista.Principal;
 import Vista.Proveedor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,7 @@ import javax.swing.JOptionPane;
 public class ControladorProveedor implements ActionListener{
     Proveedor pro = new Proveedor();
     ModeloProveedor modpro = new ModeloProveedor();
+    Principal prin = new Principal();
  
 
     public ControladorProveedor() {
@@ -67,5 +69,46 @@ public class ControladorProveedor implements ActionListener{
                 modpro.limpiarCasillas(pro.getJpPanelProveedor().getComponents());
             }
         }
+    }
+    
+    public void actualizarProvedor(int Doc) {
+        modpro.buscarProvedor(Doc);
+        pro.getTxtNombre().setText(modpro.getNom());
+        pro.getTxtTelefono().setText(modpro.getTel());
+        pro.getTxtCorreo().setText(modpro.getCor());
+        pro.getJDFechadeNacimiento().setDate(modpro.getFec());
+        pro.getTxtDireccion().setText(modpro.getDir());
+        pro.getJcbGenero().setSelectedItem(modpro.getSex());
+        pro.getCbxTipoDeDocumento().setSelectedItem(modpro.getTipdedeocu());
+        pro.getCbxTipoDePersona().setSelectedItem(modpro.getTipdeper());
+       
+        
+        
+        Map<String, Integer> datos = modpro.llenarCombo("sexo");
+        for (String sexo : datos.keySet()) {
+            pro.getJcbGenero().addItem(sexo);
+        }
+
+        String valorSexo = modpro.obtenerSeleccion(datos, modpro.getSex());
+        pro.getJcbGenero().setSelectedItem(valorSexo);
+
+        prin.setVisible(false);
+        pro.getLblNuevoProvedor().setText("ACTUALIZAR PROVEDOR");
+        pro.setLocationRelativeTo(null);
+        pro.getBtnGuardarProveedor().setText("Actualizar");
+        pro.setVisible(true);
+
+    }
+
+    public void eliminarProvedor(int Doc) {
+        int resp = JOptionPane.showConfirmDialog(null, "Eliminar Provedor? \n" + Doc,
+                 "Eliminar Provedor", JOptionPane.YES_OPTION);
+        if (resp == JOptionPane.YES_OPTION) {
+            modpro.setCed(Doc);
+            modpro.eliminarProvedor();
+            modpro.mostrarTablaProvedor(prin.getJtProvedor(), "", "Provedor");
+            
+        }
+
     }
 }

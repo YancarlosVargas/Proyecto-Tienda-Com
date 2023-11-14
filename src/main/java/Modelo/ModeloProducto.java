@@ -19,6 +19,7 @@ import java.sql.Statement;
 import java.util.Arrays;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,16 +30,26 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 
 /**
  *
  * @author SENA
  */
 public class ModeloProducto {
-
+    
+    private int idpro;
     private String nom, desc, route;
     private byte imagen[];
 
+    public int getIdpro() {
+        return idpro;
+    }
+
+    public void setIdpro(int idpro) {
+        this.idpro = idpro;
+    }
+    
     public String getNom() {
         return nom;
     }
@@ -142,24 +153,31 @@ public class ModeloProducto {
     public void mostrarTablaProducto(JTable tabla, String valor, String NomPesta) {
         Conexion cn = new Conexion();
         Connection conex = cn.iniciarConexion();
+        
+        JButton editar = new JButton();
+        JButton eliminar = new JButton();
+
 
         JTableHeader encabezado = tabla.getTableHeader();
         encabezado.setDefaultRenderer(new GestionEncabezado());
         tabla.setTableHeader(encabezado);
+        tabla.setDefaultRenderer(Object.class, new GestionCeldas());
+        
+        
+        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png")));
+        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png")));
 
-        String[] titulo = {"Identificador", "Nombre", "Descripcion", "Cantidad", "Imagen", "Precio"};
+
+        String[] titulo = {"Identificador", "Imagen", "Nombre", "Cantidad", "Stock", "Precio"};
         int total = titulo.length;
 
         if (NomPesta.equals("Producto")) {
             titulo = Arrays.copyOf(titulo, titulo.length + 2);
             titulo[titulo.length - 2] = "Editar";
             titulo[titulo.length - 1] = "Eliminar";
-        } else {
-            titulo = Arrays.copyOf(titulo, titulo.length + 1);
-            titulo[titulo.length - 1] = "Agregar";
-        }
+        } 
 
-        DefaultTableModel tablaUsuario = new DefaultTableModel(null, titulo) {
+        DefaultTableModel tablaProducto = new DefaultTableModel(null, titulo) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -168,7 +186,6 @@ public class ModeloProducto {
         String sqlproducto = valor.isEmpty() ? "select * from mostrar_producto" : "call Filtro_Producto('" + valor + "')";
 
         try {
-            String datos[] = new String[total];
             Object dato[] = new Object[total];
 
             Statement st = conex.createStatement();
@@ -191,13 +208,76 @@ public class ModeloProducto {
                 dato[2] = rs.getString(2);
                 dato[3] = rs.getString(3);
                 dato[4] = rs.getString(4);
-                dato[5] = rs.getString(5);
-
+                dato[5] = rs.getString(6);
+                
+                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5]};
+                if (NomPesta.equals("Producto")) {
+                    fila = Arrays.copyOf(fila, fila.length + 2);
+                    fila[fila.length - 2] = editar;
+                    fila[fila.length - 1] = eliminar;
+                } 
+                tablaProducto.addRow(fila);
             }
-        } catch (Exception e) {
+            conex.close();
+            
+        } catch (SQLException ex){
+           ex.printStackTrace();
+        }
+        tabla.setModel(tablaProducto);
+        
+        int numColumnas = tabla.getColumnCount();
+        int[] tamanos = {100, 100, 100, 100, 100, 100, 50, 80};
+        for (int i = 0; i < numColumnas; i++) {
+            TableColumn columna = tabla.getColumnModel().getColumn(i);
+            columna.setPreferredWidth(tamanos[i]);
+        }
+        cn.cerrarConexion();
+                    
+
+    }
+    
+    public void buscarProducto(int valor) {
+        Conexion cone = new Conexion();
+        Connection cn = cone.iniciarConexion();
+
+        String sql = "call BuscarRegistro_Producto(" + valor + ")";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                setIdpro(rs.getInt(1));
+                setNom(rs.getString(2));
+                setDesc(rs.getString(3));
+                setImagen(rs.getBytes(5));
+                setRoute(rs.getString(8));
+            }
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
+    
+       public void eliminarProducto() {
+        Conexion cone = new Conexion();
+        Connection cn = cone.iniciarConexion();
+
+        String sql = "call Eliminar_Provedor(?)";
+
+        try {
+            PreparedStatement ps = cn.prepareStatement(sql);
+
+            ps.setInt(1, getIdpro());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Producto Eliminado", "Eliminar Producto", JOptionPane.PLAIN_MESSAGE);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+       
 }
 

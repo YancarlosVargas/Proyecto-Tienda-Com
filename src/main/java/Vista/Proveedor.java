@@ -7,6 +7,7 @@ package Vista;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -21,6 +22,14 @@ public class Proveedor extends javax.swing.JFrame {
      */
     public Proveedor() {
         initComponents();
+    }
+
+    public JLabel getLblNuevoProvedor() {
+        return lblNuevoProvedor;
+    }
+
+    public void setLblNuevoProvedor(JLabel lblNuevoProvedor) {
+        this.lblNuevoProvedor = lblNuevoProvedor;
     }
 
 
@@ -115,7 +124,7 @@ public class Proveedor extends javax.swing.JFrame {
 
         jpPanelProveedor = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblNuevoProvedor = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -138,9 +147,9 @@ public class Proveedor extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("NUEVO PROVEEDOR");
+        lblNuevoProvedor.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        lblNuevoProvedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNuevoProvedor.setText("NUEVO PROVEEDOR");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Nombre:");
@@ -181,7 +190,7 @@ public class Proveedor extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblNuevoProvedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -225,7 +234,7 @@ public class Proveedor extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNuevoProvedor, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -320,7 +329,6 @@ public class Proveedor extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarProveedor;
     private javax.swing.JComboBox<String> cbxTipoDeDocumento;
     private javax.swing.JComboBox<String> cbxTipoDePersona;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
@@ -332,6 +340,7 @@ public class Proveedor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JComboBox<String> jcbGenero;
     private javax.swing.JPanel jpPanelProveedor;
+    private javax.swing.JLabel lblNuevoProvedor;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;

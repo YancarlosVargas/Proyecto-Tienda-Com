@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelo.ModeloCliente;
 import Vista.Cliente;
+import Vista.Principal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -15,6 +16,7 @@ public class ControladorCliente implements ActionListener{
 
     Cliente cli = new Cliente();
     ModeloCliente modcli = new ModeloCliente();
+    Principal prin = new Principal();
 
     public ControladorCliente() {
         cli.getBtnGuardarCliente().addActionListener(this);
@@ -73,73 +75,62 @@ public class ControladorCliente implements ActionListener{
                 
                 
                 
-                modusu.actualizarUsuario();
+                modcli.actualizarCliente();
                 
                 ControladorPrincipal princ = new ControladorPrincipal();
                 
                 
-                usu.setVisible(false);
+                cli.setVisible(false);
                 prin.getJtPrincipal().setSelectedIndex(1);
-                modusu.mostrarTablaUsuario(prin.getJtUsuario(), "", "usuario");
+                modcli.mostrarTablaCliente(prin.getJtCliente(), "", "Cliente");
                 princ.iniciarPrincipal(0);
                 
                 
                 
                 
             } else {
-                modusu.eliminarUsuario();
+                modcli.eliminarCliente();
 
             }
         }
 
         }
     
-     public void actualizarUsuario(int Doc) {
-        modusu.buscarUsuario(Doc);
-        usu.getTxtDocumento().setEnabled(false);
-        usu.getTxtDocumento().setText(String.valueOf(Doc));
-        usu.getTxtLogin().setEnabled(false);
-        usu.getCbxtipodedocumento().setEnabled(false);
-        usu.getTxtCorreo().setText(modusu.getCor());
-        usu.getTxtDireccion().setText(modusu.getDir());
-        usu.getTxtTelefono().setText(modusu.getTel());
-        usu.getJpClave().setText(modusu.getCl());
-        usu.getTxtNombre().setText(modusu.getNom());
-        usu.getJDFechadeNacimiento().setDate(modusu.getFec());
-        usu.getTxtLogin().setText(modusu.getLo());
-        usu.getCbxtipodedocumento().setSelectedItem(modusu.getTipodedoc());
+     public void actualizarCliente(int Doc) {
+        modcli.buscarCliente(Doc);
+        cli.getTxtDocumento().setEnabled(false);
+        cli.getTxtDocumento().setText(String.valueOf(Doc));
+        cli.getCbxtipodedocumento().setEnabled(false);
+        cli.getTxtCorreo().setText(modcli.getCor());
+        cli.getTxtDireccion().setText(modcli.getDir());
+        cli.getTxtTelefono().setText(modcli.getTel());
+        cli.getTxtNombre().setText(modcli.getNom());
+        cli.getJDFechadeNacimiento().setDate(modcli.getFec());
+        cli.getCbxtipodedocumento().setSelectedItem(modcli.getTipodedocumento());
 
-        Map<String, Integer> datos = modusu.llenarCombo("sexo");
+        Map<String, Integer> datos = modcli.llenarCombo("sexo");
         for (String sexo : datos.keySet()) {
-            usu.getJcbGenero().addItem(sexo);
+            cli.getJcbGenero().addItem(sexo);
         }
 
-        String valorSexo = modusu.obtenerSeleccion(datos, modusu.getSex());
-        usu.getJcbGenero().setSelectedItem(valorSexo);
-
-        Map<String, Integer> datosc = modusu.llenarCombo("cargo");
-        for (String cargo : datosc.keySet()) {
-            usu.getJcbCargo().addItem(cargo);
-        }
-
-        String valorCargo = modusu.obtenerSeleccion(datosc, modusu.getRol());
-        usu.getJcbCargo().setSelectedItem(valorCargo);
+        String valorSexo = modcli.obtenerSeleccion(datos, modcli.getSex());
+        cli.getJcbGenero().setSelectedItem(valorSexo);
 
         prin.setVisible(false);
-        usu.getLblNuevoUsuario().setText("ACTUALIZAR USUARIO");
-        usu.setLocationRelativeTo(null);
-        usu.getBtnGuardarUsuario().setText("Actualizar");
-        usu.setVisible(true);
+        cli.getLblNuevoCliente().setText("ACTUALIZAR CLIENTE");
+        cli.setLocationRelativeTo(null);
+        cli.getBtnGuardarCliente().setText("Actualizar");
+        cli.setVisible(true);
 
     }
 
-    public void eliminarUsuario(int Doc) {
-        int resp = JOptionPane.showConfirmDialog(null, "Eliminar Usuario? \n" + Doc,
-                 "Eliminar Usuario", JOptionPane.YES_OPTION);
+    public void eliminarCliente(int Doc) {
+        int resp = JOptionPane.showConfirmDialog(null, "Eliminar Cliente? \n" + Doc,
+                 "Eliminar Cliente", JOptionPane.YES_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
-            modusu.setDoc(Doc);
-            modusu.eliminarUsuario();
-            modusu.mostrarTablaUsuario(prin.getJtUsuario(), "", "Usuario");
+            modcli.setCdl(Doc);
+            modcli.eliminarCliente();
+            modcli.mostrarTablaCliente(prin.getJtCliente(), "", "Cliente");
             
         }
 

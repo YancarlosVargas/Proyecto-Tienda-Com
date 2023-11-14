@@ -96,13 +96,12 @@ public class ControladorUsuario implements ActionListener {
                 
                 modusu.actualizarUsuario();
                 
-                ControladorPrincipal princ = new ControladorPrincipal();
                 
                 
                 usu.setVisible(false);
                 prin.getJtPrincipal().setSelectedIndex(1);
                 modusu.mostrarTablaUsuario(prin.getJtUsuario(), "", "usuario");
-                princ.iniciarPrincipal(0);
+                usu.dispose();
                 
                 
                 
