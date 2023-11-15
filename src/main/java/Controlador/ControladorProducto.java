@@ -19,7 +19,8 @@ import javax.swing.JOptionPane;
  *
  * @author HuevosFundidos
  */
-public class ControladorProducto implements ActionListener{
+public class ControladorProducto implements ActionListener {
+
     Producto pro = new Producto();
     Principal prin = new Principal();
     ModeloProducto modpro = new ModeloProducto();
@@ -33,7 +34,7 @@ public class ControladorProducto implements ActionListener{
             ;
         public void windowClosed(WindowEvent e) {
                 ControladorPrincipal princ = new ControladorPrincipal();
-                princ.iniciarPrincipal(0);
+                princ.iniciarPrincipal(3);
             }
         });
     }
@@ -42,6 +43,7 @@ public class ControladorProducto implements ActionListener{
         pro.setVisible(true);
         pro.setLocationRelativeTo(null);
         prin.setVisible(false);
+        prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     @Override
@@ -52,37 +54,34 @@ public class ControladorProducto implements ActionListener{
             String archivo = file.getName();
             pro.getTxtImagen().setText(archivo);
         }
-        
-        if (e.getSource().equals(pro.getBtnGuardarProducto())){
-           modpro.setNom(pro.getTxtNombre().getText());
-           modpro.setDesc(pro.getJtxtDescripcion().getText());
-           modpro.setImagen(modpro.convertirImagenes(modpro.getRoute()));
-           
-           modpro.insertarProducto();
-           modpro.limpiarCasillas(pro.getJpPanelProducto().getComponents());
-        } else if (pro.getBtnGuardarProducto().getText().equals("Actualizar")) {
-                
-                
-                
-               modpro.buscarProducto(0);
-                
-                
-                
+
+        if (e.getSource().equals(pro.getBtnGuardarProducto())) {
+
+            modpro.setNom(pro.getTxtNombre().getText());
+            modpro.setDesc(pro.getJtxtDescripcion().getText());
+            modpro.setImagen(modpro.convertirImagenes(modpro.getRoute()));
+
+            if (pro.getBtnGuardarProducto().getText().equals("Guardar")) {
+                modpro.insertarProducto();
+                modpro.limpiarCasillas(pro.getJpPanelProducto().getComponents());
+            } else if (pro.getBtnGuardarProducto().getText().equals("Actualizar")) {
+
+                modpro.actualizarProducto();
+
                 pro.setVisible(false);
                 prin.getJtPrincipal().setSelectedIndex(1);
                 modpro.mostrarTablaProducto(prin.getJtProducto(), "", "Producto");
                 pro.dispose();
-                
-                
-                
-                
+
             } else {
                 modpro.eliminarProducto();
 
             }
         }
-        
-        public void actualizarProducto(int idpro) {
+
+    }
+
+public void actualizarProducto(int idpro) {
         modpro.buscarProducto(idpro);
         pro.getTxtNombre().setText(modpro.getNom());
         pro.getTxtImagen().setEnabled(false);
@@ -110,5 +109,3 @@ public class ControladorProducto implements ActionListener{
 
 
     }
-
-    

@@ -29,6 +29,7 @@ public class GestionCeldas extends DefaultTableCellRenderer{
         
         if (value instanceof JLabel){
             JLabel lbl = (JLabel)value;
+            table.setRowHeight(52);
             lbl.setFont(new java.awt.Font("Verdana",0,12));
             return lbl;
         }

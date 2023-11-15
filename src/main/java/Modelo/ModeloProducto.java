@@ -264,7 +264,7 @@ public class ModeloProducto {
         Conexion cone = new Conexion();
         Connection cn = cone.iniciarConexion();
 
-        String sql = "call Eliminar_Provedor(?)";
+        String sql = "call Eliminar_Producto(?)";
 
         try {
             PreparedStatement ps = cn.prepareStatement(sql);
@@ -277,6 +277,29 @@ public class ModeloProducto {
             e.printStackTrace();
         }
 
+    }
+       
+        public void actualizarProducto() {
+        Conexion cone = new Conexion();
+        Connection cn = cone.iniciarConexion();
+
+        String sql = "call Actualizar_Producto(?,?,?,?,?)";
+
+        try {
+            PreparedStatement ps = cn.prepareStatement(sql);
+
+            ps.setInt(1, getIdpro());
+            ps.setString(2, getNom());
+            ps.setString(3, getDesc());
+            ps.setBytes(4, getImagen());
+            ps.setString(5, getRoute());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro Actualizado");
+            cn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
        
 }

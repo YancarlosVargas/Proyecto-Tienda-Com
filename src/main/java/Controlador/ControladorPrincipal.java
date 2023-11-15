@@ -75,6 +75,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.getTxtFiltro().getDocument().addDocumentListener(this);
         prin.getTxtFiltroCliente().getDocument().addDocumentListener(this);
         prin.getTxtFiltroProvedor().getDocument().addDocumentListener(this);
+        prin.getTxtFiltroProducto().getDocument().addDocumentListener(this);
 
     }
 
@@ -86,24 +87,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
         gestionarUsuario();
         prin.getJtPrincipal().setSelectedIndex(valor);
-
-    }
-
-    public void gestionarceldas() {
-        if (prin.getJtPrincipal().getSelectedIndex() == 0) {
-            gestionarUsuario();
-
-        }
-
-        if (prin.getJtPrincipal().getSelectedIndex() == 4) {
-            gestionarFactura();
-
-        }
-
-        if (prin.getJtPrincipal().getSelectedIndex() == 2) {
-            gestionarCliente();
-
-        }
 
     }
 
@@ -205,16 +188,16 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 
         });
     }
-    
+
     public void gestionarProducto() {
 
         modproduc.mostrarTablaProducto(prin.getJtProducto(), "", "Producto");
 
-        prin.getTxtFiltroProvedor().addMouseListener(new MouseAdapter() {
+        prin.getTxtFiltroProducto().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                prin.getTxtFiltroProvedor().setText("");
-                prin.getTxtFiltroProvedor().setForeground(Color.black);
+                prin.getTxtFiltroProducto().setText("");
+                prin.getTxtFiltroProducto().setForeground(Color.black);
             }
 
         });
@@ -240,7 +223,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 
         });
     }
-    
+
     public void gestionarProvedor() {
 
         modpro.mostrarTablaProvedor(prin.getJtProvedor(), "", "Provedor");
@@ -320,23 +303,19 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     public void stateChanged(ChangeEvent e) {
         int seleccion = prin.getJtPrincipal().getSelectedIndex();
         if (seleccion == 0) {
-            gestionarceldas();
-        }
-
-        if (seleccion == 4) {
-            gestionarceldas();
+            gestionarUsuario();
         }
 
         if (seleccion == 2) {
             gestionarCliente();
 
         }
-        
+
         if (seleccion == 1) {
             gestionarProvedor();
 
         }
-        
+
         if (seleccion == 3) {
             gestionarProducto();
 
@@ -348,6 +327,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modusu.mostrarTablaUsuario(prin.getJtUsuario(), prin.getTxtFiltro().getText(), "Usuario");
         modcli.mostrarTablaCliente(prin.getJtCliente(), prin.getTxtFiltroCliente().getText(), "Cliente");
         modpro.mostrarTablaProvedor(prin.getJtProvedor(), prin.getTxtFiltroProvedor().getText(), "Provedor");
+        modproduc.mostrarTablaProducto(prin.getJtProducto(), prin.getTxtFiltroProducto().getText(), "Producto");
 
     }
 
@@ -356,6 +336,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modusu.mostrarTablaUsuario(prin.getJtUsuario(), prin.getTxtFiltro().getText(), "Usuario");
         modcli.mostrarTablaCliente(prin.getJtCliente(), prin.getTxtFiltroCliente().getText(), "Cliente");
         modpro.mostrarTablaProvedor(prin.getJtProvedor(), prin.getTxtFiltroProvedor().getText(), "Provedor");
+        modproduc.mostrarTablaProducto(prin.getJtProducto(), prin.getTxtFiltroProducto().getText(), "Producto");
 
     }
 
@@ -364,6 +345,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modusu.mostrarTablaUsuario(prin.getJtUsuario(), prin.getTxtFiltro().getText(), "Usuario");
         modcli.mostrarTablaCliente(prin.getJtCliente(), prin.getTxtFiltroCliente().getText(), "Cliente");
         modpro.mostrarTablaProvedor(prin.getJtProvedor(), prin.getTxtFiltroProvedor().getText(), "Provedor");
+        modproduc.mostrarTablaProducto(prin.getJtProducto(), prin.getTxtFiltroProducto().getText(), "Producto");
 
     }
 }

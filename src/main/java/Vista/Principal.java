@@ -54,7 +54,7 @@ public class Principal extends javax.swing.JFrame {
         btnNuevoProducto = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jtProducto = new javax.swing.JTable();
-        txtFiltro1 = new javax.swing.JTextField();
+        txtFiltroProducto = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         txtFiltro2 = new javax.swing.JTextField();
         btnNuevaFactura = new javax.swing.JButton();
@@ -228,7 +228,7 @@ public class Principal extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(jtProducto);
 
-        txtFiltro1.setText("Buscar: ");
+        txtFiltroProducto.setText("Buscar: ");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -241,7 +241,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnNuevoProducto)
                         .addGap(722, 722, 722)
-                        .addComponent(txtFiltro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtFiltroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane4))
                 .addContainerGap())
         );
@@ -251,7 +251,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevoProducto)
-                    .addComponent(txtFiltro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFiltroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
         );
@@ -418,6 +418,14 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNuevoUsuarioActionPerformed
 
+    public JTextField getTxtFiltroProducto() {
+        return txtFiltroProducto;
+    }
+
+    public void setTxtFiltroProducto(JTextField txtFiltroProducto) {
+        this.txtFiltroProducto = txtFiltroProducto;
+    }
+    
     public JTable getJtProvedor() {
         return jtProvedor;
     }
@@ -591,10 +599,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable jtProvedor;
     private javax.swing.JTable jtUsuario;
     private javax.swing.JTextField txtFiltro;
-    private javax.swing.JTextField txtFiltro1;
     private javax.swing.JTextField txtFiltro2;
     private javax.swing.JTextField txtFiltro3;
     private javax.swing.JTextField txtFiltroCliente;
+    private javax.swing.JTextField txtFiltroProducto;
     private javax.swing.JTextField txtFiltroProvedor;
     // End of variables declaration//GEN-END:variables
 }
