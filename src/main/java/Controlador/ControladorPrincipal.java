@@ -43,12 +43,12 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     Proveedor pro = new Proveedor();
     ControladorProveedor proc = new ControladorProveedor();
     Producto produc = new Producto();
-    Factura_Compra factucom = new Factura_Compra();
     Factura factu = new Factura();
     ControladorProducto conpro = new ControladorProducto();
     ModeloCliente modcli = new ModeloCliente();
     ModeloProveedor modpro = new ModeloProveedor();
     ModeloProducto modproduc = new ModeloProducto();
+    ControladorFactura_Compra controlfaccom = new ControladorFactura_Compra();
 
     public ControladorPrincipal() {
         prin.getBtnNuevoUsuario().addActionListener(this);
@@ -286,8 +286,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         }
 
         if (e.getSource() == (prin.getBtnNuevaFactura())) {
-            factucom.setVisible(true);
-            factucom.setLocationRelativeTo(null);
+            controlfaccom.iniciarFactura_Compra();
             prin.setVisible(false);
         }
 

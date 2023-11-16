@@ -23,6 +23,16 @@ public class Factura_Compra extends javax.swing.JFrame {
         initComponents();
     }
 
+    public JTextField getTxtUsuario() {
+        return txtUsuario;
+    }
+
+    public void setTxtUsuario(JTextField txtUsuario) {
+        this.txtUsuario = txtUsuario;
+    }
+
+    
+    
     public JButton getBtnGuardarFacturaCompra() {
         return btnGuardarFacturaCompra;
     }
@@ -50,13 +60,23 @@ public class Factura_Compra extends javax.swing.JFrame {
         this.jpPanelCliente = jpPanelCliente;
     }
 
-    public JButton getBtnGuardarCliente() {
-        return btnGuardarFacturaCompra;
+    public JButton getBtnBuscarProveedor() {
+        return btnBuscarProveedor;
     }
 
-    public void setBtnGuardarCliente(JButton btnGuardarCliente) {
-        this.btnGuardarFacturaCompra = btnGuardarCliente;
+    public void setBtnBuscarProveedor(JButton btnBuscarProveedor) {
+        this.btnBuscarProveedor = btnBuscarProveedor;
     }
+
+    public JButton getBtnBuscarUsuario() {
+        return btnBuscarUsuario;
+    }
+
+    public void setBtnBuscarUsuario(JButton btnBuscarUsuario) {
+        this.btnBuscarUsuario = btnBuscarUsuario;
+    }
+    
+    
     
     public JTextField getTxtNombre() {
         return txtNombre;
@@ -67,11 +87,11 @@ public class Factura_Compra extends javax.swing.JFrame {
     }
 
     public JTextField getTxtTelefono() {
-        return txtTelefono;
+        return txtUsuario;
     }
 
     public void setTxtTelefono(JTextField txtTelefono) {
-        this.txtTelefono = txtTelefono;
+        this.txtUsuario = txtTelefono;
     }
 
     /**
@@ -89,11 +109,11 @@ public class Factura_Compra extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnGuardarFacturaCompra = new javax.swing.JButton();
         txtNombre = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         cbxtipodedocumento = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBuscarProveedor = new javax.swing.JButton();
+        btnBuscarUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,9 +137,9 @@ public class Factura_Compra extends javax.swing.JFrame {
             }
         });
 
-        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefonoActionPerformed(evt);
+                txtUsuarioActionPerformed(evt);
             }
         });
 
@@ -128,9 +148,9 @@ public class Factura_Compra extends javax.swing.JFrame {
 
         cbxtipodedocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar:", "Tarjeta de Credito", "Efectivo" }));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Filtrar.png"))); // NOI18N
+        btnBuscarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Filtrar.png"))); // NOI18N
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Filtrar.png"))); // NOI18N
+        btnBuscarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Filtrar.png"))); // NOI18N
 
         javax.swing.GroupLayout jpPanelClienteLayout = new javax.swing.GroupLayout(jpPanelCliente);
         jpPanelCliente.setLayout(jpPanelClienteLayout);
@@ -152,12 +172,12 @@ public class Factura_Compra extends javax.swing.JFrame {
                         .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpPanelClienteLayout.createSequentialGroup()
                                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                                    .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                                     .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(btnBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jpPanelClienteLayout.createSequentialGroup()
                                 .addComponent(btnGuardarFacturaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(17, 17, 17)))))
@@ -175,12 +195,12 @@ public class Factura_Compra extends javax.swing.JFrame {
                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnBuscarProveedor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarUsuario))
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardarFacturaCompra)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -210,9 +230,9 @@ public class Factura_Compra extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarFacturaCompraActionPerformed
 
-    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonoActionPerformed
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,16 +240,16 @@ public class Factura_Compra extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarProveedor;
+    private javax.swing.JButton btnBuscarUsuario;
     private javax.swing.JButton btnGuardarFacturaCompra;
     private javax.swing.JComboBox<String> cbxtipodedocumento;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jpPanelCliente;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

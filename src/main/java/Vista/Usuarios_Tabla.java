@@ -4,6 +4,10 @@
  */
 package Vista;
 
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author SENA
@@ -17,6 +21,32 @@ public class Usuarios_Tabla extends javax.swing.JFrame {
         initComponents();
     }
 
+    public JTable getJtUsuario() {
+        return jtUsuario;
+    }
+
+    public void setJtUsuario(JTable jtUsuario) {
+        this.jtUsuario = jtUsuario;
+    }
+
+    public JLabel getLblTitulo() {
+        return lblTitulo;
+    }
+
+    public void setLblTitulo(JLabel lblTitulo) {
+        this.lblTitulo = lblTitulo;
+    }
+
+    public JTextField getTxtFiltro() {
+        return txtFiltro;
+    }
+
+    public void setTxtFiltro(JTextField txtFiltro) {
+        this.txtFiltro = txtFiltro;
+    }
+
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,7 +57,7 @@ public class Usuarios_Tabla extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtUsuario = new javax.swing.JTable();
         txtFiltro = new javax.swing.JTextField();
@@ -36,8 +66,8 @@ public class Usuarios_Tabla extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 2, 36)); // NOI18N
-        jLabel1.setText("Buscar Usuario");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI Semibold", 2, 36)); // NOI18N
+        lblTitulo.setText("Buscar Usuario");
 
         jtUsuario.setBackground(new java.awt.Color(153, 153, 153));
         jtUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -61,24 +91,24 @@ public class Usuarios_Tabla extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(334, 334, 334)
-                .addComponent(jLabel1)
-                .addContainerGap(388, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 953, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitulo)
+                .addGap(360, 360, 360))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addGap(14, 14, 14)
+                .addGap(12, 12, 12)
+                .addComponent(lblTitulo)
+                .addGap(18, 18, 18)
                 .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
@@ -109,10 +139,10 @@ public class Usuarios_Tabla extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtUsuario;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }

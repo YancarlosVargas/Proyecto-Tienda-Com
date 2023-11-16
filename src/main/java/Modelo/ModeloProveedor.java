@@ -164,6 +164,7 @@ public class ModeloProveedor {
 
         JButton editar = new JButton();
         JButton eliminar = new JButton();
+        JButton agregar = new JButton();
 
         JTableHeader encabezado = tabla.getTableHeader();
         encabezado.setDefaultRenderer(new GestionEncabezado());
@@ -172,7 +173,8 @@ public class ModeloProveedor {
 
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png")));
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png")));
-
+        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar-usuario.png")));
+   
         String[] titulo = {"Cedula", "Genero/Sexo", "Tipo De Documento", "Nombre", "Telefono", "Correo", "Direccion", "Tipo De Persona", "Fecha De Nacimiento"};
         int total = titulo.length;
 
@@ -180,6 +182,9 @@ public class ModeloProveedor {
             titulo = Arrays.copyOf(titulo, titulo.length + 2);
             titulo[titulo.length - 2] = "Editar";
             titulo[titulo.length - 1] = "Eliminar";
+        } else {
+            titulo = Arrays.copyOf(titulo, titulo.length + 1);
+            titulo[titulo.length - 1] = "Agregar";
         }
 
         DefaultTableModel tablaProvedor = new DefaultTableModel(null, titulo) {
@@ -203,11 +208,14 @@ public class ModeloProveedor {
                     dato[i] = rs.getString(i + 1);
                 }
 
-                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7],dato[8]};
+                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7], dato[8]};
                 if (nomPesta.equals("Provedor")) {
                     fila = Arrays.copyOf(fila, fila.length + 2);
                     fila[fila.length - 2] = editar;
                     fila[fila.length - 1] = eliminar;
+                }else {
+                    fila = Arrays.copyOf(fila, fila.length + 1);
+                    fila[fila.length - 1] = agregar;
                 }
                 tablaProvedor.addRow(fila);
             }
