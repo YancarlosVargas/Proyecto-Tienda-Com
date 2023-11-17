@@ -12,22 +12,24 @@ import javax.swing.JTextField;
  *
  * @author SENA
  */
-public class Usuarios_Tabla extends javax.swing.JFrame {
+public class Proveedor_Tabla extends javax.swing.JFrame {
 
     /**
      * Creates new form Usuarios_Tabla
      */
-    public Usuarios_Tabla() {
+    public Proveedor_Tabla() {
         initComponents();
     }
 
-    public JTable getJtUsuario() {
+    public JTable getJtProveedor() {
         return jtProveedor;
     }
 
-    public void setJtUsuario(JTable jtUsuario) {
-        this.jtProveedor = jtUsuario;
+    public void setJtProveedor(JTable jtProveedor) {
+        this.jtProveedor = jtProveedor;
     }
+
+    
 
     public JLabel getLblTitulo() {
         return lblTitulo;
@@ -67,7 +69,7 @@ public class Usuarios_Tabla extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI Semibold", 2, 36)); // NOI18N
-        lblTitulo.setText("Buscar Usuario");
+        lblTitulo.setText("Buscar Proveedor");
 
         jtProveedor.setBackground(new java.awt.Color(153, 153, 153));
         jtProveedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

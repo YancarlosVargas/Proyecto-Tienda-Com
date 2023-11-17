@@ -5,6 +5,7 @@
 package Controlador;
 
 import Modelo.ModeloCliente;
+import Modelo.ModeloFactura_Compra;
 import Modelo.ModeloProducto;
 import Modelo.ModeloProveedor;
 import Modelo.ModeloUsuario;
@@ -49,6 +50,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     ModeloProveedor modpro = new ModeloProveedor();
     ModeloProducto modproduc = new ModeloProducto();
     ControladorFactura_Compra controlfaccom = new ControladorFactura_Compra();
+    ModeloFactura_Compra modfactucom = new ModeloFactura_Compra();
 
     public ControladorPrincipal() {
         prin.getBtnNuevoUsuario().addActionListener(this);
@@ -126,9 +128,9 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         });
     }
 
-    public void gestionarFactura() {
+    public void gestionarFactura_Compra() {
 
-        modusu.mostrarTablaUsuario(prin.getJtFactura(), "", "Factura");
+        modfactucom.mostrarFactura_Compra(prin.getJtFactura(), "", "Factura");
 
         prin.getTxtFiltro().addMouseListener(new MouseAdapter() {
             @Override
@@ -317,6 +319,11 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
 
         if (seleccion == 3) {
             gestionarProducto();
+
+        }
+        
+        if (seleccion == 4) {
+            gestionarFactura_Compra();
 
         }
     }

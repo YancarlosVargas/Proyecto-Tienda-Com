@@ -1,4 +1,3 @@
-
 package Controlador;
 
 import Modelo.ModeloProveedor;
@@ -13,11 +12,11 @@ import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class ControladorProveedor implements ActionListener{
+public class ControladorProveedor implements ActionListener {
+
     Proveedor pro = new Proveedor();
     ModeloProveedor modpro = new ModeloProveedor();
     Principal prin = new Principal();
- 
 
     public ControladorProveedor() {
         pro.getBtnGuardarProveedor().addActionListener(this);
@@ -46,7 +45,7 @@ public class ControladorProveedor implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == (pro.getBtnGuardarProveedor())) {
 
-            if ((pro.getJcbGenero().getSelectedItem().equals("Seleccione...")) || (pro.getTxtNombre().getText().isEmpty()) || (pro.getTxtTelefono().getText().isEmpty()) || (pro.getTxtCorreo().getText().isEmpty()) || (pro.getTxtDireccion().getText().isEmpty()) || (pro.getJDFechadeNacimiento().getDate() == null) || (pro.getCbxTipoDeDocumento().getSelectedItem().equals("Seleccionar:")) || (pro.getCbxTipoDePersona().getSelectedItem().equals("Seleccionar:")))  {
+            if ((pro.getJcbGenero().getSelectedItem().equals("Seleccione...")) || (pro.getTxtNombre().getText().isEmpty()) || (pro.getTxtTelefono().getText().isEmpty()) || (pro.getTxtCorreo().getText().isEmpty()) || (pro.getTxtDireccion().getText().isEmpty()) || (pro.getJDFechadeNacimiento().getDate() == null) || (pro.getCbxTipoDeDocumento().getSelectedItem().equals("Seleccionar:")) || (pro.getCbxTipoDePersona().getSelectedItem().equals("Seleccionar:"))) {
                 JOptionPane.showMessageDialog(null, "Hace Falta Informacion");
             } else {
                 JOptionPane.showMessageDialog(null, "Exito");
@@ -64,13 +63,12 @@ public class ControladorProveedor implements ActionListener{
                 modpro.setSex(sexo);
                 modpro.setTipdedeocu(pro.getCbxTipoDeDocumento().getSelectedItem().toString());
                 modpro.setTipdeper(pro.getCbxTipoDePersona().getSelectedItem().toString());
-                
                 modpro.insertarProveedor();
                 modpro.limpiarCasillas(pro.getJpPanelProveedor().getComponents());
             }
         }
     }
-    
+
     public void actualizarProvedor(int Doc) {
         modpro.buscarProvedor(Doc);
         pro.getTxtNombre().setText(modpro.getNom());
@@ -79,11 +77,10 @@ public class ControladorProveedor implements ActionListener{
         pro.getJDFechadeNacimiento().setDate(modpro.getFec());
         pro.getTxtDireccion().setText(modpro.getDir());
         pro.getJcbGenero().setSelectedItem(modpro.getSex());
-        pro.getCbxTipoDeDocumento().setSelectedItem(modpro.getTipdedeocu());
         pro.getCbxTipoDePersona().setSelectedItem(modpro.getTipdeper());
-       
-        
-        
+        pro.getCbxTipoDeDocumento().setSelectedItem(modpro.getTipdedeocu());
+
+
         Map<String, Integer> datos = modpro.llenarCombo("sexo");
         for (String sexo : datos.keySet()) {
             pro.getJcbGenero().addItem(sexo);
@@ -102,12 +99,12 @@ public class ControladorProveedor implements ActionListener{
 
     public void eliminarProvedor(int Doc) {
         int resp = JOptionPane.showConfirmDialog(null, "Eliminar Provedor? \n" + Doc,
-                 "Eliminar Provedor", JOptionPane.YES_OPTION);
+                "Eliminar Provedor", JOptionPane.YES_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
             modpro.setCed(Doc);
             modpro.eliminarProvedor();
             modpro.mostrarTablaProvedor(prin.getJtProvedor(), "", "Provedor");
-            
+
         }
 
     }

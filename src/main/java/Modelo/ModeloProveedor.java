@@ -248,12 +248,13 @@ public class ModeloProveedor {
             while (rs.next()) {
                 setCed(rs.getInt(1));
                 setNom(rs.getString(4));
-                setTel(rs.getString(5));
-                setCor(rs.getString(6));
+                setTel(rs.getString(6));
+                setCor(rs.getString(5));
                 setDir(rs.getString(7));
                 setFec(rs.getDate(9));
                 setSex(rs.getInt(2));
-                setTipdeper(rs.getString(3));
+                setTipdeper(rs.getString(8));
+                setTipdedeocu(rs.getString(3));
             }
 
         } catch (SQLException e) {
@@ -275,20 +276,21 @@ public class ModeloProveedor {
         Conexion cone = new Conexion();
         Connection cn = cone.iniciarConexion();
 
-        String sql = "call Actualizar_Provedor(?,?,?,?,?,?,?,?,?)";
+        String sql = "call Actualizar_Provedor(?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = cn.prepareStatement(sql);
 
             ps.setInt(1, getCed());
-            ps.setString(4, getNom());
-            ps.setString(6, getTel());
-            ps.setString(5, getCor());
-            ps.setString(7, getDir());
-            ps.setDate(9, (java.sql.Date) getFec());
-            ps.setInt(2, getSex());
+            ps.setString(2, getNom());
+            ps.setString(3, getTel());
+            ps.setString(4, getCor());
+            ps.setString(5, getDir());
+            ps.setDate(6, (java.sql.Date) getFec());
+            ps.setInt(7, getSex());
             ps.setString(8, getTipdeper());
-            ps.setString(3, getTipdedeocu());
+            ps.setString(9, getTipdedeocu());
+    
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro Actualizado");
             cn.close();

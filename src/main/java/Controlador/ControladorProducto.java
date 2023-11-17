@@ -91,7 +91,10 @@ public void actualizarProducto(int idpro) {
         pro.setLocationRelativeTo(null);
         pro.getBtnGuardarProducto().setText("Actualizar");
         pro.setVisible(true);
-        pro.getTxtImagen().setText(modpro.getRoute());
+        
+        File file = new File(modpro.getRoute());
+        String archivo = file.getName();
+        pro.getTxtImagen().setText(archivo);
     }
 
     public void eliminarProducto(int idpro) {

@@ -91,7 +91,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Semibold" size="36" style="2"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Buscar Usuario"/>
+            <Property name="text" type="java.lang.String" value="Buscar Proveedor"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">

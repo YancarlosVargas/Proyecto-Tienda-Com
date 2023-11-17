@@ -31,6 +31,14 @@ public class Factura_Compra extends javax.swing.JFrame {
         this.txtUsuario = txtUsuario;
     }
 
+    public JComboBox<String> getCbxtipodepago() {
+        return cbxtipodepago;
+    }
+
+    public void setCbxtipodepago(JComboBox<String> cbxtipodepago) {
+        this.cbxtipodepago = cbxtipodepago;
+    }
+
     
     
     public JButton getBtnGuardarFacturaCompra() {
@@ -41,15 +49,23 @@ public class Factura_Compra extends javax.swing.JFrame {
         this.btnGuardarFacturaCompra = btnGuardarFacturaCompra;
     }
 
+    public JTextField getTxtProveedor() {
+        return txtProveedor;
+    }
+
+    public void setTxtProveedor(JTextField txtProveedor) {
+        this.txtProveedor = txtProveedor;
+    }
+
   
     
 
     public JComboBox<String> getCbxtipodedocumento() {
-        return cbxtipodedocumento;
+        return cbxtipodepago;
     }
 
     public void setCbxtipodedocumento(JComboBox<String> cbxtipodedocumento) {
-        this.cbxtipodedocumento = cbxtipodedocumento;
+        this.cbxtipodepago = cbxtipodedocumento;
     }
 
     public JPanel getJpPanelCliente() {
@@ -79,11 +95,11 @@ public class Factura_Compra extends javax.swing.JFrame {
     
     
     public JTextField getTxtNombre() {
-        return txtNombre;
+        return txtProveedor;
     }
 
     public void setTxtNombre(JTextField txtNombre) {
-        this.txtNombre = txtNombre;
+        this.txtProveedor = txtNombre;
     }
 
     public JTextField getTxtTelefono() {
@@ -108,10 +124,10 @@ public class Factura_Compra extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnGuardarFacturaCompra = new javax.swing.JButton();
-        txtNombre = new javax.swing.JTextField();
+        txtProveedor = new javax.swing.JTextField();
         txtUsuario = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        cbxtipodedocumento = new javax.swing.JComboBox<>();
+        cbxtipodepago = new javax.swing.JComboBox<>();
         btnBuscarProveedor = new javax.swing.JButton();
         btnBuscarUsuario = new javax.swing.JButton();
 
@@ -137,6 +153,9 @@ public class Factura_Compra extends javax.swing.JFrame {
             }
         });
 
+        txtProveedor.setEditable(false);
+
+        txtUsuario.setEditable(false);
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
@@ -146,7 +165,7 @@ public class Factura_Compra extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Tipo De Pago:");
 
-        cbxtipodedocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar:", "Tarjeta de Credito", "Efectivo" }));
+        cbxtipodepago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar:", "Tarjeta de Credito", "Efectivo" }));
 
         btnBuscarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Filtrar.png"))); // NOI18N
 
@@ -163,7 +182,7 @@ public class Factura_Compra extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelClienteLayout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(cbxtipodedocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbxtipodepago, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPanelClienteLayout.createSequentialGroup()
                         .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -173,7 +192,7 @@ public class Factura_Compra extends javax.swing.JFrame {
                             .addGroup(jpPanelClienteLayout.createSequentialGroup()
                                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(txtProveedor, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,11 +209,11 @@ public class Factura_Compra extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(cbxtipodedocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxtipodepago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarProveedor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -243,13 +262,13 @@ public class Factura_Compra extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarProveedor;
     private javax.swing.JButton btnBuscarUsuario;
     private javax.swing.JButton btnGuardarFacturaCompra;
-    private javax.swing.JComboBox<String> cbxtipodedocumento;
+    private javax.swing.JComboBox<String> cbxtipodepago;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jpPanelCliente;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtProveedor;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
