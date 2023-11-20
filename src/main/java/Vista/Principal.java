@@ -80,8 +80,8 @@ public class Principal extends javax.swing.JFrame {
 
         txtFiltro.setText("Buscar: ");
 
-        jtUsuario.setBackground(new java.awt.Color(153, 153, 153));
         jtUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jtUsuario.setForeground(new java.awt.Color(255, 255, 255));
         jtUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -93,6 +93,9 @@ public class Principal extends javax.swing.JFrame {
 
             }
         ));
+        jtUsuario.setGridColor(new java.awt.Color(0, 0, 0));
+        jtUsuario.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        jtUsuario.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jtUsuario);
 
         javax.swing.GroupLayout jpUsuarioLayout = new javax.swing.GroupLayout(jpUsuario);
@@ -102,11 +105,11 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jpUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jpUsuarioLayout.createSequentialGroup()
                         .addComponent(btnNuevoUsuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(731, 731, 731)
+                        .addComponent(txtFiltro)))
                 .addContainerGap())
         );
         jpUsuarioLayout.setVerticalGroup(
@@ -126,7 +129,6 @@ public class Principal extends javax.swing.JFrame {
 
         txtFiltroProvedor.setText("Buscar: ");
 
-        jtProvedor.setBackground(new java.awt.Color(153, 153, 153));
         jtProvedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -147,11 +149,11 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jpProvedorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpProvedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3)
                     .addGroup(jpProvedorLayout.createSequentialGroup()
                         .addComponent(btnAñadirProveedor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtFiltroProvedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(717, 717, 717)
+                        .addComponent(txtFiltroProvedor, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jpProvedorLayout.setVerticalGroup(
@@ -171,7 +173,6 @@ public class Principal extends javax.swing.JFrame {
 
         txtFiltroCliente.setText("Buscar: ");
 
-        jtCliente.setBackground(new java.awt.Color(153, 153, 153));
         jtCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -192,11 +193,11 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(JLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(JLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
                     .addGroup(JLayout.createSequentialGroup()
                         .addComponent(btnNuevoCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtFiltroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(734, 734, 734)
+                        .addComponent(txtFiltroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         JLayout.setVerticalGroup(
@@ -214,7 +215,6 @@ public class Principal extends javax.swing.JFrame {
 
         btnNuevoProducto.setText("Nuevo Producto");
 
-        jtProducto.setBackground(new java.awt.Color(153, 153, 153));
         jtProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -238,10 +238,9 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnNuevoProducto)
                         .addGap(722, 722, 722)
-                        .addComponent(txtFiltroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtFiltroProducto))
                     .addComponent(jScrollPane4))
                 .addContainerGap())
         );
@@ -262,7 +261,6 @@ public class Principal extends javax.swing.JFrame {
 
         btnNuevaFactura.setText("Nueva Factura");
 
-        jtFactura.setBackground(new java.awt.Color(153, 153, 153));
         jtFactura.setForeground(new java.awt.Color(153, 153, 153));
         jtFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -306,7 +304,6 @@ public class Principal extends javax.swing.JFrame {
 
         btnNuevaVenta.setText("Nueva Venta");
 
-        jTable5.setBackground(new java.awt.Color(153, 153, 153));
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},

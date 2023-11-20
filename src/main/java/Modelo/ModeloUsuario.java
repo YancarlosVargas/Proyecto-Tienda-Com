@@ -255,7 +255,7 @@ public class ModeloUsuario {
         tabla.setModel(tablaUsuario);
 
         int numColumnas = tabla.getColumnCount();
-        int[] tamanos = {200, 200, 150, 100, 100, 100, 100, 100, 100, 30, 30};
+        int[] tamanos = {350, 150, 120, 100, 100, 100, 100, 150, 150, 50, 50};
         for (int i = 0; i < numColumnas; i++) {
             TableColumn columna = tabla.getColumnModel().getColumn(i);
             columna.setPreferredWidth(tamanos[i]);

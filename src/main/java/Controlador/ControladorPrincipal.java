@@ -11,7 +11,6 @@ import Modelo.ModeloProveedor;
 import Modelo.ModeloUsuario;
 import Vista.Cliente;
 import Vista.Factura;
-import Vista.Factura_Compra;
 import Vista.Login;
 import Vista.Principal;
 import Vista.Producto;
@@ -147,8 +146,13 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 int fila = prin.getJtFactura().rowAtPoint(e.getPoint());
                 int columna = prin.getJtFactura().columnAtPoint(e.getPoint());
                 modusu.setDoc(Integer.parseInt(prin.getJtFactura().getValueAt(fila, 1).toString()));
+                if (columna == 7) {
+                    prin.setVisible(false);
+                    controlfaccom.actualizarFactura_Compra(modfactucom.getIdfactu());
+                }
                 if (columna == 8) {
-
+                    controlfaccom.eliminarFactura_Compra(modfactucom.getIdfactu());
+                    modfactucom.mostrarFactura_Compra(prin.getJtFactura(), "", "Factura");
                 }
 
             }
@@ -321,7 +325,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
             gestionarProducto();
 
         }
-        
+
         if (seleccion == 4) {
             gestionarFactura_Compra();
 

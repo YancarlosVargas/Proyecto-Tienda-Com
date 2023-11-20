@@ -12,7 +12,7 @@ import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class ControladorCliente implements ActionListener{
+public class ControladorCliente implements ActionListener {
 
     Cliente cli = new Cliente();
     ModeloCliente modcli = new ModeloCliente();
@@ -20,6 +20,7 @@ public class ControladorCliente implements ActionListener{
 
     public ControladorCliente() {
         cli.getBtnGuardarCliente().addActionListener(this);
+        cli.getBtnCancelar().addActionListener(this);
         cli.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         cli.addWindowListener(new WindowAdapter() {
             ;
@@ -35,7 +36,7 @@ public class ControladorCliente implements ActionListener{
         cli.setLocationRelativeTo(null);
         cli.setTitle("Añadir Nuevo Cliente | Ventana");
 
-        cli.getJcbGenero().addItem("Seleccione...");
+        cli.getJcbGenero().addItem("Seleccionar:");
         Map<String, Integer> dato = modcli.llenarCombo("sexo");
         for (String sexo : dato.keySet()) {
             cli.getJcbGenero().addItem(sexo);
@@ -46,7 +47,7 @@ public class ControladorCliente implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == (cli.getBtnGuardarCliente())) {
 
-            if ((cli.getTxtDocumento().getText().isEmpty()) || (cli.getJcbGenero().getSelectedItem().equals("Seleccione...")) || (cli.getTxtNombre().getText().isEmpty()) || (cli.getTxtTelefono().getText().isEmpty()) || (cli.getTxtCorreo().getText().isEmpty()) || (cli.getTxtDireccion().getText().isEmpty()) || (cli.getJDFechadeNacimiento().getDate() == null)) {
+            if ((cli.getCbxtipodedocumento().getSelectedItem().equals("Seleccionar:"))||(cli.getTxtDocumento().getText().isEmpty()) || (cli.getJcbGenero().getSelectedItem().equals("Seleccionar:")) || (cli.getTxtNombre().getText().isEmpty()) || (cli.getTxtTelefono().getText().isEmpty()) || (cli.getTxtCorreo().getText().isEmpty()) || (cli.getTxtDireccion().getText().isEmpty()) || (cli.getJDFechadeNacimiento().getDate() == null)) {
                 JOptionPane.showMessageDialog(null, "Hace Falta Informacion");
             } else {
                 JOptionPane.showMessageDialog(null, "Exito");
@@ -64,43 +65,34 @@ public class ControladorCliente implements ActionListener{
                 modcli.setCor(cli.getTxtCorreo().getText());
                 modcli.setSex(sexo);
                 modcli.setTipodedocumento(cli.getCbxtipodedocumento().getSelectedItem().toString());
-                modcli.insertarCliente();
-                modcli.limpiarCasillas(cli.getJpPanelCliente().getComponents());
-            }
-            
-             if (cli.getBtnGuardarCliente().getText().equals("Guardar")) {
-                modcli.insertarCliente();
-                modcli.limpiarCasillas(cli.getJpPanelCliente().getComponents());
-            } else if (cli.getBtnGuardarCliente().getText().equals("Actualizar")) {
-                
-                
-                
-                modcli.actualizarCliente();
-                
-                ControladorPrincipal princ = new ControladorPrincipal();
-                
-                
-                cli.setVisible(false);
-                prin.getJtPrincipal().setSelectedIndex(1);
-                modcli.mostrarTablaCliente(prin.getJtCliente(), "", "Cliente");
-                princ.iniciarPrincipal(0);
-                
-                
-                
-                
-            } else {
-                modcli.eliminarCliente();
 
+                if (cli.getBtnGuardarCliente().getText().equals("Guardar")) {
+                    modcli.insertarCliente();
+                    modcli.limpiarCasillas(cli.getJpPanelCliente().getComponents());
+                } else {
+
+                    modcli.actualizarCliente();
+
+                    ControladorPrincipal princ = new ControladorPrincipal();
+
+                    cli.setVisible(false);
+                    prin.getJtPrincipal().setSelectedIndex(1);
+                    modcli.mostrarTablaCliente(prin.getJtCliente(), "", "Cliente");
+                    princ.iniciarPrincipal(2);
+
+                }
             }
         }
 
+        if (e.getSource() == (cli.getBtnCancelar())) {
+            cli.dispose();
         }
-    
-     public void actualizarCliente(int Doc) {
+    }
+
+    public void actualizarCliente(int Doc) {
         modcli.buscarCliente(Doc);
         cli.getTxtDocumento().setEnabled(false);
         cli.getTxtDocumento().setText(String.valueOf(Doc));
-        cli.getCbxtipodedocumento().setEnabled(false);
         cli.getTxtCorreo().setText(modcli.getCor());
         cli.getTxtDireccion().setText(modcli.getDir());
         cli.getTxtTelefono().setText(modcli.getTel());
@@ -121,23 +113,20 @@ public class ControladorCliente implements ActionListener{
         cli.setLocationRelativeTo(null);
         cli.getBtnGuardarCliente().setText("Actualizar");
         cli.setVisible(true);
+        cli.setTitle("Actualizar Cliente | Ventana");
 
     }
 
     public void eliminarCliente(int Doc) {
         int resp = JOptionPane.showConfirmDialog(null, "Eliminar Cliente? \n" + Doc,
-                 "Eliminar Cliente", JOptionPane.YES_OPTION);
+                "Eliminar Cliente", JOptionPane.YES_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
             modcli.setCdl(Doc);
             modcli.eliminarCliente();
             modcli.mostrarTablaCliente(prin.getJtCliente(), "", "Cliente");
-            
+
         }
 
     }
 
-        
-        
-    }
-
-
+}

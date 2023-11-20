@@ -18,6 +18,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.sql.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -46,8 +47,10 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
         vista_factucomp.getBtnGuardarFacturaCompra().addActionListener(this);
         vista_factucomp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         User_Table.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        Proveedor_Table.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Proveedor_Table.getTxtFiltro().getDocument().addDocumentListener(this);
         User_Table.getTxtFiltro().getDocument().addDocumentListener(this);
+        vista_factucomp.getBtnCancelar().addActionListener(this);
 
         vista_factucomp.addWindowListener(new WindowAdapter() {
             ;
@@ -60,6 +63,15 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
         User_Table.addWindowListener(new WindowAdapter() {
             ;
         public void windowClosed(WindowEvent e) {
+                User_Table.setVisible(false);
+                vista_factucomp.setVisible(true);
+            }
+        });
+
+        Proveedor_Table.addWindowListener(new WindowAdapter() {
+            ;
+        public void windowClosed(WindowEvent e) {
+                Proveedor_Table.setVisible(false);
                 vista_factucomp.setVisible(true);
             }
         });
@@ -67,6 +79,7 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
     }
 
     public void agregarUsuario() {
+        User_Table.setTitle("Añadir Usuario | Ventana");
         User_Table.getJtUsuario().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -87,16 +100,17 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
         });
 
         User_Table.getTxtFiltro().addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    User_Table.getTxtFiltro().setText("");
-                    User_Table.getTxtFiltro().setForeground(Color.black);
-                }
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                User_Table.getTxtFiltro().setText("");
+                User_Table.getTxtFiltro().setForeground(Color.black);
+            }
 
-            });
+        });
     }
 
     public void agregarproveedor() {
+        Proveedor_Table.setTitle("Añadir Proveedor | Ventana");
 
         Proveedor_Table.getJtProveedor().addMouseListener(new MouseAdapter() {
             @Override
@@ -127,11 +141,17 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
         });
     }
 
-    public void iniciarFactura_Compra() {
-        vista_factucomp.setVisible(true);
-        vista_factucomp.setLocationRelativeTo(null);
+    public void actualizarFactura_Compra(int idfactucom) {
+        modfactucomp.buscarFactura_Compra(idfactucom);
+        vista_factucomp.getTxtUsuario().setText(String.valueOf(modfactucomp.getIdusu()));
+        vista_factucomp.getTxtProveedor().setText(String.valueOf(modfactucomp.getCed()));
+        vista_factucomp.getCbxtipodepago().setSelectedItem(modfactucomp.getTipopago());
+        vista_factucomp.getLblTitulo().setText("ACTUALIZAR FACTURA");
         prin.setVisible(false);
-        prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        vista_factucomp.setLocationRelativeTo(null);
+        vista_factucomp.getBtnGuardarFacturaCompra().setText("Actualizar");
+        vista_factucomp.setVisible(true);
+        vista_factucomp.setTitle("Actualizar Factura Compra | Ventana");
     }
 
     @Override
@@ -153,18 +173,44 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
             agregarproveedor();
 
         }
-        
-        if (e.getSource().equals(vista_factucomp.getBtnGuardarFacturaCompra())) {
 
-            modfactucomp.setCed(Integer.parseInt(vista_factucomp.getTxtProveedor().getText()));
-            modfactucomp.setIdusu(Integer.parseInt(vista_factucomp.getTxtUsuario().getText()));
-            modfactucomp.setTipopago(vista_factucomp.getCbxtipodepago().getSelectedItem().toString()); 
-            
+        if (e.getSource().equals(vista_factucomp.getBtnGuardarFacturaCompra())) {
+            if ((vista_factucomp.getTxtProveedor().getText().isEmpty()) || (vista_factucomp.getTxtUsuario().getText().isEmpty()) || (vista_factucomp.getCbxtipodepago().getSelectedItem().equals("Seleccionar:"))) {
+                JOptionPane.showMessageDialog(null, "Hace Falta Informacion");
+            } else {
+
+                modfactucomp.setCed(Integer.parseInt(vista_factucomp.getTxtProveedor().getText()));
+                modfactucomp.setIdusu(Integer.parseInt(vista_factucomp.getTxtUsuario().getText()));
+                modfactucomp.setTipopago(vista_factucomp.getCbxtipodepago().getSelectedItem().toString());
+
+                JOptionPane.showMessageDialog(null, "Factura agregada");
+                modfactucomp.insertarfacturacompra();
+            }
+        }
+
+        if (e.getSource().equals(vista_factucomp.getBtnCancelar())) {
             vista_factucomp.dispose();
-            JOptionPane.showMessageDialog(null, "Factura agregada");
-            modfactucomp.insertarfacturacompra();
+        }
+    }
+    
+      public void eliminarFactura_Compra(int idfactucom) {
+        int resp = JOptionPane.showConfirmDialog(null, "Eliminar Factura Compra? \n" + idfactucom,
+                "Eliminar Factura Compra", JOptionPane.YES_OPTION);
+        if (resp == JOptionPane.YES_OPTION) {
+            modfactucomp.setIdfactu(idfactucom);
+            modfactucomp.eliminarFactura_Compra();           
+            modfactucomp.mostrarFactura_Compra(prin.getJtFactura(), "", "Factura");
 
         }
+
+    }
+
+    public void iniciarFactura_Compra() {
+        vista_factucomp.setVisible(true);
+        vista_factucomp.setLocationRelativeTo(null);
+        prin.setVisible(false);
+        prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        vista_factucomp.setTitle("Añadir Nueva Factura | Ventana");
     }
 
     @Override

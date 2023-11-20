@@ -168,7 +168,7 @@ public class ModeloProducto {
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png")));
 
 
-        String[] titulo = {"Identificador", "Imagen", "Nombre", "Cantidad", "Stock", "Precio"};
+        String[] titulo = {"Identificador", "Imagen", "Nombre", "Descripcion", "Cantidad", "Precio"};
         int total = titulo.length;
 
         if (NomPesta.equals("Producto")) {

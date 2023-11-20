@@ -126,7 +126,7 @@ public class ModeloCliente {
             ps.setDate(7, (java.sql.Date) getFec());
             ps.setString(8, getTipodedocumento());
             ps.executeUpdate();
-            JOptionPane.showConfirmDialog(null, "Registro Almacenado");
+            JOptionPane.showMessageDialog(null, "Registro Almacenado");
             cn.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -232,13 +232,13 @@ public class ModeloCliente {
 
             while (rs.next()) {
                 setCdl(rs.getInt(1));
-                setNom(rs.getString(4));
-                setTel(rs.getString(5));
-                setCor(rs.getString(6));
-                setDir(rs.getString(7));
+                setNom(rs.getString(3));
+                setTel(rs.getString(4));
+                setCor(rs.getString(5));
+                setDir(rs.getString(6));
                 setFec(rs.getDate(8));
                 setSex(rs.getInt(2));
-                setTipodedocumento(rs.getString(3));
+                setTipodedocumento(rs.getString(9));
             }
 
         } catch (SQLException e) {
@@ -260,7 +260,7 @@ public class ModeloCliente {
         Conexion cone = new Conexion();
         Connection cn = cone.iniciarConexion();
 
-        String sql = "call Actualizar_Cliente(?,?,?,?,?,?,?)";
+        String sql = "call Actualizar_Cliente(?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = cn.prepareStatement(sql);
@@ -272,6 +272,7 @@ public class ModeloCliente {
             ps.setString(5, getDir());
             ps.setDate(6, (java.sql.Date) getFec());
             ps.setInt(7, getSex());
+            ps.setString(8, getTipodedocumento());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro Actualizado");
             cn.close();

@@ -20,8 +20,6 @@ public class ModeloLogin {
     Conexion conect = new Conexion();
     Connection cn = conect.iniciarConexion();
 
-    Login lg = new Login();
-
     String usu, contra;
 
     public ModeloLogin() {
@@ -57,12 +55,6 @@ public class ModeloLogin {
             while (rs.next()) {
                 result = true;                
             }
-//            if(result==true){
-//                cn.close();
-//            conect.cerrarConexion();
-//            }
-                cn.close();
-            conect.cerrarConexion();
 
         } catch (SQLException e) {
             e.printStackTrace();

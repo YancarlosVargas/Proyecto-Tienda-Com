@@ -11,7 +11,6 @@ public class ControladorLogin implements ActionListener {
     ModeloLogin modlog = new ModeloLogin();
     Login log = new Login();
     ControladorPrincipal prin = new ControladorPrincipal();
-    Conexion con = new Conexion();
 
     public ControladorLogin() {
         log.getBtnVisibilidad().addActionListener(this);

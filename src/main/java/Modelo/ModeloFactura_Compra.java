@@ -14,8 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -203,5 +201,72 @@ public class ModeloFactura_Compra {
         }
         conect.cerrarConexion();
 
+    }
+    
+    public void actualizarFactura_Compra() {
+        Conexion cone = new Conexion();
+        Connection cn = cone.iniciarConexion();
+
+        String sql = "call Actualizar_Factura_Compra(?,?,?,?)";
+
+        try {
+            PreparedStatement ps = cn.prepareStatement(sql);
+
+            ps.setInt(1,getIdfactu());
+            ps.setInt(2, getCed());
+            ps.setInt(3, getIdusu());
+            ps.setString(4, getTipopago());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro Actualizado");
+            cn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void buscarFactura_Compra(int valor) {
+        Conexion cone = new Conexion();
+        Connection cn = cone.iniciarConexion();
+
+        String sql = "call BuscarRegistro_Factura_Compra(" + valor + ")";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                setIdfactu(rs.getInt(1));
+                setCed(rs.getInt(2));
+                setIdusu(rs.getInt(3));
+                setFec(rs.getDate(4));
+                setTotalfac(rs.getInt(5));
+                setDesc(rs.getFloat(6));
+                setTipopago(rs.getString(7));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+     public void eliminarFactura_Compra() {
+        Conexion cone = new Conexion();
+        Connection cn = cone.iniciarConexion();
+
+        String sql = "call Eliminar_Factura_Compra(?)";
+
+        try {
+            PreparedStatement ps = cn.prepareStatement(sql);
+
+            ps.setInt(1,getIdfactu());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Factura Compra Eliminada", "Eliminar Factura Compra", JOptionPane.PLAIN_MESSAGE);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
     }
 }

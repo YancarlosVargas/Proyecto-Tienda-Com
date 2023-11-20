@@ -149,7 +149,7 @@ public class ModeloProveedor {
             }
 
             if (vaciar instanceof JComboBox) {
-                ((JComboBox) vaciar).setSelectedItem("Seleccione...");
+                ((JComboBox) vaciar).setSelectedItem("Seleccionar:");
             }
 
             if (vaciar instanceof JDateChooser) {
@@ -276,7 +276,7 @@ public class ModeloProveedor {
         Conexion cone = new Conexion();
         Connection cn = cone.iniciarConexion();
 
-        String sql = "call Actualizar_Provedor(?,?,?,?,?,?,?,?)";
+        String sql = "call Actualizar_Provedor(?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = cn.prepareStatement(sql);

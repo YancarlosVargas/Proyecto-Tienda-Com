@@ -20,6 +20,7 @@ public class ControladorProveedor implements ActionListener {
 
     public ControladorProveedor() {
         pro.getBtnGuardarProveedor().addActionListener(this);
+        pro.getBtnCancelar().addActionListener(this);
         pro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pro.addWindowListener(new WindowAdapter() {
             ;
@@ -35,7 +36,7 @@ public class ControladorProveedor implements ActionListener {
         pro.setLocationRelativeTo(null);
         pro.setTitle("Añadir Nuevo Proveedor | Ventana");
 
-        pro.getJcbGenero().addItem("Seleccione...");
+        pro.getJcbGenero().addItem("Seleccionar:");
         Map<String, Integer> dato = modpro.llenarCombo("sexo");
         for (String sexo : dato.keySet()) {
             pro.getJcbGenero().addItem(sexo);
@@ -45,7 +46,7 @@ public class ControladorProveedor implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == (pro.getBtnGuardarProveedor())) {
 
-            if ((pro.getJcbGenero().getSelectedItem().equals("Seleccione...")) || (pro.getTxtNombre().getText().isEmpty()) || (pro.getTxtTelefono().getText().isEmpty()) || (pro.getTxtCorreo().getText().isEmpty()) || (pro.getTxtDireccion().getText().isEmpty()) || (pro.getJDFechadeNacimiento().getDate() == null) || (pro.getCbxTipoDeDocumento().getSelectedItem().equals("Seleccionar:")) || (pro.getCbxTipoDePersona().getSelectedItem().equals("Seleccionar:"))) {
+            if ((pro.getJcbGenero().getSelectedItem().equals("Seleccionar:")) || (pro.getTxtNombre().getText().isEmpty()) || (pro.getTxtTelefono().getText().isEmpty()) || (pro.getTxtCorreo().getText().isEmpty()) || (pro.getTxtDireccion().getText().isEmpty()) || (pro.getJDFechadeNacimiento().getDate() == null) || (pro.getCbxTipoDeDocumento().getSelectedItem().equals("Seleccionar:")) || (pro.getCbxTipoDePersona().getSelectedItem().equals("Seleccionar:"))) {
                 JOptionPane.showMessageDialog(null, "Hace Falta Informacion");
             } else {
                 JOptionPane.showMessageDialog(null, "Exito");
@@ -63,9 +64,25 @@ public class ControladorProveedor implements ActionListener {
                 modpro.setSex(sexo);
                 modpro.setTipdedeocu(pro.getCbxTipoDeDocumento().getSelectedItem().toString());
                 modpro.setTipdeper(pro.getCbxTipoDePersona().getSelectedItem().toString());
-                modpro.insertarProveedor();
-                modpro.limpiarCasillas(pro.getJpPanelProveedor().getComponents());
+
+                if (pro.getBtnGuardarProveedor().getText().equals("Guardar")) {
+                    modpro.insertarProveedor();
+                    modpro.limpiarCasillas(pro.getJpPanelProveedor().getComponents());
+                } else {
+
+                    modpro.actualizarProvedor();
+
+                    pro.setVisible(false);
+                    prin.getJtPrincipal().setSelectedIndex(1);
+                    modpro.mostrarTablaProvedor(prin.getJtProvedor(), "", "Provedor");
+                    pro.dispose();
+
+                }
             }
+        }
+        
+        if (e.getSource() == (pro.getBtnCancelar())) {
+            pro.dispose();
         }
     }
 
@@ -80,7 +97,6 @@ public class ControladorProveedor implements ActionListener {
         pro.getCbxTipoDePersona().setSelectedItem(modpro.getTipdeper());
         pro.getCbxTipoDeDocumento().setSelectedItem(modpro.getTipdedeocu());
 
-
         Map<String, Integer> datos = modpro.llenarCombo("sexo");
         for (String sexo : datos.keySet()) {
             pro.getJcbGenero().addItem(sexo);
@@ -94,6 +110,7 @@ public class ControladorProveedor implements ActionListener {
         pro.setLocationRelativeTo(null);
         pro.getBtnGuardarProveedor().setText("Actualizar");
         pro.setVisible(true);
+        pro.setTitle("Actualizar Proveedor | Ventana");
 
     }
 
