@@ -22,11 +22,11 @@ public class Usuarios_Tabla extends javax.swing.JFrame {
     }
 
     public JTable getJtUsuario() {
-        return jtProveedor;
+        return jtUsuario;
     }
 
     public void setJtUsuario(JTable jtUsuario) {
-        this.jtProveedor = jtUsuario;
+        this.jtUsuario = jtUsuario;
     }
 
     public JLabel getLblTitulo() {
@@ -59,7 +59,7 @@ public class Usuarios_Tabla extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtProveedor = new javax.swing.JTable();
+        jtUsuario = new javax.swing.JTable();
         txtFiltro = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,9 +69,9 @@ public class Usuarios_Tabla extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Segoe UI Semibold", 2, 36)); // NOI18N
         lblTitulo.setText("Buscar Usuario");
 
-        jtProveedor.setBackground(new java.awt.Color(153, 153, 153));
-        jtProveedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jtProveedor.setModel(new javax.swing.table.DefaultTableModel(
+        jtUsuario.setBackground(new java.awt.Color(153, 153, 153));
+        jtUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jtUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -82,7 +82,7 @@ public class Usuarios_Tabla extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jtProveedor);
+        jScrollPane1.setViewportView(jtUsuario);
 
         txtFiltro.setText("Buscar: ");
 
@@ -93,15 +93,19 @@ public class Usuarios_Tabla extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 953, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitulo)
-                .addGap(360, 360, 360))
+                        .addGap(356, 356, 356)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblTitulo)
+                                .addGap(360, 360, 360))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(533, 533, 533)
+                                .addComponent(txtFiltro)
+                                .addContainerGap())))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +145,7 @@ public class Usuarios_Tabla extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtProveedor;
+    private javax.swing.JTable jtUsuario;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables

@@ -49,7 +49,7 @@ public class ControladorProveedor implements ActionListener {
             if ((pro.getJcbGenero().getSelectedItem().equals("Seleccionar:")) || (pro.getTxtNombre().getText().isEmpty()) || (pro.getTxtTelefono().getText().isEmpty()) || (pro.getTxtCorreo().getText().isEmpty()) || (pro.getTxtDireccion().getText().isEmpty()) || (pro.getJDFechadeNacimiento().getDate() == null) || (pro.getCbxTipoDeDocumento().getSelectedItem().equals("Seleccionar:")) || (pro.getCbxTipoDePersona().getSelectedItem().equals("Seleccionar:"))) {
                 JOptionPane.showMessageDialog(null, "Hace Falta Informacion");
             } else {
-                JOptionPane.showMessageDialog(null, "Exito");
+
                 String valorSexo = pro.getJcbGenero().getSelectedItem().toString();
                 int sexo = modpro.llenarCombo("sexo").get(valorSexo);
                 java.util.Date fec = pro.getJDFechadeNacimiento().getDate();
@@ -64,23 +64,29 @@ public class ControladorProveedor implements ActionListener {
                 modpro.setSex(sexo);
                 modpro.setTipdedeocu(pro.getCbxTipoDeDocumento().getSelectedItem().toString());
                 modpro.setTipdeper(pro.getCbxTipoDePersona().getSelectedItem().toString());
+                ControladorPrincipal princ = new ControladorPrincipal();
 
-                if (pro.getBtnGuardarProveedor().getText().equals("Guardar")) {
-                    modpro.insertarProveedor();
-                    modpro.limpiarCasillas(pro.getJpPanelProveedor().getComponents());
+                if (princ.validacioncorreo(modpro.getCor()) == true) {
+                    if (pro.getBtnGuardarProveedor().getText().equals("Guardar")) {
+                        JOptionPane.showMessageDialog(null, "Exito");
+                        modpro.insertarProveedor();
+                        modpro.limpiarCasillas(pro.getJpPanelProveedor().getComponents());
+                    } else {
+
+                        modpro.actualizarProvedor();
+
+                        pro.setVisible(false);
+                        prin.getJtPrincipal().setSelectedIndex(1);
+                        modpro.mostrarTablaProvedor(prin.getJtProvedor(), "", "Provedor");
+                        pro.dispose();
+
+                    }
                 } else {
-
-                    modpro.actualizarProvedor();
-
-                    pro.setVisible(false);
-                    prin.getJtPrincipal().setSelectedIndex(1);
-                    modpro.mostrarTablaProvedor(prin.getJtProvedor(), "", "Provedor");
-                    pro.dispose();
-
+                    JOptionPane.showMessageDialog(null, "Correo Invalido");
                 }
             }
         }
-        
+
         if (e.getSource() == (pro.getBtnCancelar())) {
             pro.dispose();
         }

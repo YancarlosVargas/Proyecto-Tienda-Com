@@ -89,18 +89,25 @@ public class ControladorUsuario implements ActionListener {
                 modusu.setRol(cargo);
                 modusu.setTipodedoc(usu.getCbxtipodedocumento().getSelectedItem().toString());
 
-                if (usu.getBtnGuardarUsuario().getText().equals("Guardar")) {
-                    modusu.insertarUsuario();
-                    modusu.limpiarCasillas(usu.getJpPanelUsuario().getComponents());
-                } else{
+                ControladorPrincipal princ = new ControladorPrincipal();
+                if (princ.validacioncorreo(modusu.getCor()) == true) {
+                    if (usu.getBtnGuardarUsuario().getText().equals("Guardar")) {
 
-                    modusu.actualizarUsuario();
+                        modusu.insertarUsuario();
+                        modusu.limpiarCasillas(usu.getJpPanelUsuario().getComponents());
 
-                    usu.setVisible(false);
-                    prin.getJtPrincipal().setSelectedIndex(1);
-                    modusu.mostrarTablaUsuario(prin.getJtUsuario(), "", "usuario");
-                    usu.dispose();
+                    } else {
 
+                        modusu.actualizarUsuario();
+
+                        usu.setVisible(false);
+                        prin.getJtPrincipal().setSelectedIndex(1);
+                        modusu.mostrarTablaUsuario(prin.getJtUsuario(), "", "usuario");
+                        usu.dispose();
+
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Correo Invalido");
                 }
             }
 

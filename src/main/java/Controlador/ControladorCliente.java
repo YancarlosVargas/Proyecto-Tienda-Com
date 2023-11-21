@@ -47,7 +47,7 @@ public class ControladorCliente implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == (cli.getBtnGuardarCliente())) {
 
-            if ((cli.getCbxtipodedocumento().getSelectedItem().equals("Seleccionar:"))||(cli.getTxtDocumento().getText().isEmpty()) || (cli.getJcbGenero().getSelectedItem().equals("Seleccionar:")) || (cli.getTxtNombre().getText().isEmpty()) || (cli.getTxtTelefono().getText().isEmpty()) || (cli.getTxtCorreo().getText().isEmpty()) || (cli.getTxtDireccion().getText().isEmpty()) || (cli.getJDFechadeNacimiento().getDate() == null)) {
+            if ((cli.getCbxtipodedocumento().getSelectedItem().equals("Seleccionar:")) || (cli.getTxtDocumento().getText().isEmpty()) || (cli.getJcbGenero().getSelectedItem().equals("Seleccionar:")) || (cli.getTxtNombre().getText().isEmpty()) || (cli.getTxtTelefono().getText().isEmpty()) || (cli.getTxtCorreo().getText().isEmpty()) || (cli.getTxtDireccion().getText().isEmpty()) || (cli.getJDFechadeNacimiento().getDate() == null)) {
                 JOptionPane.showMessageDialog(null, "Hace Falta Informacion");
             } else {
                 JOptionPane.showMessageDialog(null, "Exito");
@@ -65,21 +65,25 @@ public class ControladorCliente implements ActionListener {
                 modcli.setCor(cli.getTxtCorreo().getText());
                 modcli.setSex(sexo);
                 modcli.setTipodedocumento(cli.getCbxtipodedocumento().getSelectedItem().toString());
+                
+                ControladorPrincipal princ = new ControladorPrincipal();
+                if (princ.validacioncorreo(modcli.getCor()) == true) {
+                    if (cli.getBtnGuardarCliente().getText().equals("Guardar")) {
+                        modcli.insertarCliente();
+                        modcli.limpiarCasillas(cli.getJpPanelCliente().getComponents());
+                    } else {
 
-                if (cli.getBtnGuardarCliente().getText().equals("Guardar")) {
-                    modcli.insertarCliente();
-                    modcli.limpiarCasillas(cli.getJpPanelCliente().getComponents());
-                } else {
+                        modcli.actualizarCliente();
 
-                    modcli.actualizarCliente();
 
-                    ControladorPrincipal princ = new ControladorPrincipal();
+                        cli.setVisible(false);
+                        prin.getJtPrincipal().setSelectedIndex(1);
+                        modcli.mostrarTablaCliente(prin.getJtCliente(), "", "Cliente");
+                        princ.iniciarPrincipal(2);
 
-                    cli.setVisible(false);
-                    prin.getJtPrincipal().setSelectedIndex(1);
-                    modcli.mostrarTablaCliente(prin.getJtCliente(), "", "Cliente");
-                    princ.iniciarPrincipal(2);
-
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Correo Invalido");
                 }
             }
         }

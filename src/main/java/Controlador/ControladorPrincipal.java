@@ -21,6 +21,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -263,6 +265,15 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
             }
 
         });
+    }
+
+    public boolean validacioncorreo(String correo) {
+        String validacion = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+.[A-Z|a-z]{2,}$";
+        Pattern validar = Pattern.compile(validacion);
+        Matcher cor = validar.matcher(correo);
+
+        return cor.matches();
+
     }
 
     @Override
