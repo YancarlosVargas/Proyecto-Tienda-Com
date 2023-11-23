@@ -156,6 +156,7 @@ public class ModeloProducto {
         
         JButton editar = new JButton();
         JButton eliminar = new JButton();
+        JButton agregar = new JButton();
 
 
         JTableHeader encabezado = tabla.getTableHeader();
@@ -166,6 +167,7 @@ public class ModeloProducto {
         
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png")));
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png")));
+        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar-producto.png")));
 
 
         String[] titulo = {"Identificador", "Imagen", "Nombre", "Descripcion", "Cantidad", "Precio"};
@@ -175,7 +177,10 @@ public class ModeloProducto {
             titulo = Arrays.copyOf(titulo, titulo.length + 2);
             titulo[titulo.length - 2] = "Editar";
             titulo[titulo.length - 1] = "Eliminar";
-        } 
+        }else{
+            titulo = Arrays.copyOf(titulo, titulo.length + 1);
+            titulo[titulo.length - 1] = "Agregar";
+        }
 
         DefaultTableModel tablaProducto = new DefaultTableModel(null, titulo) {
             public boolean isCellEditable(int row, int column) {
@@ -215,7 +220,10 @@ public class ModeloProducto {
                     fila = Arrays.copyOf(fila, fila.length + 2);
                     fila[fila.length - 2] = editar;
                     fila[fila.length - 1] = eliminar;
-                } 
+                }else{
+                    fila = Arrays.copyOf(fila, fila.length + 1);
+                    fila[fila.length - 1] = agregar;
+                }
                 tablaProducto.addRow(fila);
             }
             conex.close();

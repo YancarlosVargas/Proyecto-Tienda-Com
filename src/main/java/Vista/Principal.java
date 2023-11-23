@@ -56,15 +56,15 @@ public class Principal extends javax.swing.JFrame {
         jtProducto = new javax.swing.JTable();
         txtFiltroProducto = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
-        txtFiltro2 = new javax.swing.JTextField();
+        txtFiltroFactura = new javax.swing.JTextField();
         btnNuevaFactura = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         jtFactura = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         btnNuevaVenta = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
-        txtFiltro3 = new javax.swing.JTextField();
+        jtVenta = new javax.swing.JTable();
+        txtFiltroVenta = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -257,7 +257,7 @@ public class Principal extends javax.swing.JFrame {
 
         jtPrincipal.addTab("Producto", jPanel6);
 
-        txtFiltro2.setText("Buscar: ");
+        txtFiltroFactura.setText("Buscar: ");
 
         btnNuevaFactura.setText("Nueva Factura");
 
@@ -284,9 +284,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(btnNuevaFactura)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtFiltro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE))
+                        .addGap(733, 733, 733)
+                        .addComponent(txtFiltroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -295,7 +295,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevaFactura)
-                    .addComponent(txtFiltro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFiltroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
         );
@@ -304,7 +304,7 @@ public class Principal extends javax.swing.JFrame {
 
         btnNuevaVenta.setText("Nueva Venta");
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        jtVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -315,9 +315,9 @@ public class Principal extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane6.setViewportView(jTable5);
+        jScrollPane6.setViewportView(jtVenta);
 
-        txtFiltro3.setText("Buscar: ");
+        txtFiltroVenta.setText("Buscar: ");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -329,7 +329,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnNuevaVenta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtFiltro3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtFiltroVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -339,7 +339,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevaVenta)
-                    .addComponent(txtFiltro3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFiltroVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -415,6 +415,35 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNuevoUsuarioActionPerformed
 
+    public JTextField getTxtFiltroFactura() {
+        return txtFiltroFactura;
+    }
+
+    public void setTxtFiltroFactura(JTextField txtFiltroFactura) {
+        this.txtFiltroFactura = txtFiltroFactura;
+    }
+
+    public JTable getJtVenta() {
+        return jtVenta;
+    }
+
+    public void setJtVenta(JTable jtVenta) {
+        this.jtVenta = jtVenta;
+    }
+
+    
+    
+    public JTextField getTxtFiltroVenta() {
+        return txtFiltroVenta;
+    }
+
+    public void setTxtFiltroVenta(JTextField txtFiltroVenta) {
+        this.txtFiltroVenta = txtFiltroVenta;
+    }
+
+    
+    
+    
     public JTextField getTxtFiltroProducto() {
         return txtFiltroProducto;
     }
@@ -586,7 +615,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable5;
     private javax.swing.JPanel jpProvedor;
     private javax.swing.JPanel jpUsuario;
     private javax.swing.JTable jtCliente;
@@ -595,11 +623,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable jtProducto;
     private javax.swing.JTable jtProvedor;
     private javax.swing.JTable jtUsuario;
+    private javax.swing.JTable jtVenta;
     private javax.swing.JTextField txtFiltro;
-    private javax.swing.JTextField txtFiltro2;
-    private javax.swing.JTextField txtFiltro3;
     private javax.swing.JTextField txtFiltroCliente;
+    private javax.swing.JTextField txtFiltroFactura;
     private javax.swing.JTextField txtFiltroProducto;
     private javax.swing.JTextField txtFiltroProvedor;
+    private javax.swing.JTextField txtFiltroVenta;
     // End of variables declaration//GEN-END:variables
 }

@@ -416,16 +416,16 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="btnNuevaFactura" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="txtFiltro2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="733" max="-2" attributes="0"/>
+                                      <Component id="txtFiltroFactura" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane5" pref="903" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane5" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -435,7 +435,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnNuevaFactura" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtFiltro2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtFiltroFactura" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane5" pref="251" max="32767" attributes="0"/>
@@ -444,7 +444,7 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="txtFiltro2">
+                    <Component class="javax.swing.JTextField" name="txtFiltroFactura">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Buscar: "/>
                       </Properties>
@@ -493,7 +493,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="btnNuevaVenta" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="txtFiltro3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtFiltroVenta" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane6" pref="903" max="32767" attributes="0"/>
                               </Group>
@@ -507,7 +507,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnNuevaVenta" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtFiltro3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtFiltroVenta" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane6" min="-2" pref="250" max="-2" attributes="0"/>
@@ -529,7 +529,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="jTable5">
+                        <Component class="javax.swing.JTable" name="jtVenta">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="0" rowCount="4"/>
@@ -538,7 +538,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JTextField" name="txtFiltro3">
+                    <Component class="javax.swing.JTextField" name="txtFiltroVenta">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Buscar: "/>
                       </Properties>

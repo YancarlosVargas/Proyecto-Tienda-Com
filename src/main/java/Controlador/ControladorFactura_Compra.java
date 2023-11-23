@@ -18,12 +18,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.sql.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -181,10 +177,11 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
 
                 modfactucomp.setCed(Integer.parseInt(vista_factucomp.getTxtProveedor().getText()));
                 modfactucomp.setIdusu(Integer.parseInt(vista_factucomp.getTxtUsuario().getText()));
-                modfactucomp.setTipopago(vista_factucomp.getCbxtipodepago().getSelectedItem().toString());
-
+                modfactucomp.setTipopago(vista_factucomp.getCbxtipodepago().getSelectedItem().toString());                
+                
                 JOptionPane.showMessageDialog(null, "Factura agregada");
                 modfactucomp.insertarfacturacompra();
+                modfactucomp.limpiarCasillas(vista_factucomp.getJpFacturaCompra().getComponents());
             }
         }
 
@@ -193,17 +190,6 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
         }
     }
     
-      public void eliminarFactura_Compra(int idfactucom) {
-        int resp = JOptionPane.showConfirmDialog(null, "Eliminar Factura Compra? \n" + idfactucom,
-                "Eliminar Factura Compra", JOptionPane.YES_OPTION);
-        if (resp == JOptionPane.YES_OPTION) {
-            modfactucomp.setIdfactu(idfactucom);
-            modfactucomp.eliminarFactura_Compra();           
-            modfactucomp.mostrarFactura_Compra(prin.getJtFactura(), "", "Factura");
-
-        }
-
-    }
 
     public void iniciarFactura_Compra() {
         vista_factucomp.setVisible(true);
