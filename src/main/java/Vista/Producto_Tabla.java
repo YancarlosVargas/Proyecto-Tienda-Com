@@ -12,21 +12,21 @@ import javax.swing.JTextField;
  *
  * @author SENA
  */
-public class Productos_Tabla extends javax.swing.JFrame {
+public class Producto_Tabla extends javax.swing.JFrame {
 
     /**
      * Creates new form Usuarios_Tabla
      */
-    public Productos_Tabla() {
+    public Producto_Tabla() {
         initComponents();
     }
 
-    public JTable getJtProducto() {
-        return jtProducto;
+    public JTable getJtProveedor() {
+        return jtProveedor;
     }
 
-    public void setJtProducto(JTable jtProducto) {
-        this.jtProducto = jtProducto;
+    public void setJtProveedor(JTable jtProveedor) {
+        this.jtProveedor = jtProveedor;
     }
 
     
@@ -61,7 +61,7 @@ public class Productos_Tabla extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtProducto = new javax.swing.JTable();
+        jtProveedor = new javax.swing.JTable();
         txtFiltro = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,9 +71,9 @@ public class Productos_Tabla extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Segoe UI Semibold", 2, 36)); // NOI18N
         lblTitulo.setText("Buscar Producto");
 
-        jtProducto.setBackground(new java.awt.Color(153, 153, 153));
-        jtProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jtProducto.setModel(new javax.swing.table.DefaultTableModel(
+        jtProveedor.setBackground(new java.awt.Color(153, 153, 153));
+        jtProveedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jtProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -84,7 +84,7 @@ public class Productos_Tabla extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jtProducto);
+        jScrollPane1.setViewportView(jtProveedor);
 
         txtFiltro.setText("Buscar: ");
 
@@ -99,13 +99,13 @@ public class Productos_Tabla extends javax.swing.JFrame {
                         .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(356, 356, 356)
+                        .addGap(317, 317, 317)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(lblTitulo)
                                 .addGap(360, 360, 360))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(533, 533, 533)
+                                .addGap(572, 572, 572)
                                 .addComponent(txtFiltro)
                                 .addContainerGap())))))
         );
@@ -147,7 +147,7 @@ public class Productos_Tabla extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtProducto;
+    private javax.swing.JTable jtProveedor;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables

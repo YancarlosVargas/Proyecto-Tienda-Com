@@ -177,11 +177,19 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
 
                 modfactucomp.setCed(Integer.parseInt(vista_factucomp.getTxtProveedor().getText()));
                 modfactucomp.setIdusu(Integer.parseInt(vista_factucomp.getTxtUsuario().getText()));
-                modfactucomp.setTipopago(vista_factucomp.getCbxtipodepago().getSelectedItem().toString());                
-                
-                JOptionPane.showMessageDialog(null, "Factura agregada");
-                modfactucomp.insertarfacturacompra();
-                modfactucomp.limpiarCasillas(vista_factucomp.getJpFacturaCompra().getComponents());
+                modfactucomp.setTipopago(vista_factucomp.getCbxtipodepago().getSelectedItem().toString());
+                if (vista_factucomp.getBtnGuardarFacturaCompra().getText().equals("Guardar")) {
+                    JOptionPane.showMessageDialog(null, "Factura agregada");
+                    modfactucomp.insertarfacturacompra();
+                    modfactucomp.limpiarCasillas(vista_factucomp.getJpFacturaCompra().getComponents());
+                } else {
+                    modfactucomp.actualizarFactura_Compra();
+
+                    vista_factucomp.dispose();
+                    prin.getJtPrincipal().setSelectedIndex(4);
+                    modfactucomp.mostrarFactura_Compra(prin.getJtFactura(), "", "Factura");
+
+                }
             }
         }
 
@@ -189,7 +197,6 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
             vista_factucomp.dispose();
         }
     }
-    
 
     public void iniciarFactura_Compra() {
         vista_factucomp.setVisible(true);

@@ -21,13 +21,17 @@ public class Detalle_Factura_Compra extends javax.swing.JFrame {
         initComponents();
     }
 
-    public JTable getJtUsuario() {
-        return jtUsuario;
+    public JTable getJtDetalleFactura() {
+        return jtDetalleFactura;
     }
 
-    public void setJtUsuario(JTable jtUsuario) {
-        this.jtUsuario = jtUsuario;
+    
+    
+    public void setJtDetalleFactura(JTable jtDetalleFactura) {
+        this.jtDetalleFactura = jtDetalleFactura;
     }
+
+   
 
     public JLabel getLblTitulo() {
         return lblTitulo;
@@ -59,7 +63,7 @@ public class Detalle_Factura_Compra extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtUsuario = new javax.swing.JTable();
+        jtDetalleFactura = new javax.swing.JTable();
         txtFiltro = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,9 +73,9 @@ public class Detalle_Factura_Compra extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Segoe UI Semibold", 2, 36)); // NOI18N
         lblTitulo.setText("Mostrar Detalle Factura");
 
-        jtUsuario.setBackground(new java.awt.Color(153, 153, 153));
-        jtUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jtUsuario.setModel(new javax.swing.table.DefaultTableModel(
+        jtDetalleFactura.setBackground(new java.awt.Color(153, 153, 153));
+        jtDetalleFactura.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jtDetalleFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -82,7 +86,7 @@ public class Detalle_Factura_Compra extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jtUsuario);
+        jScrollPane1.setViewportView(jtDetalleFactura);
 
         txtFiltro.setText("Buscar: ");
 
@@ -145,7 +149,7 @@ public class Detalle_Factura_Compra extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtUsuario;
+    private javax.swing.JTable jtDetalleFactura;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables

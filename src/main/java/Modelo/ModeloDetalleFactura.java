@@ -25,7 +25,7 @@ public class ModeloDetalleFactura {
 
     private int idfacturacompra, cantidad, pre_uni, pre_total;
     private String nombreproducto;
-    
+
 //    public void insertarProveedor() {
 //        Conexion conect = new Conexion();
 //        Connection cn = conect.iniciarConexion();
@@ -48,29 +48,26 @@ public class ModeloDetalleFactura {
 //        }
 //        conect.cerrarConexion();
 //    }
-
-    public void limpiarCasillas(Component[] panel) {
-        for (Object vaciar : panel) {
-            if (vaciar instanceof JTextField) {
-                ((JTextField) vaciar).setText("");
-            }
-
-            if (vaciar instanceof JComboBox) {
-                ((JComboBox) vaciar).setSelectedItem("Seleccionar:");
-            }
-
-            if (vaciar instanceof JDateChooser) {
-                ((JDateChooser) vaciar).setDate(null);
-            }
-        }
-    }
+//    public void limpiarCasillas(Component[] panel) {
+//        for (Object vaciar : panel) {
+//            if (vaciar instanceof JTextField) {
+//                ((JTextField) vaciar).setText("");
+//            }
+//
+//            if (vaciar instanceof JComboBox) {
+//                ((JComboBox) vaciar).setSelectedItem("Seleccionar:");
+//            }
+//
+//            if (vaciar instanceof JDateChooser) {
+//                ((JDateChooser) vaciar).setDate(null);
+//            }
+//        }
+//    }
 
     public void mostrarDetalleFactura(JTable tabla, String valor, String nomPesta) {
         Conexion conect = new Conexion();
         Connection cn = conect.iniciarConexion();
 
-        JButton editar = new JButton();
-        JButton eliminar = new JButton();
         JButton agregar = new JButton();
 
         JTableHeader encabezado = tabla.getTableHeader();
@@ -79,8 +76,8 @@ public class ModeloDetalleFactura {
         tabla.setDefaultRenderer(Object.class, new GestionCeldas());
 
         agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar-usuario.png")));
-   
-        String[] titulo = {"Identificador Factura Compra", "Producto", "Cantidad Comprada", "Precio Unitario", "Precio Total", "Correo"};
+
+        String[] titulo = {"IdentificadorFacturaCompra", "Producto", "CantidadComprada", "PrecioUnitario", "PrecioTotal"};
         int total = titulo.length;
 
         if (nomPesta.equals("DetalleFactura")) {
@@ -100,37 +97,37 @@ public class ModeloDetalleFactura {
         } else {
             sqlProvedor = "call Filtro_Provedor('" + valor + "')";
         }
-        try {
-            String[] dato = new String[titulo.length];
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sqlProvedor);
-            while (rs.next()) {
-                for (int i = 0; i < total; i++) {
-                    dato[i] = rs.getString(i + 1);
-                }
+            try {
+                String[] dato = new String[titulo.length];
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery(sqlProvedor);
+                while (rs.next()) {
+                    for (int i = 0; i < total; i++) {
+                        dato[i] = rs.getString(i + 1);
+                    }
 
-                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5]};
-                if (nomPesta.equals("DetalleFactura")) {
-                    fila = Arrays.copyOf(fila, fila.length + 1);
-                    fila[fila.length - 1] = agregar;
+                    Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4]};
+                    if (nomPesta.equals("DetalleFactura")) {
+                        fila = Arrays.copyOf(fila, fila.length + 1);
+                        fila[fila.length - 1] = agregar;
+                    }
+                    tablaProvedor.addRow(fila);
                 }
-                tablaProvedor.addRow(fila);
+                cn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-            cn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        tabla.setModel(tablaProvedor);
+            tabla.setModel(tablaProvedor);
 
-        int numColumnas = tabla.getColumnCount();
-        int[] tamanos = {100, 100, 100, 100, 100, 100, 80};
-        for (int i = 0; i < numColumnas; i++) {
-            TableColumn columna = tabla.getColumnModel().getColumn(i);
-            columna.setPreferredWidth(tamanos[i]);
-        }
-        conect.cerrarConexion();
+            int numColumnas = tabla.getColumnCount();
+            int[] tamanos = {100, 100, 100, 100, 100, 80};
+            for (int i = 0; i < numColumnas; i++) {
+                TableColumn columna = tabla.getColumnModel().getColumn(i);
+                columna.setPreferredWidth(tamanos[i]);
+            }
+            conect.cerrarConexion();
 
-    }
+        }
 
 //    public void buscarProvedor(int valor) {
 //        Conexion cone = new Conexion();
@@ -159,9 +156,6 @@ public class ModeloDetalleFactura {
 //        }
 //
 //    }
-
-   
-
 //    public void actualizarProvedor() {
 //        Conexion cone = new Conexion();
 //        Connection cn = cone.iniciarConexion();
@@ -189,7 +183,6 @@ public class ModeloDetalleFactura {
 //            e.printStackTrace();
 //        }
 //    }
-
 //    public void eliminarProvedor() {
 //        Conexion cone = new Conexion();
 //        Connection cn = cone.iniciarConexion();
@@ -208,4 +201,5 @@ public class ModeloDetalleFactura {
 //        }
 //
 //    }
+    
 }

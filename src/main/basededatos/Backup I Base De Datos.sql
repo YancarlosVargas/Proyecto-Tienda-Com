@@ -160,7 +160,7 @@ CREATE TABLE `fact_comp` (
   KEY `idusuario_idx` (`idusu`),
   CONSTRAINT `idProveedor` FOREIGN KEY (`idProveedor`) REFERENCES `proveedor` (`idProveedor`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `idusu` FOREIGN KEY (`idusu`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,7 +169,7 @@ CREATE TABLE `fact_comp` (
 
 LOCK TABLES `fact_comp` WRITE;
 /*!40000 ALTER TABLE `fact_comp` DISABLE KEYS */;
-INSERT INTO `fact_comp` VALUES (13,1,2,'2005-12-12',1,1,'bombaclaw',1),(14,1,2121,'2023-11-19',1,1,'Efectivo',1),(15,1,2121,'2023-11-19',1,1,'Seleccionar:',1),(16,1,2121,'2023-11-19',1,1,'Tarjeta de Credito',1),(17,1,2121,'2023-11-19',1,1,'Tarjeta de Credito',0),(18,1,19191,'2023-11-22',0,0,'Tarjeta de Credito',1),(19,1,2838,'2023-11-22',0,0,'Tarjeta de Credito',1),(20,1,19191,'2023-11-22',0,0.19,'Tarjeta de Credito',1),(21,1,19191,'2023-11-22',0,0.19,'Efectivo',1);
+INSERT INTO `fact_comp` VALUES (13,1,2,'2005-12-12',1,1,'bombaclaw',1),(14,1,2121,'2023-11-19',1,1,'Efectivo',1),(15,1,2121,'2023-11-19',1,1,'Seleccionar:',1),(16,1,2121,'2023-11-19',1,1,'Tarjeta de Credito',1),(17,1,2121,'2023-11-19',1,1,'Tarjeta de Credito',0),(18,1,19191,'2023-11-22',0,0,'Tarjeta de Credito',1),(19,1,2838,'2023-11-22',0,0,'Tarjeta de Credito',1),(20,1,19191,'2023-11-22',0,0.19,'Tarjeta de Credito',1),(21,1,19191,'2023-11-22',0,0.19,'Efectivo',1),(22,1,2838,'2023-11-24',0,0.19,'Tarjeta de Credito',1),(23,1,19191,'2023-11-24',0,0.19,'Efectivo',1),(24,3,19191,'2023-11-24',0,0.19,'Tarjeta de Credito',1),(25,3,2,'2023-11-24',0,0.19,'Efectivo',1);
 /*!40000 ALTER TABLE `fact_comp` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -433,7 +433,7 @@ CREATE TABLE `proveedor` (
 
 LOCK TABLES `proveedor` WRITE;
 /*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
-INSERT INTO `proveedor` VALUES (1,2,'Cedula','camilo','123','5345435','ddsfdff','Juridica','2000-02-02',1);
+INSERT INTO `proveedor` VALUES (1,2,'Cedula','camilo','123','5345435','ddsfdff','Juridica','2000-02-02',1),(2,1,'1','bembitarayito','1','1','1','1','1000-10-12',1),(3,2,'2','TESTING','2','2','2','2','0500-10-10',1);
 /*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1246,4 +1246,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-23 12:00:48
+-- Dump completed on 2023-11-24 11:49:21

@@ -18,7 +18,8 @@ import Vista.Factura_Compra;
 import Vista.Login;
 import Vista.Principal;
 import Vista.Producto;
-import Vista.Productos_Tabla;
+import Vista.Agregar_Detalle_Factura;
+import Vista.Producto_Tabla;
 import Vista.Proveedor;
 import Vista.Usuario;
 import java.awt.Color;
@@ -42,7 +43,7 @@ import javax.swing.event.DocumentListener;
  * @author HuevosFundidos
  */
 public class ControladorPrincipal implements ActionListener, ChangeListener, DocumentListener {
-    
+
     Login log = new Login();
     Principal prin = new Principal();
     ModeloUsuario modusu = new ModeloUsuario();
@@ -63,44 +64,49 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     ModeloFactura_Compra modfactucom = new ModeloFactura_Compra();
     ModeloVenta modventa = new ModeloVenta();
     ControladorVenta conventa = new ControladorVenta();
-    Productos_Tabla productotaba = new Productos_Tabla();
+    Agregar_Detalle_Factura detallefactu = new Agregar_Detalle_Factura();
     Detalle_Factura_Compra detallefactucompra = new Detalle_Factura_Compra();
     ModeloDetalleFactura moddetallefactucompra = new ModeloDetalleFactura();
-    
+    Producto_Tabla tableproducto = new Producto_Tabla();
+
     public ControladorPrincipal() {
         prin.getBtnNuevoUsuario().addActionListener(this);
         user.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
+
         prin.getBtnNuevoCliente().addActionListener(this);
         cli.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
+
         prin.getBtnAñadirProveedor().addActionListener(this);
         pro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
+
         prin.getJtPrincipal().addChangeListener(this);
         prin.getBtnNuevoUsuario().addChangeListener(this);
-        
+
         prin.getBtnNuevoProducto().addActionListener(this);
         produc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
+
         prin.getBtnNuevaFactura().addActionListener(this);
         factucom.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
+
         prin.getBtnNuevaVenta().addActionListener(this);
         factu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
-        productotaba.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        detallefactu.getBtnBuscarProducto().addActionListener(this);
+        detallefactu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         detallefactucompra.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        tableproducto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
+        
+
         prin.getTxtFiltroVenta().getDocument().addDocumentListener(this);
         prin.getTxtFiltro().getDocument().addDocumentListener(this);
         prin.getTxtFiltroCliente().getDocument().addDocumentListener(this);
         prin.getTxtFiltroProvedor().getDocument().addDocumentListener(this);
         prin.getTxtFiltroProducto().getDocument().addDocumentListener(this);
         prin.getTxtFiltroFactura().getDocument().addDocumentListener(this);
-        
+
     }
-    
+
     public void iniciarPrincipal(int valor) {
         log.setVisible(false);
         prin.setLocationRelativeTo(null);
@@ -109,55 +115,55 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
         gestionarUsuario();
         prin.getJtPrincipal().setSelectedIndex(valor);
-        
+
     }
-    
+
     public void gestionarUsuario() {
-        
+
         modusu.mostrarTablaUsuario(prin.getJtUsuario(), "", "Usuario");
-        
+
         prin.getTxtFiltro().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 prin.getTxtFiltro().setText("");
                 prin.getTxtFiltro().setForeground(Color.black);
             }
-            
+
         });
-        
+
         prin.getJtUsuario().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int fila = prin.getJtUsuario().rowAtPoint(e.getPoint());
                 int columna = prin.getJtUsuario().columnAtPoint(e.getPoint());
                 modusu.setDoc(Integer.parseInt(prin.getJtUsuario().getValueAt(fila, 0).toString()));
-                
+
                 if (columna == 9) {
                     prin.setVisible(false);
                     usu.actualizarUsuario(modusu.getDoc());
                 }
-                
+
                 if (columna == 10) {
-                    
+
                     usu.eliminarUsuario(modusu.getDoc());
                     modusu.mostrarTablaUsuario(prin.getJtUsuario(), "", "Usuario");
                 }
-                
+
             }
-            
+
         });
     }
-    
+
     public void gestionarFactura_Compra() {
-        
-        productotaba.addWindowListener(new WindowAdapter() {
+
+        detallefactu.addWindowListener(new WindowAdapter() {
             ;
         public void windowClosed(WindowEvent e) {
-                productotaba.setVisible(false);
+                detallefactu.setVisible(false);
                 iniciarPrincipal(4);
             }
         });
-        
+
         detallefactucompra.addWindowListener(new WindowAdapter() {
             ;
         public void windowClosed(WindowEvent e) {
@@ -165,70 +171,66 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 iniciarPrincipal(4);
             }
         });
-        
+
         modfactucom.mostrarFactura_Compra(prin.getJtFactura(), "", "Factura");
-        
+
         prin.getTxtFiltroFactura().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 prin.getTxtFiltroFactura().setText("");
                 prin.getTxtFiltroFactura().setForeground(Color.black);
             }
-            
+
         });
-        
+
         prin.getJtFactura().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int fila = prin.getJtFactura().rowAtPoint(e.getPoint());
                 int columna = prin.getJtFactura().columnAtPoint(e.getPoint());
-                modusu.setDoc(Integer.parseInt(prin.getJtFactura().getValueAt(fila, 0).toString()));
+                modfactucom.setIdfactu(Integer.parseInt(prin.getJtFactura().getValueAt(fila, 0).toString()));
                 if (columna == 10) {
                     prin.setVisible(false);
                     controlfaccom.actualizarFactura_Compra(modfactucom.getIdfactu());
                 }
-                
+
                 if (columna == 9) {
                     prin.setVisible(false);
-                    productotaba.setVisible(true);
-                    productotaba.setLocationRelativeTo(null);
-                    productotaba.setTitle("Agregar Productos | Ventana");
-                    moddetallefactucompra.mostrarDetalleFactura(productotaba.getJtProducto(), "", "DetalleFactura");
+                    detallefactu.setVisible(true);
+                    detallefactu.setLocationRelativeTo(null);
+                    detallefactu.setTitle("Agregar Detalle Factura | Ventana");
+                    detallefactu.getTxtIdFactComp().setText(String.valueOf(modfactucom.getIdfactu()));
+                    modproduc.mostrarTablaProducto(detallefactu.getJtProducto(), "", "");
                     
-                    if (productotaba.isVisible()) {
-                        productotaba.setVisible(false);
-                        iniciarPrincipal(4);
-                        Object idproducto = modproduc.getIdpro();
-//                        productotaba.gettx().setText(idproducto.toString());
-                        JOptionPane.showMessageDialog(null, "Proveedor Agregado");
-                    }
+                    
                 }
-                
+
                 if (columna == 8) {
                     prin.setVisible(false);
                     detallefactucompra.setVisible(true);
                     detallefactucompra.setLocationRelativeTo(null);
                     detallefactucompra.setTitle("Mostrar Detalle Factura | Ventana");
+                    moddetallefactucompra.mostrarDetalleFactura(detallefactucompra.getJtDetalleFactura(), "", "DetalleFactura");
                 }
-                
+
             }
-            
+
         });
     }
-    
+
     public void gestionarCliente() {
-        
+
         modcli.mostrarTablaCliente(prin.getJtCliente(), "", "Cliente");
-        
+
         prin.getTxtFiltroCliente().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 prin.getTxtFiltroCliente().setText("");
                 prin.getTxtFiltroCliente().setForeground(Color.black);
             }
-            
+
         });
-        
+
         prin.getJtCliente().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -239,31 +241,31 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                     prin.setVisible(false);
                     clic.actualizarCliente(modcli.getCdl());
                 }
-                
+
                 if (columna == 9) {
-                    
+
                     clic.eliminarCliente(modcli.getCdl());
                     modcli.mostrarTablaCliente(prin.getJtCliente(), "", "Cliente");
                 }
-                
+
             }
-            
+
         });
     }
-    
+
     public void gestionarProducto() {
-        
+
         modproduc.mostrarTablaProducto(prin.getJtProducto(), "", "Producto");
-        
+
         prin.getTxtFiltroProducto().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 prin.getTxtFiltroProducto().setText("");
                 prin.getTxtFiltroProducto().setForeground(Color.black);
             }
-            
+
         });
-        
+
         prin.getJtProducto().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -274,31 +276,31 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                     prin.setVisible(false);
                     conpro.actualizarProducto(modproduc.getIdpro());
                 }
-                
+
                 if (columna == 7) {
-                    
+
                     conpro.eliminarProducto(modproduc.getIdpro());
                     modproduc.mostrarTablaProducto(prin.getJtProducto(), "", "Producto");
                 }
-                
+
             }
-            
+
         });
     }
-    
+
     public void gestionarProvedor() {
-        
+
         modpro.mostrarTablaProvedor(prin.getJtProvedor(), "", "Provedor");
-        
+
         prin.getTxtFiltroProvedor().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 prin.getTxtFiltroProvedor().setText("");
                 prin.getTxtFiltroProvedor().setForeground(Color.black);
             }
-            
+
         });
-        
+
         prin.getJtProvedor().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -309,18 +311,18 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                     prin.setVisible(false);
                     proc.actualizarProvedor(modpro.getCed());
                 }
-                
+
                 if (columna == 10) {
-                    
+
                     proc.eliminarProvedor(modpro.getCed());
                     modpro.mostrarTablaProvedor(prin.getJtProvedor(), "", "Provedor");
                 }
-                
+
             }
-            
+
         });
     }
-    
+
     public void gestionarVenta() {
 
 //        modventa.mostrartablaVenta(prin.getJtVenta(), "", "Venta");
@@ -330,9 +332,9 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 prin.getTxtFiltroVenta().setText("");
                 prin.getTxtFiltroVenta().setForeground(Color.black);
             }
-            
+
         });
-        
+
         prin.getJtVenta().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -343,93 +345,102 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                     prin.setVisible(false);
                     modventa.actualizarProvedor(modpro.getCed());
                 }
-                
+
                 if (columna == 10) {
-                    
+
                     proc.eliminarProvedor(modpro.getCed());
                     modventa.mostrarTablaProvedor(prin.getJtProvedor(), "", "Provedor");
                 }
-                
+
             }
-            
+
         });
     }
-    
+
     public boolean validacioncorreo(String correo) {
         String validacion = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+.[A-Z|a-z]{2,}$";
         Pattern validar = Pattern.compile(validacion);
         Matcher cor = validar.matcher(correo);
-        
+
         return cor.matches();
-        
+
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == (prin.getBtnNuevoUsuario())) {
             usu.iniciarUsuario();
             prin.setVisible(false);
-            
+
         }
-        
+
         if (e.getSource() == (prin.getBtnNuevoCliente())) {
             clic.iniciarCliente();
             prin.setVisible(false);
-            
+
         }
-        
+
         if (e.getSource() == (prin.getBtnAñadirProveedor())) {
             proc.iniciarProveedor();
             prin.setVisible(false);
-            
+
         }
-        
+
         if (e.getSource() == (prin.getBtnNuevoProducto())) {
             prin.setVisible(false);
             conpro.iniciarProducto();
-            
+
         }
-        
+
         if (e.getSource() == (prin.getBtnNuevaFactura())) {
             controlfaccom.iniciarFactura_Compra();
             prin.setVisible(false);
         }
-        
+
         if (e.getSource() == (prin.getBtnNuevaVenta())) {
             conventa.iniciarVenta();
             prin.setVisible(false);
         }
         
+        if (e.getSource() == (detallefactu.getBtnBuscarProducto())) {
+            tableproducto.setVisible(true);
+            tableproducto.setLocationRelativeTo(null);
+            detallefactu.setVisible(false);
+            prin.setVisible(false);
+            
+        }
+        
+
     }
-    
+
     @Override
     public void stateChanged(ChangeEvent e) {
         int seleccion = prin.getJtPrincipal().getSelectedIndex();
         if (seleccion == 0) {
             gestionarUsuario();
         }
-        
+
         if (seleccion == 2) {
             gestionarCliente();
-            
+
         }
-        
+
         if (seleccion == 1) {
             gestionarProvedor();
-            
+
         }
-        
+
         if (seleccion == 3) {
             gestionarProducto();
-            
+
         }
-        
+
         if (seleccion == 4) {
             gestionarFactura_Compra();
-            
+
         }
     }
-    
+
     @Override
     public void insertUpdate(DocumentEvent e) {
         modusu.mostrarTablaUsuario(prin.getJtUsuario(), prin.getTxtFiltro().getText(), "Usuario");
@@ -439,7 +450,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modfactucom.mostrarFactura_Compra(prin.getJtFactura(), prin.getTxtFiltroFactura().getText(), "Factura");
         modventa.mostrarVenta(prin.getJtVenta(), prin.getTxtFiltroVenta(), "Venta")
     }
-    
+
     @Override
     public void removeUpdate(DocumentEvent e) {
         modusu.mostrarTablaUsuario(prin.getJtUsuario(), prin.getTxtFiltro().getText(), "Usuario");
@@ -450,7 +461,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modventa.mostrarVenta(prin.getJtVenta(), prin.getTxtFiltroVenta(), "Venta")
 
     }
-    
+
     @Override
     public void changedUpdate(DocumentEvent e) {
         modusu.mostrarTablaUsuario(prin.getJtUsuario(), prin.getTxtFiltro().getText(), "Usuario");
