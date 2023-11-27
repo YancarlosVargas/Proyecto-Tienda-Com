@@ -7,6 +7,7 @@ package Controlador;
 import Modelo.ModeloFactura_Compra;
 import Modelo.ModeloProveedor;
 import Modelo.ModeloUsuario;
+import Vista.Detalle_Factura_Compra;
 import Vista.Factura_Compra;
 import Vista.Principal;
 import Vista.Proveedor_Tabla;
@@ -36,6 +37,7 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
     ModeloProveedor modpro = new ModeloProveedor();
     Proveedor_Tabla Proveedor_Table = new Proveedor_Tabla();
     ModeloFactura_Compra modfactucomp = new ModeloFactura_Compra();
+    Detalle_Factura_Compra detallefactura = new Detalle_Factura_Compra();
 
     public ControladorFactura_Compra() {
         vista_factucomp.getBtnBuscarProveedor().addActionListener(this);
@@ -196,6 +198,8 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
         if (e.getSource().equals(vista_factucomp.getBtnCancelar())) {
             vista_factucomp.dispose();
         }
+        
+        
     }
 
     public void iniciarFactura_Compra() {
@@ -204,6 +208,18 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
         prin.setVisible(false);
         prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
         vista_factucomp.setTitle("Añadir Nueva Factura | Ventana");
+    }
+    
+    public void eliminarDetalleFactura(int idfactura_compra) {
+        int resp = JOptionPane.showConfirmDialog(null, "Eliminar Factura? \n" + idfactura_compra,
+                "Eliminar Factura", JOptionPane.YES_OPTION);
+        if (resp == JOptionPane.YES_OPTION) {
+            modfactucomp.setIdfactucompra(idfactura_compra);
+            modfactucomp.eliminarDetalleFactura();
+            modfactucomp.mostrarDetalleFactura(detallefactura.getJtDetalleFactura(), "", "Eliminar");
+
+        }
+
     }
 
     @Override

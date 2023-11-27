@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controlador;
 
 import Modelo.ModeloCliente;
-import Modelo.ModeloDetalleFactura;
 import Modelo.ModeloFactura_Compra;
 import Modelo.ModeloProducto;
 import Modelo.ModeloProveedor;
@@ -66,7 +61,6 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
     ControladorVenta conventa = new ControladorVenta();
     Agregar_Detalle_Factura detallefactu = new Agregar_Detalle_Factura();
     Detalle_Factura_Compra detallefactucompra = new Detalle_Factura_Compra();
-    ModeloDetalleFactura moddetallefactucompra = new ModeloDetalleFactura();
     Producto_Tabla tableproducto = new Producto_Tabla();
 
     public ControladorPrincipal() {
@@ -92,11 +86,10 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         factu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         detallefactu.getBtnBuscarProducto().addActionListener(this);
+        detallefactu.getBtnagregardetallefactura().addActionListener(this);
         detallefactu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         detallefactucompra.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         tableproducto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
-        
 
         prin.getTxtFiltroVenta().getDocument().addDocumentListener(this);
         prin.getTxtFiltro().getDocument().addDocumentListener(this);
@@ -104,7 +97,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         prin.getTxtFiltroProvedor().getDocument().addDocumentListener(this);
         prin.getTxtFiltroProducto().getDocument().addDocumentListener(this);
         prin.getTxtFiltroFactura().getDocument().addDocumentListener(this);
-
+        tableproducto.getTxtFiltro().getDocument().addDocumentListener(this);
     }
 
     public void iniciarPrincipal(int valor) {
@@ -161,6 +154,7 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         public void windowClosed(WindowEvent e) {
                 detallefactu.setVisible(false);
                 iniciarPrincipal(4);
+                gestionarFactura_Compra();
             }
         });
 
@@ -200,9 +194,8 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                     detallefactu.setLocationRelativeTo(null);
                     detallefactu.setTitle("Agregar Detalle Factura | Ventana");
                     detallefactu.getTxtIdFactComp().setText(String.valueOf(modfactucom.getIdfactu()));
-                    modproduc.mostrarTablaProducto(detallefactu.getJtProducto(), "", "");
-                    
-                    
+                    modfactucom.mostrarDetalleFactura(detallefactu.getJtDetalleFactura(), "", "Eliminar");
+
                 }
 
                 if (columna == 8) {
@@ -210,7 +203,22 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                     detallefactucompra.setVisible(true);
                     detallefactucompra.setLocationRelativeTo(null);
                     detallefactucompra.setTitle("Mostrar Detalle Factura | Ventana");
-                    moddetallefactucompra.mostrarDetalleFactura(detallefactucompra.getJtDetalleFactura(), "", "DetalleFactura");
+                    modfactucom.mostrarDetalleFactura(detallefactucompra.getJtDetalleFactura(), "", "");
+                }
+
+            }
+
+        });
+
+        detallefactu.getJtDetalleFactura().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int fila = detallefactu.getJtDetalleFactura().rowAtPoint(e.getPoint());
+                int columna = detallefactu.getJtDetalleFactura().columnAtPoint(e.getPoint());
+                modfactucom.setIdfactu(Integer.parseInt(detallefactu.getJtDetalleFactura().getValueAt(fila, 0).toString()));
+                if (columna == 5) {
+                    controlfaccom.eliminarDetalleFactura(modfactucom.getIdfactucompra());
+                    modfactucom.mostrarDetalleFactura(detallefactu.getJtDetalleFactura(), "", "Eliminar");
                 }
 
             }
@@ -343,13 +351,13 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
                 modpro.setCed(Integer.parseInt(prin.getJtVenta().getValueAt(fila, 0).toString()));
                 if (columna == 9) {
                     prin.setVisible(false);
-                    modventa.actualizarProvedor(modpro.getCed());
+//                    modventa.actualizarProvedor(modpro.getCed());
                 }
 
                 if (columna == 10) {
 
                     proc.eliminarProvedor(modpro.getCed());
-                    modventa.mostrarTablaProvedor(prin.getJtProvedor(), "", "Provedor");
+//                    modventa.mostrarTablaProvedor(prin.getJtProvedor(), "", "Provedor");
                 }
 
             }
@@ -401,15 +409,59 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
             conventa.iniciarVenta();
             prin.setVisible(false);
         }
-        
+
         if (e.getSource() == (detallefactu.getBtnBuscarProducto())) {
             tableproducto.setVisible(true);
             tableproducto.setLocationRelativeTo(null);
             detallefactu.setVisible(false);
             prin.setVisible(false);
-            
+            modproduc.mostrarTablaProducto(tableproducto.getJtproducto(), "", "");
+
+            tableproducto.addWindowListener(new WindowAdapter() {
+                ;
+        public void windowClosed(WindowEvent e) {
+                    tableproducto.setVisible(false);
+                    detallefactu.setVisible(true);
+                }
+            });
+
+            tableproducto.getTxtFiltro().addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    tableproducto.getTxtFiltro().setText("");
+                    tableproducto.getTxtFiltro().setForeground(Color.black);
+                }
+
+            });
+
+            tableproducto.getJtproducto().addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    int fila = tableproducto.getJtproducto().rowAtPoint(e.getPoint());
+                    int columna = tableproducto.getJtproducto().columnAtPoint(e.getPoint());
+                    modproduc.setIdpro(Integer.parseInt(tableproducto.getJtproducto().getValueAt(fila, 0).toString()));
+                    if (columna == 6) {
+                        tableproducto.setVisible(false);
+                        detallefactu.setVisible(true);
+                        Object idproducto = modproduc.getIdpro();
+                        detallefactu.getTxtidproducto().setText(idproducto.toString());
+                        JOptionPane.showMessageDialog(null, "Producto Agregado");
+                    }
+
+                }
+
+            });
         }
-        
+
+        if (e.getSource().equals(detallefactu.getBtnagregardetallefactura())) {
+
+            modfactucom.setIdfactu(Integer.parseInt(detallefactu.getTxtIdFactComp().getText()));
+            modfactucom.setIdprodu(Integer.parseInt(detallefactu.getTxtidproducto().getText()));
+            modfactucom.setCantidadcompra(Integer.parseInt(detallefactu.getTxtcantidadcomprada().getText()));
+            modfactucom.setPreciouni(Integer.parseInt(detallefactu.getTxtpreciounitario().getText()));
+            modfactucom.mostrarDetalleFactura(detallefactu.getJtDetalleFactura(), "", "Eliminar");
+            modfactucom.insertarfacturacompraproducto();
+        }
 
     }
 
@@ -448,7 +500,9 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modpro.mostrarTablaProvedor(prin.getJtProvedor(), prin.getTxtFiltroProvedor().getText(), "Provedor");
         modproduc.mostrarTablaProducto(prin.getJtProducto(), prin.getTxtFiltroProducto().getText(), "Producto");
         modfactucom.mostrarFactura_Compra(prin.getJtFactura(), prin.getTxtFiltroFactura().getText(), "Factura");
-        modventa.mostrarVenta(prin.getJtVenta(), prin.getTxtFiltroVenta(), "Venta")
+//        modventa.mostrarVenta(prin.getJtVenta(), prin.getTxtFiltroVenta(), "Venta");
+        modproduc.mostrarTablaProducto(tableproducto.getJtproducto(), tableproducto.getTxtFiltro().getText(), "");
+
     }
 
     @Override
@@ -458,7 +512,8 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modpro.mostrarTablaProvedor(prin.getJtProvedor(), prin.getTxtFiltroProvedor().getText(), "Provedor");
         modproduc.mostrarTablaProducto(prin.getJtProducto(), prin.getTxtFiltroProducto().getText(), "Producto");
         modfactucom.mostrarFactura_Compra(prin.getJtFactura(), prin.getTxtFiltroFactura().getText(), "Factura");
-        modventa.mostrarVenta(prin.getJtVenta(), prin.getTxtFiltroVenta(), "Venta")
+//        modventa.mostrarVenta(prin.getJtVenta(), prin.getTxtFiltroVenta(), "Venta");
+        modproduc.mostrarTablaProducto(tableproducto.getJtproducto(), tableproducto.getTxtFiltro().getText(), "");
 
     }
 
@@ -469,7 +524,8 @@ public class ControladorPrincipal implements ActionListener, ChangeListener, Doc
         modpro.mostrarTablaProvedor(prin.getJtProvedor(), prin.getTxtFiltroProvedor().getText(), "Provedor");
         modproduc.mostrarTablaProducto(prin.getJtProducto(), prin.getTxtFiltroProducto().getText(), "Producto");
         modfactucom.mostrarFactura_Compra(prin.getJtFactura(), prin.getTxtFiltroFactura().getText(), "Factura");
-        modventa.mostrarVenta(prin.getJtVenta(), prin.getTxtFiltroVenta(), "Venta")
+//        modventa.mostrarVenta(prin.getJtVenta(), prin.getTxtFiltroVenta(), "Venta");
+        modproduc.mostrarTablaProducto(tableproducto.getJtproducto(), tableproducto.getTxtFiltro().getText(), "");
 
     }
 }

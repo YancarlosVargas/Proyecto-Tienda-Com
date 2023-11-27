@@ -21,13 +21,15 @@ public class Producto_Tabla extends javax.swing.JFrame {
         initComponents();
     }
 
-    public JTable getJtProveedor() {
-        return jtProveedor;
+    public JTable getJtproducto() {
+        return jtproducto;
     }
 
-    public void setJtProveedor(JTable jtProveedor) {
-        this.jtProveedor = jtProveedor;
+    public void setJtproducto(JTable jtproducto) {
+        this.jtproducto = jtproducto;
     }
+
+   
 
     
 
@@ -61,7 +63,7 @@ public class Producto_Tabla extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtProveedor = new javax.swing.JTable();
+        jtproducto = new javax.swing.JTable();
         txtFiltro = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,9 +73,9 @@ public class Producto_Tabla extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Segoe UI Semibold", 2, 36)); // NOI18N
         lblTitulo.setText("Buscar Producto");
 
-        jtProveedor.setBackground(new java.awt.Color(153, 153, 153));
-        jtProveedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jtProveedor.setModel(new javax.swing.table.DefaultTableModel(
+        jtproducto.setBackground(new java.awt.Color(153, 153, 153));
+        jtproducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jtproducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -84,7 +86,7 @@ public class Producto_Tabla extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jtProveedor);
+        jScrollPane1.setViewportView(jtproducto);
 
         txtFiltro.setText("Buscar: ");
 
@@ -147,7 +149,7 @@ public class Producto_Tabla extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtProveedor;
+    private javax.swing.JTable jtproducto;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
