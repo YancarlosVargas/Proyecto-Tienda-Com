@@ -28,21 +28,23 @@ import javax.swing.table.TableColumn;
  */
 public class ModeloFactura_Compra {
 
-    private int idfactucompra, idfactu, ced, idusu, idprodu,cantidadcompra, preciouni;
+    private int idfactu, ced, idusu, idprodu,cantidadcompra, preciouni, numerodecomprobante;
     private String tipopago;
     private float impu, totalfac, desc;
     private Date fec;
 
+    public int getNumerodecomprobante() {
+        return numerodecomprobante;
+    }
+
+    public void setNumerodecomprobante(int numerodecomprobante) {
+        this.numerodecomprobante = numerodecomprobante;
+    }
+
+    
+    
     public int getIdprodu() {
         return idprodu;
-    }
-
-    public int getIdfactucompra() {
-        return idfactucompra;
-    }
-
-    public void setIdfactucompra(int idfactucompra) {
-        this.idfactucompra = idfactucompra;
     }
 
     public void setIdprodu(int idprodu) {
@@ -64,8 +66,6 @@ public class ModeloFactura_Compra {
     public void setPreciouni(int preciouni) {
         this.preciouni = preciouni;
     }
-
-    
     
     public int getIdfactu() {
         return idfactu;
@@ -135,12 +135,13 @@ public class ModeloFactura_Compra {
         Conexion conect = new Conexion();
         Connection cn = conect.iniciarConexion();
 
-        String sql = "Call Insersion_Factura_Compra(?,?,?)";
+        String sql = "Call Insersion_Factura_Compra(?,?,?,?)";
         try {
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setInt(1, getCed());
             ps.setInt(2, getIdusu());
             ps.setString(3, getTipopago());
+            ps.setInt(4, getNumerodecomprobante());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro Almacenado");
             cn.close();
@@ -203,7 +204,7 @@ public class ModeloFactura_Compra {
         imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impresora.png")));
         
         
-        String[] titulo = {"Identificacion", "IdProveedor", "IdUsuario", "Fecha", "TotalCompra", "Descuento", "TipoDePago"};
+        String[] titulo = {"Identificacion", "IdProveedor", "IdUsuario", "Fecha", "TotalCompra", "Descuento", "TipoDePago", "NumeroDeComprobante"};
         int total = titulo.length;
 
         if (nomPesta.equals("Factura")) {
@@ -235,7 +236,7 @@ public class ModeloFactura_Compra {
                     dato[i] = rs.getString(i + 1);
                 }
 
-                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6]};
+                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4], dato[5], dato[6], dato[7]};
                 if (nomPesta.equals("Factura")) {
                     fila = Arrays.copyOf(fila, fila.length + 4);
                     fila[fila.length - 1] = editar;
@@ -252,7 +253,7 @@ public class ModeloFactura_Compra {
         tabla.setModel(tablaUsuario);
 
         int numColumnas = tabla.getColumnCount();
-        int[] tamanos = {200, 200, 150, 100, 100, 100, 100, 50, 50, 50, 50};
+        int[] tamanos = {200, 200, 150, 100, 100, 100, 100, 100, 50, 50, 50, 50};
         for (int i = 0; i < numColumnas; i++) {
             TableColumn columna = tabla.getColumnModel().getColumn(i);
             columna.setPreferredWidth(tamanos[i]);
@@ -332,7 +333,7 @@ public class ModeloFactura_Compra {
         Conexion cone = new Conexion();
         Connection cn = cone.iniciarConexion();
 
-        String sql = "call Actualizar_Factura_Compra(?,?,?,?)";
+        String sql = "call Actualizar_Factura_Compra(?,?,?,?,?)";
 
         try {
             PreparedStatement ps = cn.prepareStatement(sql);
@@ -374,25 +375,6 @@ public class ModeloFactura_Compra {
             e.printStackTrace();
         }
 
-    }
-    
-    public void eliminarDetalleFactura() {
-        Conexion cone = new Conexion();
-        Connection cn = cone.iniciarConexion();
-
-        String sql = "call Eliminar_DetalleFactura(?)";
-
-        try {
-            PreparedStatement ps = cn.prepareStatement(sql);
-
-            ps.setInt(1,getIdfactucompra());
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Factura eliminada", "Eliminar Factura", JOptionPane.PLAIN_MESSAGE);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        
     }
 
 }

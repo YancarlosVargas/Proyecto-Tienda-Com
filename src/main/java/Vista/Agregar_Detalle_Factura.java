@@ -61,19 +61,8 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
     public void setBtnagregardetallefactura(JButton btnagregardetallefactura) {
         this.btnagregardetallefactura = btnagregardetallefactura;
     }
-    
+
    
-
-    public JTextField getTxtIdFactComp() {
-        return txtIdFactComp;
-    }
-
-    public void setTxtIdFactComp(JTextField txtIdFactComp) {
-        this.txtIdFactComp = txtIdFactComp;
-    }
-
-    
-
     public JLabel getLblTitulo() {
         return lblTitulo;
     }
@@ -105,8 +94,6 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtDetalleFactura = new javax.swing.JTable();
-        txtIdFactComp = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtidproducto = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -138,11 +125,9 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtDetalleFactura);
 
-        txtIdFactComp.setEditable(false);
-
-        jLabel1.setText("IDFactura Compra:");
-
         jLabel2.setText("Producto:");
+
+        txtidproducto.setEditable(false);
 
         jLabel3.setText("Cantidad Comprada:");
 
@@ -166,10 +151,6 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIdFactComp, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtidproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,7 +164,7 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtpreciounitario, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 414, Short.MAX_VALUE)
                         .addComponent(btnagregardetallefactura)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -198,20 +179,18 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
                 .addComponent(lblTitulo)
                 .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnagregardetallefactura, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(txtidproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtIdFactComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)
                         .addComponent(jLabel2)
                         .addComponent(txtcantidadcomprada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3)
                         .addComponent(txtpreciounitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)
-                        .addComponent(btnagregardetallefactura, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -246,7 +225,6 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarProducto;
     private javax.swing.JButton btnagregardetallefactura;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -254,7 +232,6 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtDetalleFactura;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTextField txtIdFactComp;
     private javax.swing.JTextField txtcantidadcomprada;
     private javax.swing.JTextField txtidproducto;
     private javax.swing.JTextField txtpreciounitario;

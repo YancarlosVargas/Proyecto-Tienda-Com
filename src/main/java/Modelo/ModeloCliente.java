@@ -157,6 +157,7 @@ public class ModeloCliente {
 
         JButton editar = new JButton();
         JButton eliminar = new JButton();
+        JButton agregar = new JButton();
 
         JTableHeader encabezado = tabla.getTableHeader();
         encabezado.setDefaultRenderer(new GestionEncabezado());
@@ -165,14 +166,18 @@ public class ModeloCliente {
 
         editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png")));
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png")));
+        agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar-usuario.png")));
 
-        String[] titulo = {"Cedula", "Genero/Sexo","Nombre", "Telefono", "Correo", "Direccion", "Fecha De Nacimiento", "Tipo de Documento"};
+        String[] titulo = {"Cedula", "Genero/Sexo", "Nombre", "Telefono", "Correo", "Direccion", "Fecha De Nacimiento", "Tipo de Documento"};
         int total = titulo.length;
 
         if (nomPesta.equals("Cliente")) {
             titulo = Arrays.copyOf(titulo, titulo.length + 2);
             titulo[titulo.length - 2] = "Editar";
             titulo[titulo.length - 1] = "Eliminar";
+        } else {
+            titulo = Arrays.copyOf(titulo, titulo.length + 1);
+            titulo[titulo.length - 1] = "Agregar";
         }
 
         DefaultTableModel tablaCliente = new DefaultTableModel(null, titulo) {
@@ -201,6 +206,9 @@ public class ModeloCliente {
                     fila = Arrays.copyOf(fila, fila.length + 2);
                     fila[fila.length - 2] = editar;
                     fila[fila.length - 1] = eliminar;
+                }else {
+                    fila = Arrays.copyOf(fila, fila.length + 1);
+                    fila[fila.length - 1] = agregar;
                 }
                 tablaCliente.addRow(fila);
             }
@@ -219,7 +227,7 @@ public class ModeloCliente {
         conect.cerrarConexion();
 
     }
-    
+
     public void buscarCliente(int valor) {
         Conexion cone = new Conexion();
         Connection cn = cone.iniciarConexion();
@@ -265,7 +273,7 @@ public class ModeloCliente {
         try {
             PreparedStatement ps = cn.prepareStatement(sql);
 
-            ps.setInt(1,getCdl());
+            ps.setInt(1, getCdl());
             ps.setString(2, getNom());
             ps.setString(3, getTel());
             ps.setString(4, getCor());
@@ -281,8 +289,8 @@ public class ModeloCliente {
             e.printStackTrace();
         }
     }
-        
-        public void eliminarCliente() {
+
+    public void eliminarCliente() {
         Conexion cone = new Conexion();
         Connection cn = cone.iniciarConexion();
 
@@ -291,13 +299,13 @@ public class ModeloCliente {
         try {
             PreparedStatement ps = cn.prepareStatement(sql);
 
-            ps.setInt(1,getCdl());
+            ps.setInt(1, getCdl());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cliente Eliminado", "Eliminar Cliente", JOptionPane.PLAIN_MESSAGE);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
     }
 }

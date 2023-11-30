@@ -141,9 +141,11 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
 
     public void actualizarFactura_Compra(int idfactucom) {
         modfactucomp.buscarFactura_Compra(idfactucom);
+        vista_factucomp.getTxtComprobante().setEnabled(false);
         vista_factucomp.getTxtUsuario().setText(String.valueOf(modfactucomp.getIdusu()));
         vista_factucomp.getTxtProveedor().setText(String.valueOf(modfactucomp.getCed()));
         vista_factucomp.getCbxtipodepago().setSelectedItem(modfactucomp.getTipopago());
+        vista_factucomp.getTxtComprobante().setText(String.valueOf(modfactucomp.getNumerodecomprobante()));
         vista_factucomp.getLblTitulo().setText("ACTUALIZAR FACTURA");
         prin.setVisible(false);
         vista_factucomp.setLocationRelativeTo(null);
@@ -173,13 +175,15 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
         }
 
         if (e.getSource().equals(vista_factucomp.getBtnGuardarFacturaCompra())) {
-            if ((vista_factucomp.getTxtProveedor().getText().isEmpty()) || (vista_factucomp.getTxtUsuario().getText().isEmpty()) || (vista_factucomp.getCbxtipodepago().getSelectedItem().equals("Seleccionar:"))) {
+            if ((vista_factucomp.getTxtProveedor().getText().isEmpty()) || (vista_factucomp.getTxtUsuario().getText().isEmpty()) || (vista_factucomp.getCbxtipodepago().getSelectedItem().equals("Seleccionar:")) || (vista_factucomp.getTxtComprobante().getText().isEmpty())) {
                 JOptionPane.showMessageDialog(null, "Hace Falta Informacion");
+ 
             } else {
 
                 modfactucomp.setCed(Integer.parseInt(vista_factucomp.getTxtProveedor().getText()));
                 modfactucomp.setIdusu(Integer.parseInt(vista_factucomp.getTxtUsuario().getText()));
                 modfactucomp.setTipopago(vista_factucomp.getCbxtipodepago().getSelectedItem().toString());
+                modfactucomp.setNumerodecomprobante(Integer.parseInt(vista_factucomp.getTxtComprobante().getText()));
                 if (vista_factucomp.getBtnGuardarFacturaCompra().getText().equals("Guardar")) {
                     JOptionPane.showMessageDialog(null, "Factura agregada");
                     modfactucomp.insertarfacturacompra();
@@ -208,18 +212,6 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
         prin.setVisible(false);
         prin.setExtendedState(JFrame.MAXIMIZED_BOTH);
         vista_factucomp.setTitle("Añadir Nueva Factura | Ventana");
-    }
-    
-    public void eliminarDetalleFactura(int idfactura_compra) {
-        int resp = JOptionPane.showConfirmDialog(null, "Eliminar Factura? \n" + idfactura_compra,
-                "Eliminar Factura", JOptionPane.YES_OPTION);
-        if (resp == JOptionPane.YES_OPTION) {
-            modfactucomp.setIdfactucompra(idfactura_compra);
-            modfactucomp.eliminarDetalleFactura();
-            modfactucomp.mostrarDetalleFactura(detallefactura.getJtDetalleFactura(), "", "Eliminar");
-
-        }
-
     }
 
     @Override

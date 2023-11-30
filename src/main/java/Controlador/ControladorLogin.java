@@ -1,6 +1,7 @@
 package Controlador;
 
 import Modelo.ModeloLogin;
+import Modelo.ModeloUsuario;
 import Vista.Login;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +16,7 @@ public class ControladorLogin implements ActionListener {
     public ControladorLogin() {
         log.getBtnVisibilidad().addActionListener(this);
         log.getBtnIniciarSeccion().addActionListener(this);
-        
+
     }
 
     public void arranqueVista() {
@@ -38,27 +39,26 @@ public class ControladorLogin implements ActionListener {
             }
         }
         if (e.getSource() == (log.getBtnIniciarSeccion())) {
-                modlog.setUsu(log.getTxtUsuario().getText());
-                String pass = new String(log.getJpClave().getPassword());
-                modlog.setContra(pass);
-                if (modlog.getUsu().isEmpty() && (modlog.getContra().isEmpty())) {
-                    JOptionPane.showMessageDialog(null, "Porfavor, Ingresar un usuario y una contraseña.");
+            modlog.setUsu(log.getTxtUsuario().getText());
+            String pass = new String(log.getJpClave().getPassword());
+            modlog.setContra(pass);
+            if (modlog.getUsu().isEmpty() && (modlog.getContra().isEmpty())) {
+                JOptionPane.showMessageDialog(null, "Porfavor, Ingresar un usuario y una contraseña.");
+            } else {
+                if (modlog.getUsu().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Porfavor, Ingresar un usuario.");
+                } else if (modlog.getContra().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Porfavor, Ingresar la contraseña.");
                 } else {
-                    if (modlog.getUsu().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Porfavor, Ingresar un usuario.");
-                    } else if (modlog.getContra().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Porfavor, Ingresar la contraseña.");
+                    if (modlog.validacion(modlog.getUsu(), modlog.getContra())) {
+                        log.setVisible(false);
+                        prin.iniciarPrincipal(0);
                     } else {
-                        if (modlog.validacion(modlog.getUsu(), modlog.getContra())) {
-                            log.setVisible(false);
-                            prin.iniciarPrincipal(0);
+                        JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta");
 
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta");
-
-                        }
                     }
-                }         
+                }
+            }
         }
     }
 
