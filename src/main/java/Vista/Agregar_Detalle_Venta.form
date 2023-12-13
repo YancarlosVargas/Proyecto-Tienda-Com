@@ -58,7 +58,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnBuscarProducto" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btnagregardetallefactura" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnagregardetalleventa" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -71,12 +71,14 @@
               <Group type="102" alignment="1" attributes="0">
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnagregardetallefactura" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="lblidfactura" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtidfactura" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnBuscarProducto" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnagregardetalleventa" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="lblidfactura" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtidfactura" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace pref="12" max="32767" attributes="0"/>
                   <Component id="jScrollPane1" pref="257" max="32767" attributes="0"/>
@@ -93,7 +95,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jtDetalleFactura">
+            <Component class="javax.swing.JTable" name="jtDetalleVenta">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="99" red="99" type="rgb"/>
@@ -115,12 +117,12 @@
             <Property name="text" type="java.lang.String" value="Producto:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnagregardetallefactura">
+        <Component class="javax.swing.JButton" name="btnagregardetalleventa">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Agregar Detalle Factura"/>
+            <Property name="text" type="java.lang.String" value="Agregar Detalle Venta"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnagregardetallefacturaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnagregardetalleventaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnBuscarProducto">
@@ -169,7 +171,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Agregar Detalle Factura"/>
+                <Property name="text" type="java.lang.String" value="Agregar Detalle Venta"/>
               </Properties>
             </Component>
           </SubComponents>

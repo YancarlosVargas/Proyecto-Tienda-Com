@@ -134,7 +134,7 @@ public class ModeloProveedor {
             ps.setString(7, getTipdeper());
             ps.setDate(8, (java.sql.Date) getFec());
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Registro almacenamiento", "registro", sex);
+            JOptionPane.showMessageDialog(null, "Proovedor Agregado");
             cn.close();
         } catch (SQLException e) {
             e.printStackTrace();

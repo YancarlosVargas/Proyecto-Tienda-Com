@@ -13,32 +13,31 @@ import javax.swing.JTextField;
  *
  * @author SENA
  */
-public class Agregar_Detalle_Factura extends javax.swing.JFrame {
+public class Agregar_Detalle_Venta extends javax.swing.JFrame {
 
     /**
      * Creates new form Usuarios_Tabla
      */
-    public Agregar_Detalle_Factura() {
+    public Agregar_Detalle_Venta() {
         initComponents();
     }
 
-    public JTable getJtDetalleFactura() {
-        return jtDetalleFactura;
+    public JTable getJtDetalleVenta() {
+        return jtDetalleVenta;
     }
 
-    public void setJtDetalleFactura(JTable jtDetalleFactura) {
-        this.jtDetalleFactura = jtDetalleFactura;
+    public void setJtDetalleVenta(JTable jtDetalleVenta) {
+        this.jtDetalleVenta = jtDetalleVenta;
     }
 
-    public JButton getBtnagregardetallefactura() {
-        return btnagregardetallefactura;
+    public JButton getBtnagregardetalleventa() {
+        return btnagregardetalleventa;
     }
 
-    public void setBtnagregardetallefactura(JButton btnagregardetallefactura) {
-        this.btnagregardetallefactura = btnagregardetallefactura;
+    public void setBtnagregardetalleventa(JButton btnagregardetalleventa) {
+        this.btnagregardetalleventa = btnagregardetalleventa;
     }
 
-   
     public JLabel getLblTitulo() {
         return lblTitulo;
     }
@@ -63,8 +62,6 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
         this.txtidfactura = txtidfactura;
     }
 
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,9 +73,9 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtDetalleFactura = new javax.swing.JTable();
+        jtDetalleVenta = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        btnagregardetallefactura = new javax.swing.JButton();
+        btnagregardetalleventa = new javax.swing.JButton();
         btnBuscarProducto = new javax.swing.JButton();
         lblidfactura = new javax.swing.JLabel();
         txtidfactura = new javax.swing.JTextField();
@@ -89,9 +86,9 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jtDetalleFactura.setBackground(new java.awt.Color(153, 153, 153));
-        jtDetalleFactura.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jtDetalleFactura.setModel(new javax.swing.table.DefaultTableModel(
+        jtDetalleVenta.setBackground(new java.awt.Color(153, 153, 153));
+        jtDetalleVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jtDetalleVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -102,14 +99,14 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jtDetalleFactura);
+        jScrollPane1.setViewportView(jtDetalleVenta);
 
         jLabel2.setText("Producto:");
 
-        btnagregardetallefactura.setText("Agregar Detalle Factura");
-        btnagregardetallefactura.addActionListener(new java.awt.event.ActionListener() {
+        btnagregardetalleventa.setText("Agregar Detalle Venta");
+        btnagregardetalleventa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnagregardetallefacturaActionPerformed(evt);
+                btnagregardetalleventaActionPerformed(evt);
             }
         });
 
@@ -124,7 +121,7 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("Agregar Detalle Factura");
+        lblTitulo.setText("Agregar Detalle Venta");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,7 +151,7 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscarProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnagregardetallefactura)))
+                        .addComponent(btnagregardetalleventa)))
                 .addContainerGap())
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -163,12 +160,13 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnagregardetallefactura, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblidfactura)
-                    .addComponent(txtidfactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuscarProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnagregardetalleventa, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblidfactura)
+                        .addComponent(txtidfactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addContainerGap())
@@ -188,21 +186,19 @@ public class Agregar_Detalle_Factura extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnagregardetallefacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregardetallefacturaActionPerformed
+    private void btnagregardetalleventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregardetalleventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnagregardetallefacturaActionPerformed
+    }//GEN-LAST:event_btnagregardetalleventaActionPerformed
 
- 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarProducto;
-    private javax.swing.JButton btnagregardetallefactura;
+    private javax.swing.JButton btnagregardetalleventa;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtDetalleFactura;
+    private javax.swing.JTable jtDetalleVenta;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblidfactura;
     private javax.swing.JTextField txtidfactura;

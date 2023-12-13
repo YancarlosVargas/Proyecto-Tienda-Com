@@ -28,7 +28,7 @@ import javax.swing.table.TableColumn;
  */
 public class ModeloFactura_Compra {
 
-    private int idfactu, ced, idusu, idprodu,cantidadcompra, preciouni, numerodecomprobante;
+    private int idfactu, ced, idusu, idprodu, cantidadcompra, preciouni, numerodecomprobante;
     private String tipopago;
     private float impu, totalfac, desc;
     private Date fec;
@@ -41,8 +41,6 @@ public class ModeloFactura_Compra {
         this.numerodecomprobante = numerodecomprobante;
     }
 
-    
-    
     public int getIdprodu() {
         return idprodu;
     }
@@ -66,7 +64,7 @@ public class ModeloFactura_Compra {
     public void setPreciouni(int preciouni) {
         this.preciouni = preciouni;
     }
-    
+
     public int getIdfactu() {
         return idfactu;
     }
@@ -150,7 +148,27 @@ public class ModeloFactura_Compra {
         }
         conect.cerrarConexion();
     }
-    
+
+    public void verDetalleFactura(int valor) {
+        Conexion cone = new Conexion();
+        Connection cn = cone.iniciarConexion();
+
+        String sql = "call Ver_Detalle_Factura(" + valor + ")";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                for (int i = 0; i < 7; i++) {
+                    rs.getString(i + 1);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void insertarfacturacompraproducto() {
         Conexion conect = new Conexion();
         Connection cn = conect.iniciarConexion();
@@ -192,7 +210,7 @@ public class ModeloFactura_Compra {
         JButton agregar_producto = new JButton();
         JButton mostrar_detalle = new JButton();
         JButton imprimir = new JButton();
-        
+
         JTableHeader encabezado = tabla.getTableHeader();
         encabezado.setDefaultRenderer(new GestionEncabezado());
         tabla.setTableHeader(encabezado);
@@ -202,8 +220,7 @@ public class ModeloFactura_Compra {
         agregar_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar-producto.png")));
         mostrar_detalle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mostrar-detalle.png")));
         imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impresora.png")));
-        
-        
+
         String[] titulo = {"Identificacion", "IdProveedor", "IdUsuario", "Fecha", "TotalCompra", "Descuento", "TipoDePago", "NumeroDeComprobante"};
         int total = titulo.length;
 
@@ -261,7 +278,7 @@ public class ModeloFactura_Compra {
         conect.cerrarConexion();
 
     }
-    
+
     public void mostrarDetalleFactura(JTable tabla, String valor, String nomPesta) {
         Conexion conect = new Conexion();
         Connection cn = conect.iniciarConexion();
@@ -295,39 +312,37 @@ public class ModeloFactura_Compra {
         } else {
             sqlProvedor = "call Filtro_Provedor('" + valor + "')";
         }
-            try {
-                String[] dato = new String[titulo.length];
-                Statement st = cn.createStatement();
-                ResultSet rs = st.executeQuery(sqlProvedor);
-                while (rs.next()) {
-                    for (int i = 0; i < total; i++) {
-                        dato[i] = rs.getString(i + 1);
-                    }
-
-                    Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4]};
-                    if (nomPesta.equals("Eliminar")) {
-                        fila = Arrays.copyOf(fila, fila.length + 1);
-                        fila[fila.length - 1] = eliminar;
-                    }
-                    tablaProvedor.addRow(fila);
+        try {
+            String[] dato = new String[titulo.length];
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sqlProvedor);
+            while (rs.next()) {
+                for (int i = 0; i < total; i++) {
+                    dato[i] = rs.getString(i + 1);
                 }
-                cn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            tabla.setModel(tablaProvedor);
 
-            int numColumnas = tabla.getColumnCount();
-            int[] tamanos = {100, 100, 100, 100, 100, 20};
-            for (int i = 0; i < numColumnas; i++) {
-                TableColumn columna = tabla.getColumnModel().getColumn(i);
-                columna.setPreferredWidth(tamanos[i]);
+                Object[] fila = {dato[0], dato[1], dato[2], dato[3], dato[4]};
+                if (nomPesta.equals("Eliminar")) {
+                    fila = Arrays.copyOf(fila, fila.length + 1);
+                    fila[fila.length - 1] = eliminar;
+                }
+                tablaProvedor.addRow(fila);
             }
-            conect.cerrarConexion();
-
+            cn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        tabla.setModel(tablaProvedor);
 
-    
+        int numColumnas = tabla.getColumnCount();
+        int[] tamanos = {100, 100, 100, 100, 100, 20};
+        for (int i = 0; i < numColumnas; i++) {
+            TableColumn columna = tabla.getColumnModel().getColumn(i);
+            columna.setPreferredWidth(tamanos[i]);
+        }
+        conect.cerrarConexion();
+
+    }
 
     public void actualizarFactura_Compra() {
         Conexion cone = new Conexion();
@@ -374,6 +389,100 @@ public class ModeloFactura_Compra {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+    }
+
+    public boolean verificaciondecheckmarks(JTable Tabla) {
+        for (int i = 0; i < Tabla.getRowCount(); i++) {
+            Boolean recorrido = (Boolean) Tabla.getValueAt(i, 6);
+            if (recorrido != null && recorrido) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public void agregardatos(JTable TablaInformacion, JTable TablaLLevar) {
+        JTableHeader encabezado = TablaInformacion.getTableHeader();
+        encabezado.setDefaultRenderer(new GestionEncabezado());
+        TablaLLevar.setTableHeader(encabezado);
+        TablaLLevar.setDefaultRenderer(Object.class, new GestionCeldas());
+
+        Object[] titulo = {"Codigo", "Producto", "Imagen", "Cantidad", "Precio"};
+
+        DefaultTableModel tablaAñadirProducto = new DefaultTableModel(null, titulo) {
+            public boolean isCellEditable(int row, int column) {
+                return column == 3 || column == 4;
+            }
+        };
+
+        if (verificaciondecheckmarks(TablaInformacion)) {
+            for (int i = 0; i < TablaInformacion.getRowCount(); i++) {
+                Boolean recorrido = (Boolean) TablaInformacion.getValueAt(i, 6);
+                if (recorrido != null && recorrido) {
+                    Object dato[] = new Object[titulo.length];
+                    dato[0] = TablaInformacion.getValueAt(i, 0);
+                    dato[1] = TablaInformacion.getValueAt(i, 2);
+                    dato[2] = TablaInformacion.getValueAt(i, 1);
+                    dato[3] = TablaInformacion.getValueAt(i, 4);
+                    dato[4] = TablaInformacion.getValueAt(i, 5);
+
+                    Object Fila[] = {dato[0], dato[1], dato[2], dato[3], dato[4]};
+                    tablaAñadirProducto.addRow(Fila);
+
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccionar un producto");
+        }
+        TablaLLevar.setModel(tablaAñadirProducto);
+    }
+    
+    public String[] buscarFacturaDetalle(int fact, JTable tabla) {
+        Conexion cone = new Conexion();
+        Connection cn = cone.iniciarConexion();
+        tabla.setDefaultRenderer(Object.class, new GestionCeldas());
+        Object[] titulo = {"COD","Producto", "Descripcion", "Cantidad", "Valor Unitario", 
+            "Total"};
+        int tot = titulo.length;
+
+        DefaultTableModel tablaDetalle = new DefaultTableModel(null, titulo) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        String sql = "call Ver_Detalle_Factura(" + fact + ")";
+        String[] dato = null;
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            int total = rs.getMetaData().getColumnCount();
+            dato = new String[total];
+            while (rs.next()) {
+                for (int i = 0; i < total; i++) {
+                    dato[i] = rs.getString(i + 1);
+                }
+                Object[] fila = {dato[8], dato[9], dato[10], dato[11],dato[12],dato[13]};
+                tablaDetalle.addRow(fila);
+            }
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+      
+        tabla.setModel(tablaDetalle);
+        int numColumnas = tabla.getColumnCount();
+        int[] tamanos = {5, 20, 55, 6, 20,40};
+
+        for (int i = 0; i < numColumnas; i++) {
+            TableColumn columna = tabla.getColumnModel().getColumn(i);
+            columna.setPreferredWidth(tamanos[i]);
+        }
+        cone.cerrarConexion();
+        return dato;
 
     }
 
