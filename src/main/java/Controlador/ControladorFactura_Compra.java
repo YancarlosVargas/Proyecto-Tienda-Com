@@ -265,7 +265,7 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
             tableproducto.setLocationRelativeTo(null);
             agregardetallefactura.setVisible(false);
             tableproducto.setTitle("Buscar Producto | Ventana");
-            modproduc.mostrarTablaProducto(tableproducto.getJtproducto(), "", "");
+            modproduc.mostrarTablaProducto(tableproducto.getJtproducto(), "", "Factura");
 
             JButton agregar = new JButton("Añadir");
             agregar.setBounds(13, 80, 80, 20);
