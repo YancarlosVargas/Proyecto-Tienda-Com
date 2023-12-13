@@ -31,7 +31,7 @@ public class ModeloVenta {
     private String tipodepago;
     private int idusuario, idcliente, idfactura, numerodecomprobante, idproducto, cantidad;
     private Date fecha;
-    private float impuesto, totalfactura, descuento;
+    private float impuesto, totalfactura;
 
     public int getNumerodecomprobante() {
         return numerodecomprobante;
@@ -79,14 +79,6 @@ public class ModeloVenta {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
-    }
-
-    public float getDescuento() {
-        return descuento;
-    }
-
-    public void setDescuento(float descuento) {
-        this.descuento = descuento;
     }
     
     public int getIdfactura() {
@@ -145,13 +137,12 @@ public class ModeloVenta {
         Conexion conect = new Conexion();
         Connection cn = conect.iniciarConexion();
 
-        String sql = "Call Insersion_ProductoFactura(?,?,?,?)";
+        String sql = "Call Insersion_ProductoFactura(?,?,?)";
         try {
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setInt(1, getIdproducto());
             ps.setInt(2, getIdfactura());
             ps.setInt(3, getCantidad());
-            ps.setFloat(4, getDescuento());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro Almacenado");
             cn.close();

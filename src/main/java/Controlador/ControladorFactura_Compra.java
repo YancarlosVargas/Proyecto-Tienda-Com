@@ -25,6 +25,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -103,7 +104,7 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
                 controlprin.iniciarPrincipal(4);
             }
         });
-        
+
         verdetallefactura.addWindowListener(new WindowAdapter() {
             ;
         public void windowClosed(WindowEvent e) {
@@ -182,9 +183,9 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
         agregardetallefactura.getTxtidfactura().setText(String.valueOf(fac));
 
     }
-    
+
     public void ver_Factura(int fact) {
-        String dato[]= modfactucomp.buscarFacturaDetalle(fact, verdetallefactura.getJtDetalleFactura());
+        String dato[] = modfactucomp.buscarFacturaDetalle(fact, verdetallefactura.getJtDetalleFactura());
         verdetallefactura.getLblFacturaCompra().setText(String.valueOf(fact));
         verdetallefactura.getLblProveedor().setText(dato[1]);
         verdetallefactura.getLblUsuario().setText(dato[2]);
@@ -287,19 +288,21 @@ public class ControladorFactura_Compra implements ActionListener, DocumentListen
             if (agregardetallefactura.getTxtidfactura().getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Hace falta informacion");
             } else {
-                agregardetallefactura.getBtnagregardetallefactura().addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        int fila = agregardetallefactura.getJtDetalleFactura().rowAtPoint(e.getPoint());
-                        int columna = agregardetallefactura.getJtDetalleFactura().columnAtPoint(e.getPoint());
+                JTable tabla = agregardetallefactura.getJtDetalleFactura();
+                try {
+                    for (int i = 0; i < tabla.getRowCount(); i++) {
                         modfactucomp.setIdfactu(Integer.parseInt(agregardetallefactura.getTxtidfactura().getText()));
-                        modfactucomp.setIdprodu(Integer.parseInt(agregardetallefactura.getJtDetalleFactura().getValueAt(fila, 0).toString()));
-                        modfactucomp.setCantidadcompra(Integer.parseInt(agregardetallefactura.getJtDetalleFactura().getValueAt(fila, 3).toString()));
-                        modfactucomp.setPreciouni(Integer.parseInt(agregardetallefactura.getJtDetalleFactura().getValueAt(fila, 4).toString()));
+                        modfactucomp.setIdprodu(Integer.parseInt(agregardetallefactura.getJtDetalleFactura().getValueAt(i, 0).toString()));
+                        modfactucomp.setCantidadcompra(Integer.parseInt(agregardetallefactura.getJtDetalleFactura().getValueAt(i, 3).toString()));
+                        modfactucomp.setPreciouni(Integer.parseInt(agregardetallefactura.getJtDetalleFactura().getValueAt(i, 4).toString()));
                         modfactucomp.insertarfacturacompraproducto();
                         agregardetallefactura.dispose();
                     }
-                });
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                } finally {
+                    agregardetallefactura.dispose();
+                }
 
             }
         }

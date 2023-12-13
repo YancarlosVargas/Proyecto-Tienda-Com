@@ -193,7 +193,7 @@ public class ModeloProducto {
 
         DefaultTableModel tablaProducto = new DefaultTableModel(null, titulo) {
             public boolean isCellEditable(int row, int column) {
-                if (NomPesta.equals("")) {
+                if (NomPesta.equals("") || NomPesta.equals("Factura")) {
                     if (column == 4 || column == 5 || column == 6) {
                         return true;
                     }

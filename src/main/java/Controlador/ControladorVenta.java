@@ -24,6 +24,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -271,19 +272,19 @@ public class ControladorVenta implements ActionListener, DocumentListener {
             if (agregardetalleventa.getTxtidfactura().getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Hace falta informacion");
             } else {
-                agregardetalleventa.getBtnagregardetalleventa().addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        int fila = agregardetalleventa.getJtDetalleVenta().rowAtPoint(e.getPoint());
-                        int columna = agregardetalleventa.getJtDetalleVenta().columnAtPoint(e.getPoint());
+                JTable tabla = agregardetalleventa.getJtDetalleVenta(); 
+                try{
+                    for(int i = 0; i < tabla.getRowCount(); i++){
                         modven.setIdfactura(Integer.parseInt(agregardetalleventa.getTxtidfactura().getText()));
-                        modven.setIdproducto(Integer.parseInt(agregardetalleventa.getJtDetalleVenta().getValueAt(fila, 0).toString()));
-                        modven.setCantidad(Integer.parseInt(agregardetalleventa.getJtDetalleVenta().getValueAt(fila, 3).toString()));
-                        modven.setDescuento(Float.parseFloat((agregardetalleventa.getJtDetalleVenta().getValueAt(fila, 4).toString())));
+                        modven.setIdproducto(Integer.parseInt(agregardetalleventa.getJtDetalleVenta().getValueAt(i, 0).toString()));
+                        modven.setCantidad(Integer.parseInt(agregardetalleventa.getJtDetalleVenta().getValueAt(i, 3).toString()));
                         modven.insertarProductoFactura();
                     }
-                });
-
+                }catch (Exception ex) {
+                    ex.printStackTrace();
+                }finally{
+                    agregardetalleventa.dispose();
+                }
             }
         }
     }
